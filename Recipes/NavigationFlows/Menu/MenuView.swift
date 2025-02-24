@@ -10,42 +10,58 @@ import SwiftUI
 struct MenuView: View {
     
     var body: some View {
-        VStack(spacing: 0) {
-            ZStack {
-                Color.indigo
-                    .opacity(0.1)
-                    .ignoresSafeArea()
+        NavigationView {
+            VStack(spacing: 0) {
+                ZStack {
+                    Color.indigo
+                        .opacity(0.3)
+                        .ignoresSafeArea()
+                    
+                    HStack {
+                        Text("Меню на неделю")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 16)
+                        Spacer()
+                        
+                        Button {
+                            print("button")
+                        } label: {
+                            Image(systemName: "ellipsis")
+                                .foregroundColor(.black)
+                                .padding()
+                        }
+                    }
+                }
+                .scaledToFit()
                 
-                Text("Меню на неделю")
-                    .font(.title)
-                    .fontWeight(.bold)
+                ZStack {
+                    WeekView()
+                }
+                //            .background(Color.blue)
+                .scaledToFit()
+                
+                ScrollView {
+                    MealView(title: "Завтрак", selectedFood: Recipe.mockRecipe)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                    
+                    MealView(title: "Обед", selectedFood: Recipe.mockRecipe)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                    
+                    MealView(title: "Перекус", selectedFood: Recipe.mockRecipe)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                    
+                    MealView(title: "Ужин", selectedFood: Recipe.mockRecipe)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                    
+                    Spacer()
+                }
             }
-            .scaledToFit()
-            
-            ZStack {
-                WeekView()
-            }
-            .background(Color.blue)
-            .scaledToFit()
-            
-            HStack {
-                Text("Завтрак")
-                    .padding()
-                
-                Spacer()
-                
-                
-            }
-            
-            
-            Spacer()
-            
-            //            Image(systemName: "globe")
-            //                .imageScale(.large)
-            //                .foregroundStyle(.tint)
-            //            Text("Hello, Menu!")
-            //
-            //            Spacer()
         }
     }
 }

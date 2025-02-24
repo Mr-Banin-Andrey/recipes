@@ -24,9 +24,11 @@ struct RootView: View {
                     Label("Покупки", systemImage: "checklist")
                 }
         }
-        .tint(.blue)
+        .tint(.indigo)
         .onAppear(perform: {
             UITabBar.appearance().backgroundColor = .systemGray4.withAlphaComponent(0.4)
+            UITabBar.appearance().unselectedItemTintColor = .systemIndigo.withAlphaComponent(0.3)
+            
         })
     }
 }
