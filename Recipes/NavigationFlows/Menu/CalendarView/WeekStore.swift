@@ -23,12 +23,12 @@ final class WeekStore: ObservableObject {
     //Array of Weeks
     @Published var currentWeek: [Date] = []
     @Published var nextWeek: [Date] = []
-    @Published var previousWeek: [Date] = []
+//    @Published var previousWeek: [Date] = []
     
     //Initial append of weeks
     init() {
         fetchCurrentWeek()
-        fetchPreviousNextWeek()
+//        fetchPreviousNextWeek()
         appendAll()
     }
     
@@ -39,8 +39,8 @@ final class WeekStore: ObservableObject {
         newWeek = WeekModel(id: 2, date: nextWeek)
         allWeeks.append(newWeek)
         
-        newWeek = WeekModel(id: 1, date: previousWeek)
-        allWeeks.append(newWeek)
+//        newWeek = WeekModel(id: 1, date: previousWeek)
+//        allWeeks.append(newWeek)
     }
     
     func update(index: Int) {
@@ -108,31 +108,31 @@ final class WeekStore: ObservableObject {
         }
     }
     
-    func fetchPreviousNextWeek() {
-        nextWeek.removeAll()
-        
-        let nextWeekToday = Calendar.current.date(byAdding: .day, value: 7, to: currentDate)
-        
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.firstWeekday = 1
-        
-        let startOfWeekNext = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: nextWeekToday ?? Date()))
-        
-        (1...7).forEach{ day in
-            if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeekNext ?? Date()) {
-                nextWeek.append(weekday)
-            }
-        }
-        
-        previousWeek.removeAll()
-        let previousWeekToday = Calendar.current.date(byAdding: .day, value: -7, to: currentDate)
-        
-        let startOfWeekPrev = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: previousWeekToday ?? Date()))
-        
-        (1...7).forEach{ day in
-            if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeekPrev ?? Date()) {
-                previousWeek.append(weekday)
-            }
-        }
-    }
+//    func fetchPreviousNextWeek() {
+//        nextWeek.removeAll()
+//        
+//        let nextWeekToday = Calendar.current.date(byAdding: .day, value: 7, to: currentDate)
+//        
+//        var calendar = Calendar(identifier: .gregorian)
+//        calendar.firstWeekday = 1
+//        
+//        let startOfWeekNext = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: nextWeekToday ?? Date()))
+//        
+//        (1...7).forEach{ day in
+//            if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeekNext ?? Date()) {
+//                nextWeek.append(weekday)
+//            }
+//        }
+//        
+//        previousWeek.removeAll()
+//        let previousWeekToday = Calendar.current.date(byAdding: .day, value: -7, to: currentDate)
+//        
+//        let startOfWeekPrev = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: previousWeekToday ?? Date()))
+//        
+//        (1...7).forEach{ day in
+//            if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeekPrev ?? Date()) {
+//                previousWeek.append(weekday)
+//            }
+//        }
+//    }
 }

@@ -65,8 +65,6 @@ struct MealView: View {
         .background(Color.orange.opacity(0.3))
         .cornerRadius(20)
     }
-    
-    
 }
 
 #Preview {

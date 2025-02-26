@@ -22,6 +22,7 @@
 		0F1C996E2D6CD9300057EAE0 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C996D2D6CD9220057EAE0 /* MealType.swift */; };
 		0F1C99712D6CD97E0057EAE0 /* QuantityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C99702D6CD97E0057EAE0 /* QuantityType.swift */; };
 		0F1C99732D6CD98A0057EAE0 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C99722D6CD98A0057EAE0 /* Ingredient.swift */; };
+		0F21EAEC2D6E2F5200C01A23 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F21EAEB2D6E2F4E00C01A23 /* Untitled.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0F1C996D2D6CD9220057EAE0 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
 		0F1C99702D6CD97E0057EAE0 /* QuantityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityType.swift; sourceTree = "<group>"; };
 		0F1C99722D6CD98A0057EAE0 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		0F21EAEB2D6E2F4E00C01A23 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
 		0F45C6202D6B107D0039CB62 /* Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 		0F1C995D2D6B839C0057EAE0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				0F21EAEB2D6E2F4E00C01A23 /* Untitled.swift */,
 				0F1C995F2D6B83D40057EAE0 /* CalendarView */,
 				0F1C99662D6C5FA10057EAE0 /* MealView.swift */,
 				0F1C994E2D6B77880057EAE0 /* MenuView.swift */,
@@ -255,6 +258,7 @@
 			files = (
 				0F1C99652D6B952B0057EAE0 /* WeekView.swift in Sources */,
 				0F1C99732D6CD98A0057EAE0 /* Ingredient.swift in Sources */,
+				0F21EAEC2D6E2F5200C01A23 /* Untitled.swift in Sources */,
 				0F1C99542D6B77880057EAE0 /* RecipesApp.swift in Sources */,
 				0F1C99612D6B841B0057EAE0 /* WeekModel.swift in Sources */,
 				0F1C99552D6B77880057EAE0 /* MenuView.swift in Sources */,
