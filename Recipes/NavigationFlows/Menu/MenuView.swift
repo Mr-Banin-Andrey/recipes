@@ -37,10 +37,14 @@ struct MenuView: View {
                 .scaledToFit()
                 
                 ZStack {
-                    WeekView()
+                    WeekView { date in
+                        print(" date \(date)")
+                    }
                 }
-                //            .background(Color.blue)
-                .scaledToFit()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(16)
+                .padding(5)
+                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 5, y: 5)
                 
                 ScrollView {
                     MealView(title: "Завтрак", selectedFood: Recipe.mockRecipe)
