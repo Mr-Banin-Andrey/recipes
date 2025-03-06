@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecipesScreenView: View {
     
-    @State private var mealType: MealType = .breakfast
+    @State var mealType: MealType = .breakfast
         
     var body: some View {
         NavigationView {
@@ -20,82 +20,16 @@ struct RecipesScreenView: View {
                 }
                 .scaledToFit()
                 
-                MealTypeScrollView()
-//
-//                Button {
-//                    
-//                } label: {
-//                    Text("Выбрать категорию")
-//                        .padding()
-//                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
-//                        .padding(16)
-//                }
-//
-//                HStack {
-//                    Text("Каша")
-//                        .font(.title2)
-//                        .foregroundStyle(Color.gray)
-//                        .padding()
-//                    
-//                    Spacer()
-//                }
-//               
-//                HStack {
-//                    Text("Продукты:")
-//                        .font(.title2)
-//                        .foregroundStyle(Color.gray)
-//                        .padding()
-//                    Spacer()
-//                }
-//                
-//                VStack{
-//                    ForEach(0..<5) { _ in
-//                        HStack {
-//                            Text("-  Яйцо")
-//                                .font(.title3)
-//                            
-//                            Spacer()
-//                        }
-//                    }
-//                }
-//                .padding()
-//                
-//                Divider()
-//                
-//                HStack {
-//                    Text("Каша тыквенная")
-//                        .font(.title)
-//                        .foregroundStyle(Color.gray)
-//                        .padding(10)
-//                    
-//                    Spacer()
-//                }
-//               
-//                HStack {
-//                    Text("Продукты:")
-//                        .font(.title2)
-//                        .foregroundStyle(Color.gray)
-//                        .padding(10)
-//                    Spacer()
-//                }
-//                
-//                VStack{
-//                    ForEach(0..<5) { _ in
-//                        HStack {
-//                            Text("-  Яйцо")
-//                                .font(.title3)
-//                            
-//                            Spacer()
-//                        }
-//                    }
-//                }
-//                .padding()
-                
-                
-//                TextField("Название рецепта", text: .constant(""))
-//                    .padding()
-//                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
-//                    .padding(.horizontal, 16)
+                MealTypeScrollView(mealType: $mealType)
+
+                ScrollView {
+                    ForEach(Recipe.fourRecipe.filter { $0.meal == mealType}) { recipe in
+                        RecipeView(
+                            title: recipe.name,
+                            ingredients: recipe.ingredients,
+                            methodOfPreparation: recipe.instruction)
+                    }
+                }
                 
                 Spacer()
             }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MealTypeScrollView: View {
     
-    @State private var mealType: MealType = .breakfast
+    @Binding var mealType: MealType
     
     var body: some View {
         ZStack {
