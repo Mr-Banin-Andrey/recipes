@@ -11,15 +11,15 @@ struct RootView: View {
     var body: some View {
         
         TabView {
-            MenuView()
+            MenuScreenView()
                 .tabItem {
                     Label("Меню", systemImage: "fork.knife")
                 }
-            RecipesView()
+            RecipesScreenView()
                 .tabItem {
                     Label("Рецепты", systemImage: "scroll")
                 }
-            ShoppingListView()
+            ShoppingListScreenView()
                 .tabItem {
                     Label("Покупки", systemImage: "checklist")
                 }

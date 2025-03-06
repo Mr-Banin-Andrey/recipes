@@ -7,32 +7,13 @@
 
 import SwiftUI
 
-struct MenuView: View {
-    
+struct MenuScreenView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                ZStack {
-                    Color.indigo
-                        .opacity(0.3)
-                        .ignoresSafeArea()
-                    
-                    HStack {
-                        Text("Меню на неделю")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal, 16)
-                        Spacer()
-                        
-                        Button {
-                            print("button")
-                        } label: {
-                            Image(systemName: "ellipsis")
-                                .foregroundColor(.black)
-                                .padding()
-                        }
-                    }
+                TopNavigateView(title: "Меню",
+                                isHiddenRightButton: false) {
+                    print("button")
                 }
                 .scaledToFit()
                 
@@ -71,5 +52,5 @@ struct MenuView: View {
 }
 
 #Preview {
-    MenuView()
+    MenuScreenView()
 }

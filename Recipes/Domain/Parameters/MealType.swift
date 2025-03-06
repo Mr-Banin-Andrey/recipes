@@ -24,7 +24,7 @@ enum MealType: String, Identifiable, CaseIterable {
         case .breakfast:
             return "Завтрак"
         case .soup:
-            return "Суп"
+            return "Первое"
         case .entree:
             return "Второе"
         case .salad:
