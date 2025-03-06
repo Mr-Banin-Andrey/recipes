@@ -10,7 +10,9 @@ import SwiftUI
 struct TopNavigateView: View {
     
     var title: String
+    
     var isHiddenRightButton: Bool = true
+    var imageRightButton: String = ""
     var action: (() -> Void)? = nil
     
     var body: some View {
@@ -33,7 +35,7 @@ struct TopNavigateView: View {
                         guard let action else { return }
                         action()
                     } label: {
-                        Image(systemName: "ellipsis")
+                        Image(systemName: imageRightButton)
                             .foregroundColor(.black)
                             .padding()
                     }

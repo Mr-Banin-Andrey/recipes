@@ -14,8 +14,11 @@ struct RecipesScreenView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TopNavigateView(title: "Рецепты",
-                                isHiddenRightButton: false) {
+                TopNavigateView(
+                    title: "Рецепты",
+                    isHiddenRightButton: false,
+                    imageRightButton: "plus"
+                ) {
                     print("button")
                 }
                 .scaledToFit()

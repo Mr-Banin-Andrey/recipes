@@ -11,8 +11,11 @@ struct MenuScreenView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TopNavigateView(title: "Меню",
-                                isHiddenRightButton: false) {
+                TopNavigateView(
+                    title: "Меню",
+                    isHiddenRightButton: false,
+                    imageRightButton: "ellipsis"
+                ) {
                     print("button")
                 }
                 .scaledToFit()
@@ -22,7 +25,7 @@ struct MenuScreenView: View {
                         print(" date \(date)")
                     }
                 }
-                .background(Color.gray.opacity(0.2))
+                .background(Color.gray.opacity(0.15))
                 .cornerRadius(16)
                 .padding(5)
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 5, y: 5)
