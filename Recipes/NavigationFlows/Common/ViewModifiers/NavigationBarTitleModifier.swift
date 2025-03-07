@@ -10,6 +10,7 @@ import SwiftUI
 struct NavigationBarTitleModifier: ViewModifier {
     
     var title: String
+    var color: Color
     
     func body(content: Content) -> some View {
         content
@@ -18,9 +19,10 @@ struct NavigationBarTitleModifier: ViewModifier {
                     Text(title)
                         .font(.title)
                         .fontWeight(.bold)
+                        .foregroundStyle(Color.text)
                 }
             }
-            .toolbarBackground(Color.indigo.opacity(0.3), for: .navigationBar)
+            .toolbarBackground(color, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
     }
 }

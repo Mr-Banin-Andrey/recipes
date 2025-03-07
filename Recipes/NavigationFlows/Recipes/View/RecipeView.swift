@@ -30,6 +30,7 @@ struct RecipeView: View {
                     HStack {
                         Text("-  \(ingredient.name)")
                             .font(.body)
+                            .foregroundStyle(.text)
                         
                         Spacer()
                     }

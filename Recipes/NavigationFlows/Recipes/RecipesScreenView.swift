@@ -28,7 +28,7 @@ struct RecipesScreenView: View {
                 Spacer()
             }
             
-            .modifier(NavigationBarTitleModifier(title: "Рецепты"))
+            .modifier(NavigationBarTitleModifier(title: "Рецепты", color: .recipesNavBar))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
@@ -36,7 +36,7 @@ struct RecipesScreenView: View {
                     } label: {
                         Image(systemName: "plus")
                             .font(.body)
-                            .foregroundStyle(Color.indigo)
+                            .foregroundStyle(Color.text)
                     }
                 }
             }

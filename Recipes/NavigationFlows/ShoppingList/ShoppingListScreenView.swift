@@ -13,7 +13,7 @@ struct ShoppingListScreenView: View {
             VStack(spacing: 0) {
                 
             }            
-            .modifier(NavigationBarTitleModifier(title: "Покупки"))
+            .modifier(NavigationBarTitleModifier(title: "Покупки", color: .shoppingList))
         }
     }
 }

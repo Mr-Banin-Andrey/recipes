@@ -18,14 +18,16 @@ struct WeekView: View {
                     ForEach(viewModel.weeks) { day in
                         VStack {
                             Text(viewModel.dateToString(date: day.date, format: "EEE"))
+                                .foregroundStyle(.text)
                             
                             Text(viewModel.dateToString(date: day.date, format: "d"))
                                 .font(.system(size: 20))
+                                .foregroundStyle(.text)
                                 .padding(10)
                                 .background(viewModel.isToday(date:
-                                                                day.date) ? Circle().fill(Color.indigo.opacity(0.3)) : Circle().fill(Color.clear.opacity(0.5)))
+                                                                day.date) ? Circle().fill(.menuNavBar.opacity(0.6)) : Circle().fill(Color.clear.opacity(0.5)))
                         }
-                        .frame(width: (geometry.size.width - 50) / 7)
+                        .frame(width: abs((geometry.size.width - 50) / 7))
                         .onTapGesture {
                             onDayTap(day.date)
                         }
@@ -36,7 +38,7 @@ struct WeekView: View {
         }
         .padding(5)
         .frame(height: 75)
-        .padding(5)
+        .padding(3)
     }
 }
 

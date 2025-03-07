@@ -23,10 +23,10 @@ struct RootView: View {
                     Label("Покупки", systemImage: "checklist")
                 }
         }
-        .tint(.indigo)
+        .tint(.text)
         .onAppear(perform: {
             UITabBar.appearance().backgroundColor = .systemGray4.withAlphaComponent(0.4)
-            UITabBar.appearance().unselectedItemTintColor = .systemIndigo.withAlphaComponent(0.3)
+            UITabBar.appearance().unselectedItemTintColor = .secondaryText.withAlphaComponent(0.4)
             
         })
     }

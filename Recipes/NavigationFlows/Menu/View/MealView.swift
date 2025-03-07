@@ -26,8 +26,8 @@ struct MealView: View {
                     } label: {
                         HStack {
                             Text("\(title):")
-                                .font(.title2)
-                                .foregroundStyle(Color.gray)
+                                .font(.headline)
+                                .foregroundStyle(Color.secondaryText)
 
                             Spacer()
                             
@@ -36,7 +36,8 @@ struct MealView: View {
                             } else {
                                 Text(selectedFood.name)
                                     .bold()
-                                    .foregroundStyle(Color.black)
+                                    .font(.headline)
+                                    .foregroundStyle(Color.text)
                             }
                         }
                     }
@@ -62,7 +63,7 @@ struct MealView: View {
             }
         }
         .padding()
-        .background(Color.orange.opacity(0.3))
+        .background(Color.meal)
         .cornerRadius(20)
     }
 }

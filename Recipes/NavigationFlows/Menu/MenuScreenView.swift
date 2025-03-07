@@ -16,10 +16,9 @@ struct MenuScreenView: View {
                         print(" date \(date)")
                     }
                 }
-                .background(Color.gray.opacity(0.15))
+                .background(Color.cell)
                 .cornerRadius(16)
                 .padding(10)
-                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 5, y: 5)
                 
                 ScrollView {
                     MealView(title: "Завтрак", selectedFood: Recipe.mockRecipe)
@@ -42,7 +41,7 @@ struct MenuScreenView: View {
                 }
             }
             
-            .modifier(NavigationBarTitleModifier(title: "Меню"))
+            .modifier(NavigationBarTitleModifier(title: "Меню", color: .menuNavBar))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
@@ -50,7 +49,7 @@ struct MenuScreenView: View {
                     } label: {
                         Image(systemName: "ellipsis")
                             .font(.body)
-                            .foregroundStyle(Color.indigo)
+                            .foregroundStyle(Color.text)
                     }
                 }
             }
