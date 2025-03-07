@@ -11,11 +11,9 @@ struct ShoppingListScreenView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TopNavigateView(title: "Покупки")
-                    .scaledToFit()
                 
-                Spacer()
-            }
+            }            
+            .modifier(NavigationBarTitleModifier(title: "Покупки"))
         }
     }
 }

@@ -12,17 +12,8 @@ struct RecipesScreenView: View {
     @State var mealType: MealType = .breakfast
         
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
-                TopNavigateView(
-                    title: "Рецепты",
-                    isHiddenRightButton: false,
-                    imageRightButton: "plus"
-                ) {
-                    print("button")
-                }
-                .scaledToFit()
-                
                 MealTypeScrollView(mealType: $mealType)
 
                 ScrollView {
@@ -35,6 +26,19 @@ struct RecipesScreenView: View {
                 }
                 
                 Spacer()
+            }
+            
+            .modifier(NavigationBarTitleModifier(title: "Рецепты"))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.body)
+                            .foregroundStyle(Color.indigo)
+                    }
+                }
             }
         }
     }

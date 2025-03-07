@@ -9,17 +9,8 @@ import SwiftUI
 
 struct MenuScreenView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
-                TopNavigateView(
-                    title: "Меню",
-                    isHiddenRightButton: false,
-                    imageRightButton: "ellipsis"
-                ) {
-                    print("button")
-                }
-                .scaledToFit()
-                
                 ZStack {
                     WeekView { date in
                         print(" date \(date)")
@@ -27,7 +18,7 @@ struct MenuScreenView: View {
                 }
                 .background(Color.gray.opacity(0.15))
                 .cornerRadius(16)
-                .padding(5)
+                .padding(10)
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 5, y: 5)
                 
                 ScrollView {
@@ -48,6 +39,19 @@ struct MenuScreenView: View {
                         .padding(.horizontal, 10)
                     
                     Spacer()
+                }
+            }
+            
+            .modifier(NavigationBarTitleModifier(title: "Меню"))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .font(.body)
+                            .foregroundStyle(Color.indigo)
+                    }
                 }
             }
         }
