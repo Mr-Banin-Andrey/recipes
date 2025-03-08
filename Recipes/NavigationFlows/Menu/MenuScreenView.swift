@@ -12,7 +12,7 @@ struct MenuScreenView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 ZStack {
-                    WeekView { date in
+                    WeekView(viewModel: WeekViewModel()) { date in
                         print(" date \(date)")
                     }
                 }

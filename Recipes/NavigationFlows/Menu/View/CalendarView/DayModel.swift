@@ -1,5 +1,5 @@
 //
-//  WeekModel.swift
+//  DayModel.swift
 //  Recipes
 //
 //  Created by Андрей Банин on 23.02.2025.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeekModel: Identifiable {
-    var id: Int
-    var date: [Date]
+struct DayModel: Identifiable {
+    var id: String
+    var date: Date
 }

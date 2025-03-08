@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WeekView: View {
-    @StateObject var viewModel = WeekViewModel()
+    @StateObject var viewModel: WeekViewModel
     var onDayTap: (Date) -> Void
     
     var body: some View {
@@ -43,5 +43,5 @@ struct WeekView: View {
 }
 
 #Preview {
-    WeekView(onDayTap: { _ in print("123") })
+    WeekView(viewModel: WeekViewModel(), onDayTap: { _ in print("123") })
 }

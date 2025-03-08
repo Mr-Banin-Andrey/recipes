@@ -9,7 +9,7 @@ import Foundation
 
 struct Ingredient: Hashable, Identifiable {
     let id: String
-    let name: String
-    var weight: Double?
-    var quantity: QuantityType?
+    var name: String
+    var weight: String
+    var quantity: QuantityType
 }

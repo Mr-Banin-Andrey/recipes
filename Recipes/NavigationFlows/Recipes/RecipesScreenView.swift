@@ -27,12 +27,11 @@ struct RecipesScreenView: View {
                 
                 Spacer()
             }
-            
             .modifier(NavigationBarTitleModifier(title: "Рецепты", color: .recipesNavBar))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
-
+                        AddNewRecipeScreenView(viewModel: AddNewRecipeScreenViewModel())
                     } label: {
                         Image(systemName: "plus")
                             .font(.body)

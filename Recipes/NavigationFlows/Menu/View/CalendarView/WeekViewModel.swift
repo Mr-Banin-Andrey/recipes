@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-struct DayModel: Identifiable {
-    var id: String
-    var date: Date
-}
-
 final class WeekViewModel: ObservableObject {
     
     @Published var currentDate: Date = Date()

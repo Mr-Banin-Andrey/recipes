@@ -27,7 +27,8 @@ struct MealTypeScrollView: View {
                         }
                     }
                 }
-                .padding(16)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 16)
             }
         }
     }
