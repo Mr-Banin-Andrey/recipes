@@ -12,38 +12,43 @@ struct ShoppingListScreenView: View {
     @StateObject var viewModel: ShoppingListScreenViewModel
     
     var body: some View {
-//        NavigationView {
-//        List {
-//            <#code#>
-//        }
-        NavigationStack{
-            VStack(spacing: 0) {
-                HStack(spacing: 0) {
-                    Circle()
-                        .foregroundStyle(Color.yellow)
-                        .frame(width: 50, height: 50)
-                        .padding()
-                    
-                    Text("Овсянка")
-                        .font(.title3)
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 0) {
-                        TextField("", text: .constant("400"))
-                            .multilineTextAlignment(.center)
-                            .keyboardType(.decimalPad)
-                            .frame(width: 50)
-                        
-                        QuantityPickerWheelView(quantityType: $viewModel.shoppingList[0].quantity)
+        NavigationStack {
+            VStack {
+                List($viewModel.shoppingList) { ingredient in
+                    if let index = viewModel.shoppingList.firstIndex(of: ingredient.wrappedValue) {
+                        BuyIngredientView(
+                            ingredientName: ingredient.name.wrappedValue,
+                            weight: ingredient.weight,
+                            quantity: ingredient.quantity,
+                            color: colorForDivider(num: index))
+                        .listRowSeparator(.hidden)
                     }
-                    .padding(.trailing, 16)
                 }
-                
-                Spacer()
-                    
+                .listStyle(.plain)
             }
+           
+            Button {
+                
+            } label: {
+                Text("Подтвердить набор продуктов")
+            }
+            
             .modifier(NavigationBarTitleModifier(title: "Моя корзина", color: .shoppingList))
+        }
+    }
+    
+    func colorForDivider(num: Int) -> Color {
+        let index = num % 3
+        
+        switch index {
+        case 0:
+            return Color.red
+        case 1:
+            return Color.green
+        case 2:
+            return Color.yellow
+        default:
+            return Color.clear
         }
     }
 }
