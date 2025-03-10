@@ -14,24 +14,22 @@ struct AddNewRecipeScreenView: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack {
-                VStack(spacing: 8) {
-                    HStack {
-                        Text("Название рецепта:")
-                            .font(.title3)
-                            .foregroundStyle(Color.text)
-                            .padding(.horizontal)
-                        
-                        Spacer()
-                    }
-                    .padding(.top, 16)
+            VStack(spacing: 8) {
+                HStack {
+                    Text("Название рецепта:")
+                        .font(.title3)
+                        .foregroundStyle(Color.text)
+                        .padding(.horizontal)
                     
-                    CustomTextField(title: "", text: $viewModel.name)
-                        .padding(.horizontal, 16)
-                    
-                    Divider()
-                        .padding(.horizontal, 16)
+                    Spacer()
                 }
+                .padding(.top, 16)
+                
+                TextField("", text: $viewModel.name)
+                    .padding(.horizontal, 16)
+                
+                Divider()
+                    .padding(.horizontal, 16)
                 
                 HStack {
                     Text("Тип блюда:")

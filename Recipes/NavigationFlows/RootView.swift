@@ -18,7 +18,7 @@ struct RootView: View {
                 .tabItem {
                     Label("Рецепты", systemImage: "scroll")
                 }
-            ShoppingListScreenView()
+            ShoppingListScreenView(viewModel: ShoppingListScreenViewModel())
                 .tabItem {
                     Label("Покупки", systemImage: "checklist")
                 }

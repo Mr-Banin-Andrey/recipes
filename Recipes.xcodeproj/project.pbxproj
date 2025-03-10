@@ -13,9 +13,10 @@
 		0F10026B2D7B1F1700085758 /* AddNewRecipeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F10026A2D7B1F0400085758 /* AddNewRecipeScreenView.swift */; };
 		0F10026D2D7B1FD800085758 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F10026C2D7B1FD800085758 /* Colors.xcassets */; };
 		0F10026F2D7B384700085758 /* NavigationBarBackButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F10026E2D7B384600085758 /* NavigationBarBackButtonModifier.swift */; };
-		0F1002722D7B3B0C00085758 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1002712D7B3AFE00085758 /* CustomTextField.swift */; };
 		0F1002742D7C78DA00085758 /* AddIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1002732D7C78CB00085758 /* AddIngredientView.swift */; };
 		0F1002762D7C9C2600085758 /* AddNewRecipeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1002752D7C9C2000085758 /* AddNewRecipeScreenViewModel.swift */; };
+		0F1002792D7F0C7600085758 /* QuantityPickerWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1002782D7F0C7400085758 /* QuantityPickerWheelView.swift */; };
+		0F10027B2D7F214600085758 /* ShoppingListScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F10027A2D7F212E00085758 /* ShoppingListScreenViewModel.swift */; };
 		0F1C99522D6B77880057EAE0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F1C994A2D6B77880057EAE0 /* Preview Assets.xcassets */; };
 		0F1C99532D6B77880057EAE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F1C994C2D6B77880057EAE0 /* Assets.xcassets */; };
 		0F1C99542D6B77880057EAE0 /* RecipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C99482D6B77880057EAE0 /* RecipesApp.swift */; };
@@ -40,9 +41,10 @@
 		0F10026A2D7B1F0400085758 /* AddNewRecipeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewRecipeScreenView.swift; sourceTree = "<group>"; };
 		0F10026C2D7B1FD800085758 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		0F10026E2D7B384600085758 /* NavigationBarBackButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarBackButtonModifier.swift; sourceTree = "<group>"; };
-		0F1002712D7B3AFE00085758 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		0F1002732D7C78CB00085758 /* AddIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientView.swift; sourceTree = "<group>"; };
 		0F1002752D7C9C2000085758 /* AddNewRecipeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewRecipeScreenViewModel.swift; sourceTree = "<group>"; };
+		0F1002782D7F0C7400085758 /* QuantityPickerWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityPickerWheelView.swift; sourceTree = "<group>"; };
+		0F10027A2D7F212E00085758 /* ShoppingListScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListScreenViewModel.swift; sourceTree = "<group>"; };
 		0F1C99482D6B77880057EAE0 /* RecipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesApp.swift; sourceTree = "<group>"; };
 		0F1C994A2D6B77880057EAE0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0F1C994C2D6B77880057EAE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,7 +77,7 @@
 		0F10025E2D79531900085758 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				0F1002712D7B3AFE00085758 /* CustomTextField.swift */,
+				0F1002782D7F0C7400085758 /* QuantityPickerWheelView.swift */,
 				0F1002652D7B02C700085758 /* ViewModifiers */,
 			);
 			path = Common;
@@ -189,6 +191,7 @@
 		0F1C995E2D6B83AC0057EAE0 /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				0F10027A2D7F212E00085758 /* ShoppingListScreenViewModel.swift */,
 				0F1C99502D6B77880057EAE0 /* ShoppingListScreenView.swift */,
 			);
 			path = ShoppingList;
@@ -323,13 +326,14 @@
 			files = (
 				0F1C99652D6B952B0057EAE0 /* WeekView.swift in Sources */,
 				0F1C99732D6CD98A0057EAE0 /* Ingredient.swift in Sources */,
+				0F10027B2D7F214600085758 /* ShoppingListScreenViewModel.swift in Sources */,
 				0F1C99542D6B77880057EAE0 /* RecipesApp.swift in Sources */,
 				0F10026F2D7B384700085758 /* NavigationBarBackButtonModifier.swift in Sources */,
 				0F1C99612D6B841B0057EAE0 /* DayModel.swift in Sources */,
-				0F1002722D7B3B0C00085758 /* CustomTextField.swift in Sources */,
 				0F1C99552D6B77880057EAE0 /* MenuScreenView.swift in Sources */,
 				0F1C99632D6B84450057EAE0 /* WeekViewModel.swift in Sources */,
 				0F1C99672D6C60080057EAE0 /* MealView.swift in Sources */,
+				0F1002792D7F0C7600085758 /* QuantityPickerWheelView.swift in Sources */,
 				0F1002672D7B034400085758 /* NavigationBarTitleModifier.swift in Sources */,
 				0F1C99712D6CD97E0057EAE0 /* QuantityType.swift in Sources */,
 				0F1C996C2D6C81250057EAE0 /* Recipe.swift in Sources */,
@@ -498,7 +502,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -533,7 +537,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
