@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct BuyIngredientView: View {
-    
+struct WillBuyIngredientView: View {
     var ingredientName: String
     @Binding var weight: String
     @Binding var quantity: QuantityType
@@ -45,5 +44,5 @@ struct BuyIngredientView: View {
 }
 
 #Preview {
-    BuyIngredientView(ingredientName: "Cucumber", weight: .constant("400"), quantity: .constant(.gram), color: .blue)
+    WillBuyIngredientView(ingredientName: "Cucumber", weight: .constant("400"), quantity: .constant(.gram), color: .blue)
 }
