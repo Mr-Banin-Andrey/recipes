@@ -13,23 +13,41 @@ struct BuyIngredientView: View {
     var quantity: QuantityType
     var color: Color
     
+    @State var isSelected: Bool = false
+    
+    var action: () -> Void
+    
     var body: some View {
         HStack(spacing: 5) {
-            Circle()
-                .foregroundStyle(Color.clear)
-                .overlay(
-                    Circle()
-                        .stroke(style: StrokeStyle(lineWidth: 1))
-                        .fill(color)
-                )
-                .frame(width: 34, height: 34)
+            Button {
+                withAnimation {
+                    isSelected.toggle()
+                    action()
+                }
+            } label: {
+                Circle()
+                    .foregroundStyle(isSelected ? Color.green : Color.clear)
+                    .padding(3)
+                    .overlay(
+                        Circle()
+                            .stroke(style: StrokeStyle(lineWidth: 1))
+                            .fill(color)
+                    )
+                    .frame(width: 34, height: 34)
+            }
 
             Text(ingredientName + ",")
                 .padding(.leading, 16)
+                .strikethrough(isSelected)
+                .opacity(isSelected ? 0.5 : 1)
             
             Text(weight)
+                .strikethrough(isSelected)
+                .opacity(isSelected ? 0.5 : 1)
                         
             Text(quantity.localizedDescription + ".")
+                .strikethrough(isSelected)
+                .opacity(isSelected ? 0.5 : 1)
             
             Spacer()
         }
@@ -37,6 +55,8 @@ struct BuyIngredientView: View {
 }
 
 #Preview {
-    BuyIngredientView(ingredientName: "Apple", weight: "500", quantity: .gram, color: .yellow)
+    BuyIngredientView(ingredientName: "Apple", weight: "500", quantity: .gram, color: .yellow) {
+        print("123")
+    }
 }
 

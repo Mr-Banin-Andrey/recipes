@@ -31,7 +31,9 @@ struct ShoppingListScreenView: View {
                                 ingredientName: ingredient.name.wrappedValue,
                                 weight: ingredient.weight.wrappedValue,
                                 quantity: ingredient.quantity.wrappedValue,
-                                color: colorForDivider(num: index))
+                                color: colorForDivider(num: index)) { 
+                                    viewModel.addingOrRemovingIngredientFromPurchasedProducts(ingredient.wrappedValue)
+                                }
                             .listRowSeparator(.hidden)
                         } else {
                             WillBuyIngredientView(
