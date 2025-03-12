@@ -17,6 +17,7 @@ struct RecipesScreenView: View {
                 MealTypeScrollView(mealType: $mealType)
 
                 ScrollView {
+                    //TODO: переписать Recipe.fourRecipe 
                     ForEach(Recipe.fourRecipe.filter { $0.meal == mealType}) { recipe in
                         RecipeView(
                             title: recipe.name,

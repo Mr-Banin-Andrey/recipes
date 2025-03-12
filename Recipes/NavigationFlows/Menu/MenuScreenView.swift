@@ -21,6 +21,7 @@ struct MenuScreenView: View {
                 .padding(10)
                 
                 ScrollView {
+                    //TODO: переписать Recipe.fourRecipe 
                     MealView(title: "Завтрак", selectedFood: Recipe.mockRecipe)
                         .padding(.vertical, 5)
                         .padding(.horizontal, 10)

@@ -11,6 +11,7 @@ struct MealView: View {
     
     var title: String
     @State private var isPresented: Bool = false
+    //TODO: переписать Recipe.fourRecipe
     var recipes = Recipe.fourRecipe
     @State private var selectedMeal: MealType = .breakfast
     @State var selectedFood: Recipe

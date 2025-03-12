@@ -5,6 +5,8 @@
 //  Created by Андрей Банин on 24.02.2025.
 //
 
+import Foundation
+
 enum MealType: String, Identifiable, CaseIterable {
     case breakfast
     case soup

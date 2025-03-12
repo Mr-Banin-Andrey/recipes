@@ -5,7 +5,6 @@
 //  Created by Андрей Банин on 24.02.2025.
 //
 
-
 import Foundation
 
 enum QuantityType: String, Identifiable, CaseIterable {
