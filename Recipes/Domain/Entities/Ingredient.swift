@@ -22,7 +22,7 @@ final class Ingredient: Hashable, Identifiable {
     var weight: String
     var quantity: QuantityType
     
-    init(id: String, name: String, weight: String, quantity: QuantityType = .kilogram) {
+    init(id: String, name: String, weight: String, quantity: QuantityType) {
         self.id = id
         self.name = name
         self.weight = weight

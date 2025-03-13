@@ -17,7 +17,7 @@ final class AddNewRecipeScreenViewModel: ObservableObject {
         id: UUID().uuidString,
         name: "",
         weight: "",
-        quantity: .kilogram
+        quantity: .gram
     )]
 
     func addIngredient() {
@@ -25,7 +25,7 @@ final class AddNewRecipeScreenViewModel: ObservableObject {
             id: UUID().uuidString,
             name: "",
             weight: "",
-            quantity: .kilogram
+            quantity: .gram
         ))
     }
 }

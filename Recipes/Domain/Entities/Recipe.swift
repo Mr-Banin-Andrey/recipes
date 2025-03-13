@@ -30,7 +30,7 @@ final class Recipe: Hashable, Identifiable {
     var instruction: String
     var ingredients: [Ingredient]
     
-    init(id: String, name: String, meal: MealType = .breakfast, instruction: String, ingredients: [Ingredient]) {
+    init(id: String, name: String, meal: MealType, instruction: String, ingredients: [Ingredient]) {
         self.id = id
         self.name = name
         self.meal = meal

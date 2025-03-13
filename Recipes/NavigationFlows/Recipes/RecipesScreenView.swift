@@ -16,7 +16,10 @@ struct RecipesScreenView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                MealTypeScrollView(mealType: $viewModel.mealType)
+                MealTypeScrollView(
+                    mealTypes: viewModel.fetchMealTypes(recipes: recipes),
+                    mealType: $viewModel.mealType
+                )
 
                 ScrollView {
                     ForEach(recipes.filter { $0.meal == viewModel.mealType}) { recipe in
