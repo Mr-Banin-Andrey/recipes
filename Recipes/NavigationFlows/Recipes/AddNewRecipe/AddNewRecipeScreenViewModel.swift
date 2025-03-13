@@ -6,21 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 final class AddNewRecipeScreenViewModel: ObservableObject {
-        
+    
     @Published var name: String = ""
-    @Published var instruction: String = ""
     @Published var meal: MealType = .breakfast
+    @Published var instruction: String = ""
     @Published var ingredients: [Ingredient] = [Ingredient(
         id: UUID().uuidString,
         name: "",
         weight: "",
         quantity: .kilogram
     )]
-    
-    
-    
+
     func addIngredient() {
         ingredients.append(Ingredient(
             id: UUID().uuidString,
@@ -28,12 +27,5 @@ final class AddNewRecipeScreenViewModel: ObservableObject {
             weight: "",
             quantity: .kilogram
         ))
-    }
-    
-    func saveRecipe() {
-        print("🩷", name, instruction, meal)
-        ingredients.forEach { ingredient in
-            print("🐸", ingredient.id, ingredient)
-        }
     }
 }

@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum QuantityType: String, Identifiable, CaseIterable {
-    case perPiece = "шт"
-    case gram = "г"
-    case kilogram = "кг"
-    case milliliter = "мл"
-    case liter = "л"
+enum QuantityType: String, Identifiable, CaseIterable, Codable {
+    case perPiece
+    case gram
+    case kilogram
+    case milliliter
+    case liter
     
     var id: Self {
         self

@@ -14,7 +14,7 @@ struct RootView: View {
                 .tabItem {
                     Label("Меню", systemImage: "fork.knife")
                 }
-            RecipesScreenView()
+            RecipesScreenView(viewModel: RecipesScreenViewModel())
                 .tabItem {
                     Label("Рецепты", systemImage: "scroll")
                 }

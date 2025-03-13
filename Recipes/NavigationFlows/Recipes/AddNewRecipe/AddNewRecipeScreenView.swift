@@ -10,6 +10,7 @@ import SwiftUI
 struct AddNewRecipeScreenView: View {
     @StateObject var viewModel: AddNewRecipeScreenViewModel
     
+    @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -48,14 +49,12 @@ struct AddNewRecipeScreenView: View {
                     } label: {
                         HStack {
                             Text(viewModel.meal.localizedDescription)
-                                .foregroundStyle(Color.green)
                                 .keyboardType(.numberPad)
                             
                             Image(systemName: "chevron.up.chevron.down")
                                 .foregroundStyle(Color.text)
                         }
                     }.id(viewModel.meal)
-                    
                 }
                 .padding(.top, 24)
                 .padding(.horizontal, 16)
@@ -119,7 +118,7 @@ struct AddNewRecipeScreenView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    viewModel.saveRecipe()
+                    saveRecipe()
                     dismiss()
                 } label: {
                     Image(systemName: "checkmark")
@@ -127,6 +126,18 @@ struct AddNewRecipeScreenView: View {
                 }
             }
         }
+    }
+    
+    func saveRecipe() {
+        let recipe = Recipe(
+            id: UUID().uuidString,
+            name: viewModel.name,
+            meal: viewModel.meal,
+            instruction: viewModel.instruction,
+            ingredients: viewModel.ingredients
+        )
+        
+        modelContext.insert(recipe)
     }
 }
 

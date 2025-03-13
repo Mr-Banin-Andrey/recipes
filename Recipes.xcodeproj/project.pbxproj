@@ -35,6 +35,7 @@
 		0F1C996E2D6CD9300057EAE0 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C996D2D6CD9220057EAE0 /* MealType.swift */; };
 		0F1C99712D6CD97E0057EAE0 /* QuantityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C99702D6CD97E0057EAE0 /* QuantityType.swift */; };
 		0F1C99732D6CD98A0057EAE0 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C99722D6CD98A0057EAE0 /* Ingredient.swift */; };
+		0FA28D7F2D82DA02009DA36A /* RecipesScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA28D7E2D82D9FF009DA36A /* RecipesScreenViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +81,7 @@
 		0F1C99702D6CD97E0057EAE0 /* QuantityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityType.swift; sourceTree = "<group>"; };
 		0F1C99722D6CD98A0057EAE0 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		0F45C6202D6B107D0039CB62 /* Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FA28D7E2D82D9FF009DA36A /* RecipesScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesScreenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 			children = (
 				0F1002702D7B3A7900085758 /* AddNewRecipe */,
 				0F1002682D7B0A8F00085758 /* Views */,
+				0FA28D7E2D82D9FF009DA36A /* RecipesScreenViewModel.swift */,
 				0F1C99582D6B78190057EAE0 /* RecipesScreenView.swift */,
 			);
 			path = Recipes;
@@ -387,6 +390,7 @@
 				0F1002672D7B034400085758 /* NavigationBarTitleModifier.swift in Sources */,
 				0F1C99712D6CD97E0057EAE0 /* QuantityType.swift in Sources */,
 				0F1002822D803ECE00085758 /* ExtView.swift in Sources */,
+				0FA28D7F2D82DA02009DA36A /* RecipesScreenViewModel.swift in Sources */,
 				0F1C996C2D6C81250057EAE0 /* Recipe.swift in Sources */,
 				0F1002642D7A0DAF00085758 /* MealTypeScrollView.swift in Sources */,
 				0F1002622D7A0B4700085758 /* RecipeView.swift in Sources */,

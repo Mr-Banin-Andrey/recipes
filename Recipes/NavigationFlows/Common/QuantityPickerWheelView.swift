@@ -16,14 +16,14 @@ struct QuantityPickerWheelView: View {
         Menu {
             Picker(selection: $quantityType) {
                 ForEach(QuantityType.allCases) { value in
-                    Text(value.rawValue)
+                    Text(value.localizedDescription)
                         .tag(value)
                 }
             } label: {}
         } label: {
             VStack {
                 HStack {
-                    Text(quantityType.rawValue)
+                    Text(quantityType.localizedDescription)
                         .foregroundStyle(Color.text)
                  
                     Image(systemName: "chevron.up.chevron.down")

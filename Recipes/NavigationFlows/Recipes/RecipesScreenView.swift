@@ -6,19 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RecipesScreenView: View {
+    @StateObject var viewModel: RecipesScreenViewModel
     
-    @State var mealType: MealType = .breakfast
-        
+    @Query(sort: \Recipe.name) var recipes: [Recipe]
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                MealTypeScrollView(mealType: $mealType)
+                MealTypeScrollView(mealType: $viewModel.mealType)
 
                 ScrollView {
-                    //TODO: переписать Recipe.fourRecipe 
-                    ForEach(Recipe.fourRecipe.filter { $0.meal == mealType}) { recipe in
+                    ForEach(recipes.filter { $0.meal == viewModel.mealType}) { recipe in
                         RecipeView(
                             title: recipe.name,
                             ingredients: recipe.ingredients,
@@ -45,5 +46,5 @@ struct RecipesScreenView: View {
 }
 
 #Preview {
-    RecipesScreenView()
+    RecipesScreenView(viewModel: RecipesScreenViewModel())
 }

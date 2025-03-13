@@ -6,21 +6,43 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Recipe: Hashable, Identifiable {
-    let id: String
-    let name: String
-    let meal: MealType
-    let instruction: String
-    let ingredients: [Ingredient]
+//TODO: снести после обновления всех данных
+//struct Recipe: Hashable, Identifiable {
+//    let id: String
+//    let name: String
+//    let meal: MealType
+//    let instruction: String
+//    let ingredients: [Ingredient]
+//    
+//    static func == (lhs: Recipe, rhs: Recipe) -> Bool {
+//        return lhs.id == rhs.id
+//    }
+//}
+
+@Model
+final class Recipe: Hashable, Identifiable {
+    @Attribute(.unique)
+    var id: String
+    var name: String
+    var meal: MealType
+    var instruction: String
+    var ingredients: [Ingredient]
     
-    static func == (lhs: Recipe, rhs: Recipe) -> Bool {
-        return lhs.id == rhs.id
+    init(id: String, name: String, meal: MealType = .breakfast, instruction: String, ingredients: [Ingredient]) {
+        self.id = id
+        self.name = name
+        self.meal = meal
+        self.instruction = instruction
+        self.ingredients = ingredients
     }
 }
 
+
+//TODO: снести после обновления всех данных
 extension Recipe {
-    
+
     static let mockRecipe: Recipe = Recipe(id: "", name: "", meal: .unknown, instruction: "", ingredients: [])
         
     static let fourRecipe: [Recipe] = [
