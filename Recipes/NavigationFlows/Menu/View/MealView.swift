@@ -13,7 +13,7 @@ struct MealView: View {
     @State private var isPresented: Bool = false
     //TODO: переписать Recipe.fourRecipe
     var recipes = Recipe.fourRecipe
-    @State private var selectedMeal: MealType = .breakfast
+    @State private var selectedMeal: MenuSectionType = .breakfasts
     @State var selectedFood: Recipe
     
     var body: some View {
@@ -47,7 +47,7 @@ struct MealView: View {
                 if isPresented {
                     HStack {
                         Picker("", selection: $selectedMeal) {
-                            ForEach(MealType.allCases) { meal in
+                            ForEach(MenuSectionType.allCases) { meal in
                                 Text(meal.localizedDescription).tag(meal)
                             }
                         }

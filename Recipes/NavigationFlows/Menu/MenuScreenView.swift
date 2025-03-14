@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct MenuScreenView: View {
+    @StateObject var viewModel: MenuScreenViewModel
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
                 ZStack {
                     WeekView(viewModel: WeekViewModel()) { date in
-                        print(" date \(date)")
+                        viewModel.date = date
                     }
                 }
                 .background(Color.cell)
@@ -21,27 +23,16 @@ struct MenuScreenView: View {
                 .padding(10)
                 
                 ScrollView {
-                    //TODO: переписать Recipe.fourRecipe 
-                    MealView(title: "Завтрак", selectedFood: Recipe.mockRecipe)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
-                    
-                    MealView(title: "Обед", selectedFood: Recipe.mockRecipe)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
-                    
-                    MealView(title: "Перекус", selectedFood: Recipe.mockRecipe)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
-                    
-                    MealView(title: "Ужин", selectedFood: Recipe.mockRecipe)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
-                    
+                    ForEach(viewModel.mealTime) { mealTime in
+                        //TODO: переписать Recipe.fourRecipe
+                        MealView(title: mealTime.localizedDescription, selectedFood: Recipe.mockRecipe)
+                            .padding(.vertical, 5)
+                            .padding(.horizontal, 10)
+                    }
+
                     Spacer()
                 }
             }
-            
             .modifier(NavigationBarTitleModifier(title: "Меню", color: .menuNavBar))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -59,5 +50,5 @@ struct MenuScreenView: View {
 }
 
 #Preview {
-    MenuScreenView()
+    MenuScreenView(viewModel: MenuScreenViewModel())
 }

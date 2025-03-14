@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MealTypeScrollView: View {
     
-    var mealTypes: [MealType]
-    @Binding var mealType: MealType
+    var mealTypes: [MenuSectionType]
+    @Binding var mealType: MenuSectionType
     
     var body: some View {
         ZStack {

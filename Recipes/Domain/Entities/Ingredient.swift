@@ -17,6 +17,7 @@ import SwiftData
 
 @Model
 final class Ingredient: Hashable, Identifiable {
+    @Attribute(.unique)
     var id: String
     var name: String
     var weight: String

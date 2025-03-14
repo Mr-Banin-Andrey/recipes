@@ -11,7 +11,7 @@ import SwiftData
 final class AddNewRecipeScreenViewModel: ObservableObject {
     
     @Published var name: String = ""
-    @Published var meal: MealType = .breakfast
+    @Published var menuSection: MenuSectionType = .breakfasts
     @Published var instruction: String = ""
     @Published var ingredients: [Ingredient] = [Ingredient(
         id: UUID().uuidString,

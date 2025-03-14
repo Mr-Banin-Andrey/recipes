@@ -10,7 +10,7 @@ import SwiftUI
 struct RootView: View {
     var body: some View {
         TabView {
-            MenuScreenView()
+            MenuScreenView(viewModel: MenuScreenViewModel())
                 .tabItem {
                     Label("Меню", systemImage: "fork.knife")
                 }

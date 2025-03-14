@@ -40,21 +40,21 @@ struct AddNewRecipeScreenView: View {
                     Spacer()
                     
                     Menu {
-                        Picker(selection: $viewModel.meal) {
-                            ForEach(MealType.allCases.prefix(7)) { value in
+                        Picker(selection: $viewModel.menuSection) {
+                            ForEach(MenuSectionType.allCases) { value in
                                 Text(value.localizedDescription)
                                     .tag(value)
                             }
                         } label: {}
                     } label: {
                         HStack {
-                            Text(viewModel.meal.localizedDescription)
+                            Text(viewModel.menuSection.localizedDescription)
                                 .keyboardType(.numberPad)
                             
                             Image(systemName: "chevron.up.chevron.down")
                                 .foregroundStyle(Color.text)
                         }
-                    }.id(viewModel.meal)
+                    }.id(viewModel.menuSection)
                 }
                 .padding(.top, 24)
                 .padding(.horizontal, 16)
@@ -132,7 +132,7 @@ struct AddNewRecipeScreenView: View {
         let recipe = Recipe(
             id: UUID().uuidString,
             name: viewModel.name,
-            meal: viewModel.meal,
+            meal: viewModel.menuSection,
             instruction: viewModel.instruction,
             ingredients: viewModel.ingredients
         )
