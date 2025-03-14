@@ -8,26 +8,31 @@
 import SwiftUI
 
 struct RootView: View {
+    
+    @State private var selectedTab = 0
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             MenuScreenView(viewModel: MenuScreenViewModel())
                 .tabItem {
-                    Label("Меню", systemImage: "fork.knife")
+                    Label("Меню", image: selectedTab == 0 ? "menuSelectedImage" : "menuImage")
                 }
+                .tag(0)
             RecipesScreenView(viewModel: RecipesScreenViewModel())
                 .tabItem {
-                    Label("Рецепты", systemImage: "scroll")
+                    Label("Рецепты", image: selectedTab == 1 ? "recipeSelectedImage" : "recipeImage").opacity(selectedTab == 1 ? 1 : 0.3)
                 }
+                .tag(1)
             ShoppingListScreenView(viewModel: ShoppingListScreenViewModel())
                 .tabItem {
-                    Label("Покупки", systemImage: "checklist")
+                    Label("Покупки", image: selectedTab == 2 ?
+                          "shoppinglistSelectedImage" : "shoppinglistImage")
                 }
+                .tag(2)
         }
-        .tint(.text)
+        .tint(.selectedText)
         .onAppear(perform: {
-            UITabBar.appearance().backgroundColor = .systemGray4.withAlphaComponent(0.4)
-            UITabBar.appearance().unselectedItemTintColor = .secondaryText.withAlphaComponent(0.4)
-            
+            UITabBar.appearance().backgroundColor = .tabBar
         })
     }
 }

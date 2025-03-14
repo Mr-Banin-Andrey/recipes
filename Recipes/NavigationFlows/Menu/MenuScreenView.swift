@@ -18,22 +18,29 @@ struct MenuScreenView: View {
                         viewModel.date = date
                     }
                 }
-                .background(Color.cell)
                 .cornerRadius(16)
-                .padding(10)
+                .frame(height: 90)
+                .padding(.vertical, 5)
                 
-                ScrollView {
+                ScrollView(.vertical) {
                     ForEach(viewModel.mealTime) { mealTime in
                         //TODO: переписать Recipe.fourRecipe
-                        MealView(title: mealTime.localizedDescription, selectedFood: Recipe.mockRecipe)
-                            .padding(.vertical, 5)
-                            .padding(.horizontal, 10)
+                        if let index = viewModel.mealTime.firstIndex(of: mealTime) {
+                            MealView(
+                                nameMealTime: mealTime.localizedDescription,
+                                recipes: Recipe.fourRecipe,
+                                menuSection: SortingData().menuSectionSorted(recipes: Recipe.fourRecipe),
+                                selectedRecipe: $viewModel.selectedRecipe,
+                                isPresented: false,
+                                color: colorForMealBackground(num: index))
+                            .padding(.top, 12)
+                        }
                     }
 
                     Spacer()
                 }
             }
-            .modifier(NavigationBarTitleModifier(title: "Меню", color: .menuNavBar))
+            .modifier(NavigationBarTitleModifier(title: "Меню", color: .navBar))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
@@ -41,7 +48,7 @@ struct MenuScreenView: View {
                     } label: {
                         Image(systemName: "ellipsis")
                             .font(.body)
-                            .foregroundStyle(Color.text)
+                            .foregroundStyle(Color.mainText)
                     }
                 }
             }

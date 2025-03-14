@@ -68,7 +68,7 @@ struct ShoppingListScreenView: View {
                     .opacity(isEnableButton ? 0.5 : 1)
             }
             
-            .modifier(NavigationBarTitleModifier(title: isEnableButton ? "Список покупок" : "Моя корзина", color: .shoppingList))
+            .modifier(NavigationBarTitleModifier(title: isEnableButton ? "Список покупок" : "Моя корзина", color: .navBar))
         }
     }    
 }

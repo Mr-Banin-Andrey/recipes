@@ -24,10 +24,10 @@ struct QuantityPickerWheelView: View {
             VStack {
                 HStack {
                     Text(quantityType.localizedDescription)
-                        .foregroundStyle(Color.text)
+                        .foregroundStyle(Color.mainText)
                  
                     Image(systemName: "chevron.up.chevron.down")
-                        .foregroundStyle(Color.text)
+                        .foregroundStyle(Color.mainText)
                 }
             }
         }.id(quantityType)

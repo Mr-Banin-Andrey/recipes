@@ -13,11 +13,32 @@ extension View {
         
         switch index {
         case 0:
-            return Color.red
+            return Color.first
         case 1:
-            return Color.green
+            return Color.second
         case 2:
-            return Color.yellow
+            return Color.third
+        case 3:
+            return Color.fourth
+        case 4:
+            return Color.fifth
+        default:
+            return Color.clear
+        }
+    }
+    
+    func colorForMealBackground(num: Int) -> Color {
+        switch num {
+        case 0:
+            return Color.first
+        case 1:
+            return Color.second
+        case 2:
+            return Color.third
+        case 3:
+            return Color.fourth
+        case 4:
+            return Color.fifth
         default:
             return Color.clear
         }

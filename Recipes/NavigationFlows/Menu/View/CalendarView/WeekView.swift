@@ -14,20 +14,22 @@ struct WeekView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .center) {
+                HStack(alignment: .center, spacing: 0) {
                     ForEach(viewModel.weeks) { day in
                         VStack {
                             Text(viewModel.dateToString(date: day.date, format: "EEE"))
-                                .foregroundStyle(.text)
+                                .foregroundStyle(.mainText)
+                                .padding(.top, 5)
                             
                             Text(viewModel.dateToString(date: day.date, format: "d"))
                                 .font(.system(size: 20))
-                                .foregroundStyle(.text)
+                                .foregroundStyle(.mainText)
                                 .padding(10)
-                                .background(viewModel.isToday(date:
-                                                                day.date) ? Circle().fill(.menuNavBar.opacity(0.6)) : Circle().fill(Color.clear.opacity(0.5)))
                         }
-                        .frame(width: abs((geometry.size.width - 50) / 7))
+                        
+                        .overlay(RoundedRectangle(cornerRadius: 10)
+                            .stroke(viewModel.isToday(date: day.date) ? Color.navBar : Color.clear, lineWidth: 1))
+                        .frame(width: abs(geometry.size.width / 7), height: 85)
                         .onTapGesture {
                             onDayTap(day.date)
                         }
@@ -36,9 +38,7 @@ struct WeekView: View {
             }
             .scrollTargetBehavior(.paging)
         }
-        .padding(5)
-        .frame(height: 75)
-        .padding(3)
+        .padding(.vertical, 5)
     }
 }
 

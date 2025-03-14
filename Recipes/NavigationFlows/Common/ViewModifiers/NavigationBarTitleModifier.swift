@@ -19,7 +19,7 @@ struct NavigationBarTitleModifier: ViewModifier {
                     Text(title)
                         .font(.title)
                         .fontWeight(.bold)
-                        .foregroundStyle(Color.text)
+                        .foregroundStyle(Color.mainText)
                 }
             }
             .toolbarBackground(color, for: .navigationBar)

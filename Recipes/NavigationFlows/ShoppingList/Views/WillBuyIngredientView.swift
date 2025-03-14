@@ -17,9 +17,9 @@ struct WillBuyIngredientView: View {
     var body: some View {
         VStack {
             HStack(spacing: 0) {
-                Circle()
-                    .foregroundStyle(Color.yellow)
-                    .frame(width: 50, height: 50)
+//                Circle()
+//                    .foregroundStyle(Color.yellow)
+//                    .frame(width: 50, height: 50)
                 
                 Text(ingredientName)
                     .font(.title3)

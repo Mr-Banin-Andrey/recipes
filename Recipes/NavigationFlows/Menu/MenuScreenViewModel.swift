@@ -24,4 +24,9 @@ final class MenuScreenViewModel: ObservableObject {
     @Published var date: Date = Date()
     @Published var mealTime: [MealTimeType] = [.breakfast, .lunch, .afternoonSnack, .dinner]
     
+//    @Published var menuSections: [MenuSectionType] = 
+    
+    //TODO: выбранное блюдо дожно быть в отдельном представлении/массиве
+    @Published var selectedRecipe: Recipe = .mockRecipe
+    
 }

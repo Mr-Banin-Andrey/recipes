@@ -40,6 +40,7 @@
 		0FD6D3E52D8356E200C5CDF0 /* MealTimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3E42D8356D900C5CDF0 /* MealTimeType.swift */; };
 		0FD6D3E72D83597000C5CDF0 /* DiningTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3E62D83596C00C5CDF0 /* DiningTime.swift */; };
 		0FD6D3E92D83F8D900C5CDF0 /* MenuScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3E82D83F8D400C5CDF0 /* MenuScreenViewModel.swift */; };
+		0FD6D3EE2D8416EB00C5CDF0 /* SortingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3ED2D8416E400C5CDF0 /* SortingData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -90,6 +91,7 @@
 		0FD6D3E42D8356D900C5CDF0 /* MealTimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTimeType.swift; sourceTree = "<group>"; };
 		0FD6D3E62D83596C00C5CDF0 /* DiningTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningTime.swift; sourceTree = "<group>"; };
 		0FD6D3E82D83F8D400C5CDF0 /* MenuScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreenViewModel.swift; sourceTree = "<group>"; };
+		0FD6D3ED2D8416E400C5CDF0 /* SortingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 				0F1C995A2D6B835B0057EAE0 /* NavigationFlows */,
 				0FA28D7B2D81DD0C009DA36A /* Data */,
 				0F1C99692D6C80360057EAE0 /* Domain */,
+				0FD6D3EA2D84165200C5CDF0 /* Utils */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
@@ -311,6 +314,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		0FD6D3EA2D84165200C5CDF0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0FD6D3ED2D8416E400C5CDF0 /* SortingData.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -400,6 +411,7 @@
 				0F1C99612D6B841B0057EAE0 /* DayModel.swift in Sources */,
 				0F1C99552D6B77880057EAE0 /* MenuScreenView.swift in Sources */,
 				0F1C99632D6B84450057EAE0 /* WeekViewModel.swift in Sources */,
+				0FD6D3EE2D8416EB00C5CDF0 /* SortingData.swift in Sources */,
 				0F1C99672D6C60080057EAE0 /* MealView.swift in Sources */,
 				0F1002792D7F0C7600085758 /* QuantityPickerWheelView.swift in Sources */,
 				0F1002672D7B034400085758 /* NavigationBarTitleModifier.swift in Sources */,

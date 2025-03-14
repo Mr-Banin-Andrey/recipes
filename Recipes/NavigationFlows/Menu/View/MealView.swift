@@ -9,16 +9,19 @@ import SwiftUI
 
 struct MealView: View {
     
-    var title: String
-    @State private var isPresented: Bool = false
-    //TODO: переписать Recipe.fourRecipe
-    var recipes = Recipe.fourRecipe
+    var nameMealTime: String
+    var recipes: [Recipe]
+    var menuSection: [MenuSectionType]
+    
+    @Binding var selectedRecipe: Recipe
+    @State var isPresented: Bool = false
     @State private var selectedMeal: MenuSectionType = .breakfasts
-    @State var selectedFood: Recipe
+   
+    var color: Color
     
     var body: some View {
         ZStack {
-            VStack {
+            VStack(spacing: 0) {
                 HStack {
                     Button {
                         withAnimation(.easeInOut(duration: 0.3)) {
@@ -26,49 +29,97 @@ struct MealView: View {
                         }
                     } label: {
                         HStack {
-                            Text("\(title):")
+                            Text("\(nameMealTime):")
                                 .font(.headline)
-                                .foregroundStyle(Color.secondaryText)
+                                .foregroundStyle(Color.mainText)
 
                             Spacer()
                             
-                            if selectedFood.name.isEmpty {
+                            if selectedRecipe.name.isEmpty {
                                 Text("Выбрать блюдо")
+                                    .foregroundStyle(.selectedText)
                             } else {
-                                Text(selectedFood.name)
+                                Text(selectedRecipe.name)
                                     .bold()
                                     .font(.headline)
-                                    .foregroundStyle(Color.text)
+                                    .foregroundStyle(Color.selectedText)
                             }
                         }
                     }
                 }
                 
                 if isPresented {
-                    HStack {
-                        Picker("", selection: $selectedMeal) {
-                            ForEach(MenuSectionType.allCases) { meal in
-                                Text(meal.localizedDescription).tag(meal)
+                    HStack(spacing: 16) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 8)
+                                .frame(width: ((UIScreen.main.bounds.width - 60) / 2) - 18, height: 32)
+                                .foregroundStyle(.cell)
+                            
+                            Picker("", selection: $selectedMeal) {
+                                ForEach(menuSection) { meal in
+                                    Text(meal.localizedDescription).tag(meal)
+                                        .font(.body)
+                                }
                             }
+                            .pickerStyle(.wheel)
+                            .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: 130)
                         }
-                        .pickerStyle(.wheel)
                         
-                        Picker("", selection: $selectedFood) {
-                            ForEach(recipes.filter { $0.meal == selectedMeal }) { recipe in
-                                Text(recipe.name).tag(recipe)
+                        if recipes.filter({ $0.meal == selectedMeal }).count == 1 {
+                            Button {
+                                selectedRecipe = recipes.filter{ $0.meal == selectedMeal }[0]
+                            } label: {
+                                ZStack {
+                                    Text(recipes.filter{ $0.meal == selectedMeal }[0].name)
+                                        .font(.body)
+                                        .foregroundStyle(Color.mainText.opacity(0.85))
+                                        .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: 32)
+                                        .background(Color.cell)
+                                        .cornerRadius(8)
+                                    
+                                    Color.gray.opacity(0.15)
+                                        .blur(radius: 1)
+                                        .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: 32)
+                                        .cornerRadius(8)
+                                }
+                            }
+                        } else {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .frame(width: ((UIScreen.main.bounds.width - 60) / 2) - 18, height: 32)
+                                    .foregroundStyle(.cell)
+                                
+                                Picker("", selection: $selectedRecipe) {
+                                    ForEach(recipes.filter { $0.meal == selectedMeal }) { recipe in
+                                        Text(recipe.name).tag(recipe)
+                                            .font(.body)
+                                    }
+                                }
+                                .pickerStyle(.wheel)
+                                .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: 130)
                             }
                         }
-                        .pickerStyle(.wheel)
                     }
                 }
             }
         }
-        .padding()
-        .background(Color.meal)
+        .padding(.horizontal, 10)
+        .padding(.top, isPresented ? 24 : 40)
+        .padding(.bottom, isPresented ? 14 : 40)
+        .background(color)
         .cornerRadius(20)
+        .padding(.horizontal, 12)
+        .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 4)
     }
 }
 
 #Preview {
-    MealView(title: "Lunch", recipes: Recipe.fourRecipe, selectedFood: Recipe.fourRecipe[0])
+    MealView(
+        nameMealTime: "Dinner",
+        recipes: Recipe.fourRecipe,
+        menuSection: SortingData().menuSectionSorted(recipes: Recipe.fourRecipe),
+        selectedRecipe: .constant(Recipe.mockRecipe),
+        isPresented: true,
+        color: .fourth
+    )
 }

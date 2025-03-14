@@ -22,7 +22,7 @@ struct MealTypeScrollView: View {
                                 mealType = index
                             } label: {
                                 Text(index.localizedDescription)
-                                    .foregroundStyle(index == mealType ? Color.text : Color.gray.opacity(0.5))
+                                    .foregroundStyle(index == mealType ? Color.selectedText : Color.gray.opacity(0.5))
                                     .padding(10)
                                     .overlay(RoundedRectangle(cornerRadius: 20).stroke(index == mealType ? Color.green.opacity(0.5) : Color.gray.opacity(0.5), lineWidth: 2))
                                     .padding(.horizontal, 5)

@@ -20,7 +20,7 @@ struct RecipeView: View {
             HStack {
                 Text(title)
                     .font(.title2)
-                    .foregroundStyle(Color.gray)
+                    .foregroundStyle(Color.mainText)
                 Spacer()
             }
             .padding(.horizontal, 16)
@@ -30,7 +30,7 @@ struct RecipeView: View {
                     HStack {
                         Text("-  \(ingredient.name)")
                             .font(.body)
-                            .foregroundStyle(.text)
+                            .foregroundStyle(.mainText)
                         
                         Spacer()
                     }

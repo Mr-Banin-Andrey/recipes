@@ -17,7 +17,7 @@ struct RecipesScreenView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 MealTypeScrollView(
-                    mealTypes: viewModel.fetchMealTypes(recipes: recipes),
+                    mealTypes: SortingData().menuSectionSorted(recipes: recipes),
                     mealType: $viewModel.mealType
                 )
 
@@ -32,7 +32,7 @@ struct RecipesScreenView: View {
                 
                 Spacer()
             }
-            .modifier(NavigationBarTitleModifier(title: "Рецепты", color: .recipesNavBar))
+            .modifier(NavigationBarTitleModifier(title: "Рецепты", color: .navBar))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
@@ -40,7 +40,7 @@ struct RecipesScreenView: View {
                     } label: {
                         Image(systemName: "plus")
                             .font(.body)
-                            .foregroundStyle(Color.text)
+                            .foregroundStyle(Color.selectedText)
                     }
                 }
             }

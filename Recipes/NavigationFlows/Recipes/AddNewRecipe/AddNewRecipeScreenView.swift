@@ -19,7 +19,7 @@ struct AddNewRecipeScreenView: View {
                 HStack {
                     Text("Название рецепта:")
                         .font(.title3)
-                        .foregroundStyle(Color.text)
+                        .foregroundStyle(Color.mainText)
                         .padding(.horizontal)
                     
                     Spacer()
@@ -35,7 +35,7 @@ struct AddNewRecipeScreenView: View {
                 HStack {
                     Text("Тип блюда:")
                         .font(.title3)
-                        .foregroundStyle(Color.text)
+                        .foregroundStyle(Color.mainText)
                     
                     Spacer()
                     
@@ -52,7 +52,7 @@ struct AddNewRecipeScreenView: View {
                                 .keyboardType(.numberPad)
                             
                             Image(systemName: "chevron.up.chevron.down")
-                                .foregroundStyle(Color.text)
+                                .foregroundStyle(Color.selectedText)
                         }
                     }.id(viewModel.menuSection)
                 }
@@ -65,7 +65,7 @@ struct AddNewRecipeScreenView: View {
                 HStack {
                     Text("Ингредиенты:")
                         .font(.title3)
-                        .foregroundStyle(Color.text)
+                        .foregroundStyle(Color.mainText)
                         .padding(.horizontal)
                     
                     Spacer()
@@ -89,14 +89,14 @@ struct AddNewRecipeScreenView: View {
                 } label: {
                     Text("Добавить ингредиент")
                         .padding(10)
-                        .foregroundStyle(Color.text)
+                        .foregroundStyle(Color.selectedText)
                         .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.green.opacity(0.5), lineWidth: 2))
                 }
                 
                 HStack {
                     Text("Способ приготовления:")
                         .font(.title3)
-                        .foregroundStyle(Color.text)
+                        .foregroundStyle(Color.mainText)
                         .padding(.horizontal)
                     
                     Spacer()
@@ -114,15 +114,15 @@ struct AddNewRecipeScreenView: View {
                 Spacer()
             }
         }
-        .modifier(NavigationBarBackButtonModifier(title: "Добавить новый рецепт", color: .recipesNavBar.opacity(0.5)))
+        .modifier(NavigationBarBackButtonModifier(title: "Добавить новый рецепт", color: .navBar))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     saveRecipe()
                     dismiss()
                 } label: {
-                    Image(systemName: "checkmark")
-                        .foregroundColor(.text)
+                    Image(systemName: "sdcard")
+                        .foregroundColor(.selectedText)
                 }
             }
         }

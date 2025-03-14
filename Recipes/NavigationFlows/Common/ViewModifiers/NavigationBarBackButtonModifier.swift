@@ -23,7 +23,7 @@ struct NavigationBarBackButtonModifier: ViewModifier {
                        dismiss()
                     } label: {
                         Image(systemName: "chevron.left")
-                            .foregroundStyle(.text)
+                            .foregroundStyle(.mainText)
                     }
                 }
             }
