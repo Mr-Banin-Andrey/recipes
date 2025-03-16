@@ -129,12 +129,14 @@ struct AddNewRecipeScreenView: View {
     }
     
     func saveRecipe() {
+        let ingredients = viewModel.ingredients.filter { $0.name != "" }
+
         let recipe = Recipe(
             id: UUID().uuidString,
             name: viewModel.name,
             meal: viewModel.menuSection,
             instruction: viewModel.instruction,
-            ingredients: viewModel.ingredients
+            ingredients: ingredients
         )
         
         modelContext.insert(recipe)

@@ -20,13 +20,12 @@ struct RootView: View {
                 .tag(0)
             RecipesScreenView(viewModel: RecipesScreenViewModel())
                 .tabItem {
-                    Label("Рецепты", image: selectedTab == 1 ? "recipeSelectedImage" : "recipeImage").opacity(selectedTab == 1 ? 1 : 0.3)
+                    Label("Рецепты", image: selectedTab == 1 ? "recipeSelectedImage" : "recipeImage")
                 }
                 .tag(1)
             ShoppingListScreenView(viewModel: ShoppingListScreenViewModel())
                 .tabItem {
-                    Label("Покупки", image: selectedTab == 2 ?
-                          "shoppinglistSelectedImage" : "shoppinglistImage")
+                    Label("Покупки", image: selectedTab == 2 ? "shoppinglistSelectedImage" : "shoppinglistImage")
                 }
                 .tag(2)
         }

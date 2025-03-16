@@ -36,3 +36,7 @@ enum MealTimeType: String, Identifiable, CaseIterable, Codable {
         }
     }
 }
+
+extension MealTimeType {
+    static let mockMealTime: [MealTimeType] = [.breakfast, .lunch, .afternoonSnack, .dinner]
+}
