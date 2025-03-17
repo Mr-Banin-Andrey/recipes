@@ -15,8 +15,7 @@ struct MenuScreenView: View {
     
     @Query(sort: \Recipe.name) var recipes: [Recipe]
     
-//    @State private var isPresented: Bool = false
-    @State private var selectedTab = 0
+    @State private var openedViewID: String? = nil
     
     var body: some View {
         NavigationStack {
@@ -38,18 +37,13 @@ struct MenuScreenView: View {
                         //TODO: переписать Recipe.fourRecipe
                         if let index = viewModel.dishList.filter({ $0.date == viewModel.date })[0].mealTime.firstIndex(of: mealTime.wrappedValue) {
                             MealView(
+                                id: mealTime.id,
                                 nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription,
                                 recipes: recipes,
                                 menuSection: SortingData().menuSectionSorted(recipes: recipes),
+                                color: colorForMealBackground(num: index),
                                 selectedRecipe: mealTime.recipe,
-                                isPresented: $viewModel.isOpenMealTime[index],
-                                color: colorForMealBackground(num: index)) { value in
-                                   
-                                    isOpenMealTime(index, value)
-                                    print("🐸", index , "🦊", viewModel.isOpenMealTime[index])
-                                }
-                            
-                            .tag(index)
+                                openedViewID: $openedViewID)
                             .padding(.top, 12)
                         }
                     }
@@ -73,21 +67,6 @@ struct MenuScreenView: View {
         }
     }
     
-    //TODO: подумать над открытием и закрытием
-//    func isOpenMealTime(_ index: Int,_ isOpen: Bool) {
-//
-//        viewModel.isOpenMealTime.forEach { value in
-//            if value == true {
-//                if let index = viewModel.isOpenMealTime.firstIndex(of: value) {
-//                    viewModel.isOpenMealTime[index] = false
-//                }
-////                if index
-//            } else {
-//                viewModel.isOpenMealTime[index] = true
-//            }
-//        }
-//    }
-//    
     func saveRecipe() {
 //        let recipe = Recipe.mockRecipe
 //        modelContext.insert(recipe)

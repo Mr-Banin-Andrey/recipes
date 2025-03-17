@@ -9,45 +9,38 @@ import SwiftUI
 
 struct MealView: View {
     
-    var nameMealTime: String
+    let id: String
+    let nameMealTime: String
     var recipes: [Recipe]
     var menuSection: [MenuSectionType]
+    let color: Color
     
-    @Binding var selectedRecipe: Recipe
-    @Binding var isPresented: Bool
+    @Binding var selectedRecipe: Recipe    
+    @Binding var openedViewID: String?
+
     @State private var selectedMeal: MenuSectionType = .breakfasts
-   
-    var color: Color
-    
-    var action: (Bool) -> Void
-    
+    private var isPresented: Bool {
+        openedViewID == id
+    }
+
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
                 HStack {
-                    Button {
-                        withAnimation(.easeInOut(duration: 0.3)) {
-                            isPresented.toggle()
-                            action(isPresented)
-                        }
-                    } label: {
-                        HStack {
-                            Text("\(nameMealTime):")
-                                .font(.headline)
-                                .foregroundStyle(Color.mainText)
+                    Text("\(nameMealTime):")
+                        .font(.headline)
+                        .foregroundStyle(Color.mainText)
 
-                            Spacer()
-                            
-                            if selectedRecipe.name.isEmpty {
-                                Text("Выбрать блюдо")
-                                    .foregroundStyle(.selectedText)
-                            } else {
-                                Text(selectedRecipe.name)
-                                    .bold()
-                                    .font(.headline)
-                                    .foregroundStyle(Color.selectedText)
-                            }
-                        }
+                    Spacer()
+                    
+                    if selectedRecipe.name.isEmpty {
+                        Text("Выбрать блюдо")
+                            .foregroundStyle(.selectedText)
+                    } else {
+                        Text(selectedRecipe.name)
+                            .bold()
+                            .font(.headline)
+                            .foregroundStyle(Color.selectedText)
                     }
                 }
                 
@@ -141,6 +134,15 @@ struct MealView: View {
         .cornerRadius(20)
         .padding(.horizontal, 12)
         .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 4)
+        .onTapGesture {
+            withAnimation(.easeInOut(duration: 0.3)) {
+                if isPresented {
+                    openedViewID = nil
+                } else {
+                    openedViewID = id
+                }
+            }
+        }
     }
 }
 //
