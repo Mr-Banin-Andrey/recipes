@@ -10,7 +10,6 @@ import SwiftUI
 struct AddNewRecipeScreenView: View {
     @StateObject var viewModel: AddNewRecipeScreenViewModel
     
-    @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -118,7 +117,7 @@ struct AddNewRecipeScreenView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    saveRecipe()
+                    viewModel.saveRecipe()
                     dismiss()
                 } label: {
                     Image(systemName: "sdcard")
@@ -127,22 +126,8 @@ struct AddNewRecipeScreenView: View {
             }
         }
     }
-    
-    func saveRecipe() {
-        let ingredients = viewModel.ingredients.filter { $0.name != "" }
-
-        let recipe = Recipe(
-            id: UUID().uuidString,
-            name: viewModel.name,
-            meal: viewModel.menuSection,
-            instruction: viewModel.instruction,
-            ingredients: ingredients
-        )
-        
-        modelContext.insert(recipe)
-    }
 }
-
-#Preview {
-    AddNewRecipeScreenView(viewModel: AddNewRecipeScreenViewModel())
-}
+//
+//#Preview {
+//    AddNewRecipeScreenView(viewModel: AddNewRecipeScreenViewModel())
+//}

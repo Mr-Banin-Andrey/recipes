@@ -7,12 +7,11 @@
 
 import SwiftUI
 import SwiftData
+import Combine
 
 struct MenuScreenView: View {
     @StateObject var viewModel: MenuScreenViewModel
-    
-    @Environment(\.modelContext) var modelContext
-    
+        
     @Query(sort: \Recipe.name) var recipes: [Recipe]
     
     @State private var openedViewID: String? = nil
@@ -31,11 +30,14 @@ struct MenuScreenView: View {
                 .padding(.vertical, 5)
                 
                 ScrollView(.vertical) {
-                    ForEach($viewModel.dishList.filter({ $0.date.wrappedValue == viewModel.date })[0].mealTime) { mealTime in
+//                    ForEach($viewModel.dishList.filter({ $0.date.wrappedValue == viewModel.date })[0].mealTime) { mealTime in
+                    ForEach($viewModel.dishListForSelectedDay.mealTime) { mealTime in
                         
 //                    ForEach(viewModel.mealTime) { mealTime in
                         //TODO: переписать Recipe.fourRecipe
-                        if let index = viewModel.dishList.filter({ $0.date == viewModel.date })[0].mealTime.firstIndex(of: mealTime.wrappedValue) {
+//                        if let index = viewModel.dishLists.filter({ $0.date == viewModel.date })[0].mealTime.firstIndex(of: mealTime.wrappedValue) {
+                        if let index = viewModel.dishListForSelectedDay.mealTime.firstIndex(of: mealTime.wrappedValue) {
+
                             MealView(
                                 id: mealTime.id,
                                 nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription,
@@ -66,13 +68,8 @@ struct MenuScreenView: View {
 //            }
         }
     }
-    
-    func saveRecipe() {
-//        let recipe = Recipe.mockRecipe
-//        modelContext.insert(recipe)
-    }
 }
 
-#Preview {
-    MenuScreenView(viewModel: MenuScreenViewModel())
-}
+//#Preview {
+//    MenuScreenView(viewModel: MenuScreenViewModel())
+//}

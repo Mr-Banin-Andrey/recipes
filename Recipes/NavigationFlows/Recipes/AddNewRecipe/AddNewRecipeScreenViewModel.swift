@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Combine
 
 final class AddNewRecipeScreenViewModel: ObservableObject {
     
@@ -19,6 +20,12 @@ final class AddNewRecipeScreenViewModel: ObservableObject {
         weight: "",
         quantity: .gram
     )]
+    
+    private let dataStore: SwiftDataService
+    
+    init(dataStore: SwiftDataService) {
+        self.dataStore = dataStore
+    }
 
     func addIngredient() {
         ingredients.append(Ingredient(
@@ -27,5 +34,20 @@ final class AddNewRecipeScreenViewModel: ObservableObject {
             weight: "",
             quantity: .gram
         ))
+    }
+    
+    @MainActor
+    func saveRecipe() {
+        let ingredients = ingredients.filter { $0.name != "" }
+
+        let recipe = Recipe(
+            id: UUID().uuidString,
+            name: name,
+            meal: menuSection,
+            instruction: instruction,
+            ingredients: ingredients
+        )
+        print("Recipe saved: \(recipe)")
+        dataStore.saveData(recipe)
     }
 }

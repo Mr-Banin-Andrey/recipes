@@ -14,6 +14,6 @@ struct RecipesApp: App {
         WindowGroup {
             RootView()
         }
-        .modelContainer(for: [Recipe.self, Ingredient.self], isAutosaveEnabled: false)
+//        .modelContainer(for: [Recipe.self, Ingredient.self], isAutosaveEnabled: false)
     }
 }

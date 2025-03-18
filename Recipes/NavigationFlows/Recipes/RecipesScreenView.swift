@@ -10,19 +10,17 @@ import SwiftData
 
 struct RecipesScreenView: View {
     @StateObject var viewModel: RecipesScreenViewModel
-    
-    @Query(sort: \Recipe.name) var recipes: [Recipe]
-    
+        
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
                 MealTypeScrollView(
-                    mealTypes: SortingData().menuSectionSorted(recipes: recipes),
+                    mealTypes: SortingData().menuSectionSorted(recipes: viewModel.recipes),
                     mealType: $viewModel.mealType
                 )
 
                 ScrollView {
-                    ForEach(recipes.filter { $0.meal == viewModel.mealType}) { recipe in
+                    ForEach(viewModel.recipes.filter { $0.meal == viewModel.mealType}) { recipe in
                         RecipeView(
                             title: recipe.name,
                             ingredients: recipe.ingredients,
@@ -36,7 +34,7 @@ struct RecipesScreenView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
-                        AddNewRecipeScreenView(viewModel: AddNewRecipeScreenViewModel())
+                        AddNewRecipeScreenView(viewModel: AddNewRecipeScreenViewModel(dataStore: SwiftDataService(model: Recipe.self)))
                     } label: {
                         Image(systemName: "plus")
                             .font(.body)
@@ -48,6 +46,6 @@ struct RecipesScreenView: View {
     }
 }
 
-#Preview {
-    RecipesScreenView(viewModel: RecipesScreenViewModel())
-}
+//#Preview {
+//    RecipesScreenView(viewModel: RecipesScreenViewModel())
+//}

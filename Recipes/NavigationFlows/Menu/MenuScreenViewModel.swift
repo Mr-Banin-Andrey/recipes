@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import Combine
+import SwiftData
+
 
 final class MenuScreenViewModel: ObservableObject {
     
-    @Published var dishList: [TheDishList] = [TheDishList(
+    @Published var dishLists: [TheDishList] = [TheDishList(
         id: UUID().uuidString,
         date: Date.nowToday,
         mealTime: [
@@ -36,19 +39,57 @@ final class MenuScreenViewModel: ObservableObject {
         ])
     ]
     
+    @Published var dishListForSelectedDay: TheDishList = TheDishList(
+        id: UUID().uuidString,
+        date: Date.nowToday,
+        mealTime: [
+            DiningTime(
+                id: UUID().uuidString,
+                mealTimeType: .breakfast,
+                recipe: Recipe.mockRecipe
+            ),
+            DiningTime(
+                id: UUID().uuidString,
+                mealTimeType: .lunch,
+                recipe: Recipe.mockRecipe
+            ),
+            DiningTime(
+                id: UUID().uuidString,
+                mealTimeType: .afternoonSnack,
+                recipe: Recipe.mockRecipe
+            ),
+            DiningTime(
+                id: UUID().uuidString,
+                mealTimeType: .dinner,
+                recipe: Recipe.mockRecipe
+            )
+        ])
+    
     @Published var date: Date = Date.nowToday
-    @Published var mealTime: [MealTimeType] = MealTimeType.mockMealTime
     
-    @Published var isOpenMealTime: [Bool] = [false, false, false, false]
+    private let dataStore: SwiftDataService
     
-    //TODO: выбранное блюдо дожно быть в отдельном представлении/массиве
-    @Published var selectedRecipe: Recipe = .mockRecipe
-//    
-//    func filterDishListByDate(_ date: Date) -> TheDishList {
-//        return viewModel.dishList.filter({ $0.date == viewModel.date })[0]
-//    }
+    var cancellables: Set<AnyCancellable> = []
     
+    @MainActor
+    init(dataStore: SwiftDataService) {
+        self.dataStore = dataStore
+        
+        $dishListForSelectedDay
+            .sink { value in
+                
+//                print("value", value[0])
+//                value.
+//                dataStore.saveData(value)
+                
+                print(value)
+            }
+            .store(in: &cancellables)
+    }
     
+    //TODO: добавление TheDishList в массив при нажатии на дату
+    //если нет даты, создать, есть ничего не делать (перейти)
+    func addMealTime(_ mealTimeType: MealTimeType) {}
 }
 
 extension Date {
