@@ -15,7 +15,7 @@ struct RecipesScreenView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 MealTypeScrollView(
-                    mealTypes: SortingData().menuSectionSorted(recipes: viewModel.recipes),
+                    mealTypes: SortingData().sortingMenuSections(recipes: viewModel.recipes),
                     mealType: $viewModel.mealType
                 )
 

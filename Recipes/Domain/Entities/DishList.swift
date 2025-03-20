@@ -21,3 +21,7 @@ final class DishList {
         self.mealTime = mealTime
     }
 }
+
+extension DishList {
+    static let mock = DishList(id: UUID().uuidString, date: Date.nowToday, mealTime: [])
+}

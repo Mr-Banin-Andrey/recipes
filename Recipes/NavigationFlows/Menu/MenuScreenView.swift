@@ -11,9 +11,7 @@ import Combine
 
 struct MenuScreenView: View {
     @StateObject var viewModel: MenuScreenViewModel
-        
-    @Query(sort: \Recipe.name) var recipes: [Recipe]
-    
+            
     @State private var openedViewID: String? = nil
     
     var body: some View {
@@ -34,15 +32,13 @@ struct MenuScreenView: View {
                     ForEach($viewModel.dishListForSelectedDay.mealTime) { mealTime in
                         
 //                    ForEach(viewModel.mealTime) { mealTime in
-                        //TODO: переписать Recipe.fourRecipe
 //                        if let index = viewModel.dishLists.filter({ $0.date == viewModel.date })[0].mealTime.firstIndex(of: mealTime.wrappedValue) {
                         if let index = viewModel.dishListForSelectedDay.mealTime.firstIndex(of: mealTime.wrappedValue) {
-
                             MealView(
                                 id: mealTime.id,
                                 nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription,
-                                recipes: recipes,
-                                menuSection: SortingData().menuSectionSorted(recipes: recipes),
+                                recipes: viewModel.recipes,
+                                menuSection: SortingData().sortingMenuSections(recipes: viewModel.recipes),
                                 color: colorForMealBackground(num: index),
                                 selectedRecipe: mealTime.recipe,
                                 openedViewID: $openedViewID)

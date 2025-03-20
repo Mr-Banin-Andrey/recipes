@@ -9,7 +9,7 @@ import Foundation
 
 final class SortingData {
     
-    func menuSectionSorted(recipes: [Recipe]) -> [MenuSectionType] {
+    func sortingMenuSections(recipes: [Recipe]) -> [MenuSectionType] {
         let mealTypes = Array(Set(recipes.map { $0.meal }))
         
         let sortedTasks = mealTypes.sorted { firstType, secondType in
@@ -21,5 +21,17 @@ final class SortingData {
         }
         
         return sortedTasks
+    }
+    
+    func sortingMeals(_ dishList: DishList) -> DishList {
+        let sortedMeals = dishList.mealTime.sorted {
+            guard
+                let firstIndex = MealTimeType.allCases.firstIndex(of: $0.mealTimeType),
+                let secondIndex = MealTimeType.allCases.firstIndex(of: $1.mealTimeType)
+            else { return false }
+            return firstIndex < secondIndex
+        }
+        
+        return DishList.init(id: dishList.id, date: dishList.date, mealTime: sortedMeals)
     }
 }
