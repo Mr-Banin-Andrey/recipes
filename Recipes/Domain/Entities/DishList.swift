@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class TheDishList  {
+final class DishList {
     @Attribute(.unique)
     var id: String
     var date: Date

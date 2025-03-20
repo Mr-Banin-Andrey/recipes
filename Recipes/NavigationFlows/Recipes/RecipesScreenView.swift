@@ -19,14 +19,14 @@ struct RecipesScreenView: View {
                     mealType: $viewModel.mealType
                 )
 
-                ScrollView {
-                    ForEach(viewModel.recipes.filter { $0.meal == viewModel.mealType}) { recipe in
-                        RecipeView(
-                            title: recipe.name,
-                            ingredients: recipe.ingredients,
-                            methodOfPreparation: recipe.instruction)
-                    }
+                List(viewModel.recipes.filter { $0.meal == viewModel.mealType}) { recipe in
+                    RecipeView(
+                        title: recipe.name,
+                        ingredients: recipe.ingredients,
+                        methodOfPreparation: recipe.instruction)
+                    .listRowSeparator(.hidden)
                 }
+                .listStyle(.plain)
                 
                 Spacer()
             }
@@ -34,7 +34,7 @@ struct RecipesScreenView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
-                        AddNewRecipeScreenView(viewModel: AddNewRecipeScreenViewModel(dataStore: SwiftDataService(model: Recipe.self)))
+                        AddNewRecipeScreenView(viewModel: AddNewRecipeScreenViewModel())
                     } label: {
                         Image(systemName: "plus")
                             .font(.body)
@@ -46,6 +46,6 @@ struct RecipesScreenView: View {
     }
 }
 
-//#Preview {
-//    RecipesScreenView(viewModel: RecipesScreenViewModel())
-//}
+#Preview {
+    RecipesScreenView(viewModel: RecipesScreenViewModel())
+}

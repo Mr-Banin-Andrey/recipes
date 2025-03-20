@@ -13,16 +13,17 @@ struct RootView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            MenuScreenView(viewModel: MenuScreenViewModel(dataStore: SwiftDataService(model: TheDishList.self)))
+            MenuScreenView(viewModel: MenuScreenViewModel())
                 .tabItem {
                     Label("Меню", image: selectedTab == 0 ? "menuSelectedImage" : "menuImage")
                 }
                 .tag(0)
-            RecipesScreenView(viewModel: RecipesScreenViewModel(dataStore: SwiftDataService(model: Recipe.self)))
+            RecipesScreenView(viewModel: RecipesScreenViewModel())
                 .tabItem {
                     Label("Рецепты", image: selectedTab == 1 ? "recipeSelectedImage" : "recipeImage")
                 }
                 .tag(1)
+                
             ShoppingListScreenView(viewModel: ShoppingListScreenViewModel())
                 .tabItem {
                     Label("Покупки", image: selectedTab == 2 ? "shoppinglistSelectedImage" : "shoppinglistImage")

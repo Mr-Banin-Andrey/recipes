@@ -21,11 +21,8 @@ final class AddNewRecipeScreenViewModel: ObservableObject {
         quantity: .gram
     )]
     
-    private let dataStore: SwiftDataService
-    
-    init(dataStore: SwiftDataService) {
-        self.dataStore = dataStore
-    }
+    @Dependency private var stateKeeper: StateKeeper
+    @Dependency private var database: SwiftDataService
 
     func addIngredient() {
         ingredients.append(Ingredient(
@@ -47,7 +44,8 @@ final class AddNewRecipeScreenViewModel: ObservableObject {
             instruction: instruction,
             ingredients: ingredients
         )
-        print("Recipe saved: \(recipe)")
-        dataStore.saveData(recipe)
+        
+        database.saveData(recipe)
+        stateKeeper.recipes.append(recipe)
     }
 }

@@ -9,16 +9,18 @@ import Foundation
 import SwiftData
 
 @MainActor
-class SwiftDataService {
+class SwiftDataService: ObservableObject {
     
     private var container: ModelContainer?
     private var context: ModelContext?
     
-    init(model: any PersistentModel.Type) {
+    init() {
         do {
-            container = try ModelContainer(for: model)
+            container = try ModelContainer(for: Recipe.self, Ingredient.self, DishList.self, DiningTime.self)
             if let container {
-                context = ModelContext(container)
+                let modelContext = ModelContext(container)
+                modelContext.autosaveEnabled = false
+                context = modelContext
             }
         } catch {
             debugPrint("Error initializing database container:", error)

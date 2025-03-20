@@ -12,7 +12,7 @@ import SwiftData
 
 final class MenuScreenViewModel: ObservableObject {
     
-    @Published var dishLists: [TheDishList] = [TheDishList(
+    @Published var dishLists: [DishList] = [DishList(
         id: UUID().uuidString,
         date: Date.nowToday,
         mealTime: [
@@ -39,7 +39,7 @@ final class MenuScreenViewModel: ObservableObject {
         ])
     ]
     
-    @Published var dishListForSelectedDay: TheDishList = TheDishList(
+    @Published var dishListForSelectedDay: DishList = DishList(
         id: UUID().uuidString,
         date: Date.nowToday,
         mealTime: [
@@ -66,22 +66,12 @@ final class MenuScreenViewModel: ObservableObject {
         ])
     
     @Published var date: Date = Date.nowToday
-    
-    private let dataStore: SwiftDataService
-    
-    var cancellables: Set<AnyCancellable> = []
-    
-    @MainActor
-    init(dataStore: SwiftDataService) {
-        self.dataStore = dataStore
         
+    private var cancellables: Set<AnyCancellable> = []
+    
+    init() {
         $dishListForSelectedDay
             .sink { value in
-                
-//                print("value", value[0])
-//                value.
-//                dataStore.saveData(value)
-                
                 print(value)
             }
             .store(in: &cancellables)

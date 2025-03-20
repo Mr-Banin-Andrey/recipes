@@ -8,19 +8,6 @@
 import Foundation
 import SwiftData
 
-//TODO: снести после обновления всех данных
-//struct Recipe: Hashable, Identifiable {
-//    let id: String
-//    let name: String
-//    let meal: MealType
-//    let instruction: String
-//    let ingredients: [Ingredient]
-//    
-//    static func == (lhs: Recipe, rhs: Recipe) -> Bool {
-//        return lhs.id == rhs.id
-//    }
-//}
-
 @Model
 final class Recipe: Hashable, Identifiable {
     @Attribute(.unique)

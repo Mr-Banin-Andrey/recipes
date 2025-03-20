@@ -36,12 +36,15 @@
 		0F1C99712D6CD97E0057EAE0 /* QuantityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C99702D6CD97E0057EAE0 /* QuantityType.swift */; };
 		0F1C99732D6CD98A0057EAE0 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C99722D6CD98A0057EAE0 /* Ingredient.swift */; };
 		0FA28D7F2D82DA02009DA36A /* RecipesScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA28D7E2D82D9FF009DA36A /* RecipesScreenViewModel.swift */; };
-		0FD6D3E32D8342E200C5CDF0 /* TheDishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3E22D8342DD00C5CDF0 /* TheDishList.swift */; };
+		0FD6D3E32D8342E200C5CDF0 /* DishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3E22D8342DD00C5CDF0 /* DishList.swift */; };
 		0FD6D3E52D8356E200C5CDF0 /* MealTimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3E42D8356D900C5CDF0 /* MealTimeType.swift */; };
 		0FD6D3E72D83597000C5CDF0 /* DiningTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3E62D83596C00C5CDF0 /* DiningTime.swift */; };
 		0FD6D3E92D83F8D900C5CDF0 /* MenuScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3E82D83F8D400C5CDF0 /* MenuScreenViewModel.swift */; };
 		0FD6D3EE2D8416EB00C5CDF0 /* SortingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3ED2D8416E400C5CDF0 /* SortingData.swift */; };
 		0FD6D4162D898FEB00C5CDF0 /* SwiftDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D4152D898FDA00C5CDF0 /* SwiftDataService.swift */; };
+		0FD6D41A2D8AB6BF00C5CDF0 /* StateKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D4192D8AB6AD00C5CDF0 /* StateKeeper.swift */; };
+		0FD6D41D2D8B464A00C5CDF0 /* DependencyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D41C2D8B463700C5CDF0 /* DependencyWrapper.swift */; };
+		0FD6D41F2D8B467700C5CDF0 /* GlobalDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D41E2D8B466600C5CDF0 /* GlobalDependencyContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,12 +91,15 @@
 		0F1C99722D6CD98A0057EAE0 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		0F45C6202D6B107D0039CB62 /* Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA28D7E2D82D9FF009DA36A /* RecipesScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesScreenViewModel.swift; sourceTree = "<group>"; };
-		0FD6D3E22D8342DD00C5CDF0 /* TheDishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDishList.swift; sourceTree = "<group>"; };
+		0FD6D3E22D8342DD00C5CDF0 /* DishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishList.swift; sourceTree = "<group>"; };
 		0FD6D3E42D8356D900C5CDF0 /* MealTimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTimeType.swift; sourceTree = "<group>"; };
 		0FD6D3E62D83596C00C5CDF0 /* DiningTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningTime.swift; sourceTree = "<group>"; };
 		0FD6D3E82D83F8D400C5CDF0 /* MenuScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreenViewModel.swift; sourceTree = "<group>"; };
 		0FD6D3ED2D8416E400C5CDF0 /* SortingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingData.swift; sourceTree = "<group>"; };
 		0FD6D4152D898FDA00C5CDF0 /* SwiftDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataService.swift; sourceTree = "<group>"; };
+		0FD6D4192D8AB6AD00C5CDF0 /* StateKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateKeeper.swift; sourceTree = "<group>"; };
+		0FD6D41C2D8B463700C5CDF0 /* DependencyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyWrapper.swift; sourceTree = "<group>"; };
+		0FD6D41E2D8B466600C5CDF0 /* GlobalDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDependencyContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,7 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				0FD6D3E62D83596C00C5CDF0 /* DiningTime.swift */,
-				0FD6D3E22D8342DD00C5CDF0 /* TheDishList.swift */,
+				0FD6D3E22D8342DD00C5CDF0 /* DishList.swift */,
 				0F1C996B2D6C81020057EAE0 /* Recipe.swift */,
 				0F1C99722D6CD98A0057EAE0 /* Ingredient.swift */,
 			);
@@ -312,6 +318,7 @@
 		0FA28D7B2D81DD0C009DA36A /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0FD6D4192D8AB6AD00C5CDF0 /* StateKeeper.swift */,
 				0FD6D4152D898FDA00C5CDF0 /* SwiftDataService.swift */,
 			);
 			path = Data;
@@ -320,9 +327,19 @@
 		0FD6D3EA2D84165200C5CDF0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0FD6D41B2D8B462C00C5CDF0 /* Dependency */,
 				0FD6D3ED2D8416E400C5CDF0 /* SortingData.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		0FD6D41B2D8B462C00C5CDF0 /* Dependency */ = {
+			isa = PBXGroup;
+			children = (
+				0FD6D41E2D8B466600C5CDF0 /* GlobalDependencyContainer.swift */,
+				0FD6D41C2D8B463700C5CDF0 /* DependencyWrapper.swift */,
+			);
+			path = Dependency;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,10 +424,11 @@
 				0F1C99732D6CD98A0057EAE0 /* Ingredient.swift in Sources */,
 				0F10027B2D7F214600085758 /* ShoppingListScreenViewModel.swift in Sources */,
 				0F1C99542D6B77880057EAE0 /* RecipesApp.swift in Sources */,
+				0FD6D41F2D8B467700C5CDF0 /* GlobalDependencyContainer.swift in Sources */,
 				0F10026F2D7B384700085758 /* NavigationBarBackButtonModifier.swift in Sources */,
 				0F1002842D8043B200085758 /* BuyIngredientView.swift in Sources */,
 				0FD6D3E92D83F8D900C5CDF0 /* MenuScreenViewModel.swift in Sources */,
-				0FD6D3E32D8342E200C5CDF0 /* TheDishList.swift in Sources */,
+				0FD6D3E32D8342E200C5CDF0 /* DishList.swift in Sources */,
 				0F1C99612D6B841B0057EAE0 /* DayModel.swift in Sources */,
 				0F1C99552D6B77880057EAE0 /* MenuScreenView.swift in Sources */,
 				0F1C99632D6B84450057EAE0 /* WeekViewModel.swift in Sources */,
@@ -428,9 +446,11 @@
 				0F1C99592D6B78270057EAE0 /* RecipesScreenView.swift in Sources */,
 				0F1002742D7C78DA00085758 /* AddIngredientView.swift in Sources */,
 				0F10027F2D7F43BD00085758 /* WillBuyIngredientView.swift in Sources */,
+				0FD6D41A2D8AB6BF00C5CDF0 /* StateKeeper.swift in Sources */,
 				0F1C99562D6B77880057EAE0 /* RootView.swift in Sources */,
 				0F1C99572D6B77880057EAE0 /* ShoppingListScreenView.swift in Sources */,
 				0F10026B2D7B1F1700085758 /* AddNewRecipeScreenView.swift in Sources */,
+				0FD6D41D2D8B464A00C5CDF0 /* DependencyWrapper.swift in Sources */,
 				0F1002762D7C9C2600085758 /* AddNewRecipeScreenViewModel.swift in Sources */,
 				0FD6D3E72D83597000C5CDF0 /* DiningTime.swift in Sources */,
 				0F1C996E2D6CD9300057EAE0 /* MenuSectionType.swift in Sources */,

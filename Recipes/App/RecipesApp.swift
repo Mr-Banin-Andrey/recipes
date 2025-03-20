@@ -10,10 +10,20 @@ import SwiftData
 
 @main
 struct RecipesApp: App {
+    
+    init() {
+        let stateKeeper = StateKeeper()
+        GlobalDependencyContainer.register(type: StateKeeper.self, stateKeeper)
+        
+        let database = SwiftDataService()
+        GlobalDependencyContainer.register(type: SwiftDataService.self, database)
+        
+        stateKeeper.recipes = database.fetchData(model: Recipe.self)
+    }
+    
     var body: some Scene {
         WindowGroup {
             RootView()
         }
-//        .modelContainer(for: [Recipe.self, Ingredient.self], isAutosaveEnabled: false)
     }
 }
