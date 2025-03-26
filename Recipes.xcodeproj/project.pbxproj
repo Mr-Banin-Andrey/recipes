@@ -281,8 +281,8 @@
 		0F1C996A2D6C80FE0057EAE0 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				0FD6D3E62D83596C00C5CDF0 /* DiningTime.swift */,
 				0FD6D3E22D8342DD00C5CDF0 /* DishList.swift */,
+				0FD6D3E62D83596C00C5CDF0 /* DiningTime.swift */,
 				0F1C996B2D6C81020057EAE0 /* Recipe.swift */,
 				0F1C99722D6CD98A0057EAE0 /* Ingredient.swift */,
 			);

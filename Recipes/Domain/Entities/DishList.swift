@@ -9,10 +9,11 @@ import Foundation
 import SwiftData
 
 @Model
-final class DishList {
+final class DishList : Hashable, Identifiable {
     @Attribute(.unique)
     var id: String
     var date: Date
+    @Relationship(deleteRule: .cascade, inverse: \DiningTime.dishList)
     var mealTime: [DiningTime]
 
     init(id: String, date: Date, mealTime: [DiningTime]) {
@@ -23,5 +24,10 @@ final class DishList {
 }
 
 extension DishList {
-    static let mock = DishList(id: UUID().uuidString, date: Date.nowToday, mealTime: [])
+    static let mock = DishList(id: UUID().uuidString, date: Date.nowToday, mealTime: [
+        DiningTime(id: UUID().uuidString, mealTimeType: .breakfast, recipe: Recipe.mockRecipe),
+        DiningTime(id: UUID().uuidString, mealTimeType: .lunch, recipe: Recipe.mockRecipe),
+        DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack, recipe: Recipe.mockRecipe),
+        DiningTime(id: UUID().uuidString, mealTimeType: .dinner, recipe: Recipe.mockRecipe)
+    ])
 }

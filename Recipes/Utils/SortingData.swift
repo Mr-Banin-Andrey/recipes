@@ -23,6 +23,18 @@ final class SortingData {
         return sortedTasks
     }
     
+    func sortingMeals(_ mealTime: [DiningTime]) -> [DiningTime] {
+        let sortedMeals = mealTime.sorted {
+            guard
+                let firstIndex = MealTimeType.allCases.firstIndex(of: $0.mealTimeType),
+                let secondIndex = MealTimeType.allCases.firstIndex(of: $1.mealTimeType)
+            else { return false }
+            return firstIndex < secondIndex
+        }
+        
+        return sortedMeals
+    }
+    
     func sortingMeals(_ dishList: DishList) -> DishList {
         let sortedMeals = dishList.mealTime.sorted {
             guard

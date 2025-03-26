@@ -29,11 +29,11 @@ struct MenuScreenView: View {
                 
                 ScrollView(.vertical) {
 //                    ForEach($viewModel.dishList.filter({ $0.date.wrappedValue == viewModel.date })[0].mealTime) { mealTime in
-                    ForEach($viewModel.dishListForSelectedDay.mealTime) { mealTime in
-                        
-//                    ForEach(viewModel.mealTime) { mealTime in
+//                    ForEach($viewModel.dishListForSelectedDay.mealTime) { mealTime in
+                    ForEach($viewModel.mealTime) { mealTime in
 //                        if let index = viewModel.dishLists.filter({ $0.date == viewModel.date })[0].mealTime.firstIndex(of: mealTime.wrappedValue) {
-                        if let index = viewModel.dishListForSelectedDay.mealTime.firstIndex(of: mealTime.wrappedValue) {
+//                        if let index = viewModel.dishListForSelectedDay.mealTime.firstIndex(of: mealTime.wrappedValue) {
+                        if let index = viewModel.mealTime.firstIndex(of: mealTime.wrappedValue) {
                             MealView(
                                 id: mealTime.id,
                                 nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription,
