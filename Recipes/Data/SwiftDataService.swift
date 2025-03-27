@@ -50,4 +50,15 @@ class SwiftDataService: ObservableObject {
             fatalError(error.localizedDescription)
         }
     }
+    
+    func deleteData<T: PersistentModel>(_ data: T) {
+        do {
+            if let context {
+                context.delete(data)
+                try context.save()
+            }
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
 }

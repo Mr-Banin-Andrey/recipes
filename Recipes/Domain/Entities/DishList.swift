@@ -24,10 +24,14 @@ final class DishList : Hashable, Identifiable {
 }
 
 extension DishList {
-    static let mock = DishList(id: UUID().uuidString, date: Date.nowToday, mealTime: [
-        DiningTime(id: UUID().uuidString, mealTimeType: .breakfast, recipe: Recipe.mockRecipe),
-        DiningTime(id: UUID().uuidString, mealTimeType: .lunch, recipe: Recipe.mockRecipe),
-        DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack, recipe: Recipe.mockRecipe),
-        DiningTime(id: UUID().uuidString, mealTimeType: .dinner, recipe: Recipe.mockRecipe)
-    ])
+    static let mock = DishList(
+        id: UUID().uuidString,
+        date: Date.nowToday,
+        mealTime: [
+            DiningTime(id: UUID().uuidString, mealTimeType: .breakfast),
+            DiningTime(id: UUID().uuidString, mealTimeType: .lunch),
+            DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack),
+            DiningTime(id: UUID().uuidString, mealTimeType: .dinner)
+        ]
+    )
 }

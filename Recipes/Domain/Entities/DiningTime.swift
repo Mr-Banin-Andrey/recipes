@@ -9,14 +9,15 @@ import Foundation
 import SwiftData
 
 @Model
-final class DiningTime : Hashable, Identifiable {
+final class DiningTime: Hashable, Identifiable {
     @Attribute(.unique)
     var id: String
     var mealTimeType: MealTimeType
-    var recipe: Recipe
+    var recipe: Recipe?
+    
     var dishList: DishList?
     
-    init(id: String, mealTimeType: MealTimeType, recipe: Recipe) {
+    init(id: String, mealTimeType: MealTimeType, recipe: Recipe? = nil) {
         self.id = id
         self.mealTimeType = mealTimeType
         self.recipe = recipe
@@ -24,11 +25,10 @@ final class DiningTime : Hashable, Identifiable {
 }
 
 extension DiningTime {
-        
     static let mockArray: [DiningTime] = [
-        DiningTime(id: UUID().uuidString, mealTimeType: .breakfast, recipe: Recipe.mockRecipe),
-        DiningTime(id: UUID().uuidString, mealTimeType: .lunch, recipe: Recipe.mockRecipe),
-        DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack, recipe: Recipe.mockRecipe),
-        DiningTime(id: UUID().uuidString, mealTimeType: .dinner, recipe: Recipe.mockRecipe)
+        DiningTime(id: UUID().uuidString, mealTimeType: .breakfast),
+        DiningTime(id: UUID().uuidString, mealTimeType: .lunch),
+        DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack),
+        DiningTime(id: UUID().uuidString, mealTimeType: .dinner),
     ]
 }

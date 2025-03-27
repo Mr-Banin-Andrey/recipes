@@ -15,7 +15,7 @@ struct MealView: View {
     var menuSection: [MenuSectionType]
     let color: Color
     
-    @Binding var selectedRecipe: Recipe    
+    @Binding var selectedRecipe: Recipe?
     @Binding var openedViewID: String?
 
     @State private var selectedMeal: MenuSectionType = .breakfasts
@@ -33,11 +33,11 @@ struct MealView: View {
 
                     Spacer()
                     
-                    if selectedRecipe.name.isEmpty {
+                    if selectedRecipe == nil {
                         Text("Выбрать блюдо")
                             .foregroundStyle(.selectedText)
                     } else {
-                        Text(selectedRecipe.name)
+                        Text(selectedRecipe?.name ?? "")
                             .bold()
                             .font(.headline)
                             .foregroundStyle(Color.selectedText)

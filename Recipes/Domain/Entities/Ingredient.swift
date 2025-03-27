@@ -7,14 +7,6 @@
 
 import SwiftData
 
-//TODO: снести после обновления всех данных
-//struct Ingredient: Hashable, Identifiable {
-//    let id: String
-//    var name: String
-//    var weight: String
-//    var quantity: QuantityType
-//}
-
 @Model
 final class Ingredient: Hashable, Identifiable {
     @Attribute(.unique)

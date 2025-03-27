@@ -19,7 +19,6 @@ struct RecipesApp: App {
         GlobalDependencyContainer.register(type: SwiftDataService.self, database)
         
         stateKeeper.recipes = database.fetchData(model: Recipe.self)
-        stateKeeper.dishLists = database.fetchData(model: DishList.self)
     }
     
     var body: some Scene {
