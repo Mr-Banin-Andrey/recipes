@@ -28,9 +28,10 @@ struct WeekView: View {
                         }
                         
                         .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(viewModel.isToday(date: day.date) ? Color.navBar : Color.clear, lineWidth: 1))
+                            .stroke(viewModel.selectedDate == DateConverter.dateOnly(day.date) ? Color.navBar : Color.clear, lineWidth: 1))
                         .frame(width: abs(geometry.size.width / 7), height: 85)
                         .onTapGesture {
+                            viewModel.selectedDate = DateConverter.dateOnly(day.date)
                             onDayTap(day.date)
                         }
                     }

@@ -19,8 +19,9 @@ struct MenuScreenView: View {
             VStack(spacing: 0) {
                 ZStack {
                     WeekView(viewModel: WeekViewModel()) { date in
-                        //TODO: разблокировать фильтрацию по дате
-//                        viewModel.date = date
+                        withAnimation {
+                            viewModel.displayMenuForSelectedDate(date)
+                        }
                     }
                 }
                 .cornerRadius(16)
@@ -28,11 +29,7 @@ struct MenuScreenView: View {
                 .padding(.vertical, 5)
                 
                 ScrollView(.vertical) {
-//                    ForEach($viewModel.dishList.filter({ $0.date.wrappedValue == viewModel.date })[0].mealTime) { mealTime in
-//                    ForEach($viewModel.dishListForSelectedDay.mealTime) { mealTime in
                     ForEach($viewModel.mealTime) { mealTime in
-//                        if let index = viewModel.dishLists.filter({ $0.date == viewModel.date })[0].mealTime.firstIndex(of: mealTime.wrappedValue) {
-//                        if let index = viewModel.dishListForSelectedDay.mealTime.firstIndex(of: mealTime.wrappedValue) {
                         if let index = viewModel.mealTime.firstIndex(of: mealTime.wrappedValue) {
                             MealView(
                                 id: mealTime.id,

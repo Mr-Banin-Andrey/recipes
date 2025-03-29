@@ -15,31 +15,44 @@ final class MenuScreenViewModel: ObservableObject {
     @Dependency var stateKeeper: StateKeeper
     @Dependency var database: SwiftDataService
     
-    @Published var recipes: [Recipe] = []
+    @Published var recipes: [Recipe] = Recipe.fourRecipe
     private var dishLists: [DishList] = []
-    private var today: Date = Date.nowToday
-    
-    @Published var id: String = "" //UUID().uuidString
-    @Published var date: Date = Date() //Date.nowToday
-    @Published var mealTime: [DiningTime] = DiningTime.mockArray
-    
-    private var dishListForSelectedDay: DishList = DishList.mock
+    private var today: Date = DateConverter.dateOnly(Date())
+
+    @Published var id: String = UUID().uuidString
+    @Published var date: Date = DateConverter.dateOnly(Date())
+    @Published var mealTime: [DiningTime] = [
+        DiningTime(id: UUID().uuidString, mealTimeType: .breakfast),
+        DiningTime(id: UUID().uuidString, mealTimeType: .lunch),
+        DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack),
+        DiningTime(id: UUID().uuidString, mealTimeType: .dinner),
+    ]
+        
+    private var dishListForSelectedDay: DishList = DishList(
+        id: "",
+        date: DateConverter.dateOnly(Date()),
+        mealTime: [
+            DiningTime(id: UUID().uuidString, mealTimeType: .breakfast),
+            DiningTime(id: UUID().uuidString, mealTimeType: .lunch),
+            DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack),
+            DiningTime(id: UUID().uuidString, mealTimeType: .dinner),
+        ]
+    )
     
     private var cancellables: Set<AnyCancellable> = []
-    
+       
     //MARK: Initial
-    
     @MainActor
     init() {
-        stateKeeper.$recipes
-            .sink { recipes in
-                self.recipes = recipes
-            }
-            .store(in: &cancellables)
+//        stateKeeper.$recipes
+//            .sink { recipes in
+//                self.recipes = recipes
+//            }
+//            .store(in: &cancellables)
         
         dishLists = database.fetchData(model: DishList.self)
         
-//        currentDate()
+        currentDate()
 
         if let dishList = dishLists.first(where: { $0.date == today }) {
             dishListForSelectedDay = dishList
@@ -47,10 +60,11 @@ final class MenuScreenViewModel: ObservableObject {
             date = dishList.date
             mealTime = SortingData().sortingMeals(dishList.mealTime)
         }
-        
+                
         $mealTime
             .sink { mealTime in
-//                if !mealTime.filter({ $0.recipe != nil }).isEmpty {
+                if self.date == self.dishListForSelectedDay.date {
+                    self.dishListForSelectedDay.id = self.id
                     self.dishListForSelectedDay.mealTime = mealTime
                     
                     if let index = self.dishLists.firstIndex(of: self.dishListForSelectedDay) {
@@ -59,7 +73,7 @@ final class MenuScreenViewModel: ObservableObject {
                         self.dishLists.append(self.dishListForSelectedDay)
                     }
                     self.database.saveData(self.dishListForSelectedDay)
-//                }
+                }
             }
             .store(in: &cancellables)
     }
@@ -72,22 +86,37 @@ final class MenuScreenViewModel: ObservableObject {
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
         if let dateOnly = calendar.date(from: dateComponents) {
             today = dateOnly
-            print(dateOnly)
         }
     }
     
-    func downloadDataForSelectedDay(date: Date) {
-//        if let index = stateKeeper.dishLists.firstIndex(where: { $0.date == date }) {
-//            dishListForSelectedDay = stateKeeper.dishLists[index]
-//        }
-//        else {
-//            //TODO: добавить день с приемами пищи
-//        }
+    func generateNewDay(_ selectedDate: Date) {
+        let dishListDay = DishList(
+            id: UUID().uuidString,
+            date: DateConverter.dateOnly(selectedDate),
+            mealTime: [
+                DiningTime(id: UUID().uuidString, mealTimeType: .breakfast),
+                DiningTime(id: UUID().uuidString, mealTimeType: .lunch),
+                DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack),
+                DiningTime(id: UUID().uuidString, mealTimeType: .dinner),
+            ]
+        )
+
+        dishLists.append(dishListDay)
+        dishListForSelectedDay = dishListDay
     }
     
-    //TODO: добавление TheDishList в массив при нажатии на дату
-    //если нет даты, создать, есть ничего не делать (перейти)
-    func addMealTime(_ mealTimeType: MealTimeType) {}
+    func displayMenuForSelectedDate(_ selectedDate: Date) {
+        date = DateConverter.dateOnly(selectedDate)
+        
+        if let dishList = self.dishLists.first(where: { $0.date == DateConverter.dateOnly(selectedDate) }) {
+            id = dishList.id
+            mealTime = SortingData().sortingMeals(dishList.mealTime)
+        } else {
+            generateNewDay(selectedDate)
+            id = dishListForSelectedDay.id
+            mealTime = dishListForSelectedDay.mealTime
+        }
+    }
 }
 
 extension Date {

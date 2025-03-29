@@ -45,6 +45,7 @@
 		0FD6D41A2D8AB6BF00C5CDF0 /* StateKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D4192D8AB6AD00C5CDF0 /* StateKeeper.swift */; };
 		0FD6D41D2D8B464A00C5CDF0 /* DependencyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D41C2D8B463700C5CDF0 /* DependencyWrapper.swift */; };
 		0FD6D41F2D8B467700C5CDF0 /* GlobalDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D41E2D8B466600C5CDF0 /* GlobalDependencyContainer.swift */; };
+		0FD9A9442D959B83004E8E67 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD9A9432D959B7B004E8E67 /* DateConverter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -100,6 +101,7 @@
 		0FD6D4192D8AB6AD00C5CDF0 /* StateKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateKeeper.swift; sourceTree = "<group>"; };
 		0FD6D41C2D8B463700C5CDF0 /* DependencyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyWrapper.swift; sourceTree = "<group>"; };
 		0FD6D41E2D8B466600C5CDF0 /* GlobalDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDependencyContainer.swift; sourceTree = "<group>"; };
+		0FD9A9432D959B7B004E8E67 /* DateConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				0FD6D41B2D8B462C00C5CDF0 /* Dependency */,
+				0FD9A9432D959B7B004E8E67 /* DateConverter.swift */,
 				0FD6D3ED2D8416E400C5CDF0 /* SortingData.swift */,
 			);
 			path = Utils;
@@ -439,6 +442,7 @@
 				0F1002672D7B034400085758 /* NavigationBarTitleModifier.swift in Sources */,
 				0F1C99712D6CD97E0057EAE0 /* QuantityType.swift in Sources */,
 				0F1002822D803ECE00085758 /* ExtView.swift in Sources */,
+				0FD9A9442D959B83004E8E67 /* DateConverter.swift in Sources */,
 				0FA28D7F2D82DA02009DA36A /* RecipesScreenViewModel.swift in Sources */,
 				0F1C996C2D6C81250057EAE0 /* Recipe.swift in Sources */,
 				0F1002642D7A0DAF00085758 /* MealTypeScrollView.swift in Sources */,

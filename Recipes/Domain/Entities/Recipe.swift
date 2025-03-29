@@ -68,23 +68,38 @@ extension Recipe {
         ]),
         Recipe(
             id: UUID().uuidString,
-            name: "Тост с авокадо",
-            meal: .starters,
-            instruction: "Снимается шкурка с авокадо. В глубокой тарелке разиминается авокадо в пюре. Немножко посолить. На поджареный тост намазываем вилкой",
+            name: "Cиннабон",
+            meal: .dessert,
+            instruction: "Булочки синнабон можно приготовить быстрее, если использовать магазинное слоёное дрожжевое тесто. В духовке витые булочки с безумно ароматной сахарно-коричной начинкой покрываются лёгкой хрустящей корочкой. Для глазури задействован кремовый маскарпоне, который придаёт булочкам невероятную сливочную нотку.",
             ingredients: [
-                Ingredient(id: UUID().uuidString, name: "Авокадо", weight: "1", quantity: QuantityType.perPiece),
-                Ingredient(id: UUID().uuidString, name: "Хлеб", weight: "2", quantity: QuantityType.perPiece),
-                Ingredient(id: UUID().uuidString, name: "Соль", weight: "1", quantity: QuantityType.gram)
+                Ingredient(id: UUID().uuidString, name: "Тесто слоеное дрожжевое", weight: "600", quantity: QuantityType.gram),
+                Ingredient(id: UUID().uuidString, name: "Сахар", weight: "70", quantity: QuantityType.gram),
+                Ingredient(id: UUID().uuidString, name: "Корица молотая", weight: "15", quantity: QuantityType.gram),
+                Ingredient(id: UUID().uuidString, name: "Маскарпоне", weight: "250", quantity: QuantityType.gram),
+                Ingredient(id: UUID().uuidString, name: "Ванильный сахар", weight: "10", quantity: QuantityType.gram)
         ]),
         Recipe(
             id: UUID().uuidString,
-            name: "Тост с авокадо",
-            meal: .dessert,
-            instruction: "Снимается шкурка с авокадо. В глубокой тарелке разиминается авокадо в пюре. Немножко посолить. На поджареный тост намазываем вилкой",
+            name: "томатный суп с куриными фрикадельками",
+            meal: .soups,
+            instruction: "Если вы любите помидоры так, как люблю их я, то этот 'тройной' томатный суп с куриными фрикадельками просто должен быть в вашем обеденном меню. Для приготовления используются томатный соус, томатное пюре и нарезанные помидоры, благодаря чему суп получается очень насыщенным.",
             ingredients: [
-                Ingredient(id: UUID().uuidString, name: "Авокадо", weight: "1", quantity: QuantityType.perPiece),
-                Ingredient(id: UUID().uuidString, name: "Хлеб", weight: "2", quantity: QuantityType.perPiece),
-                Ingredient(id: UUID().uuidString, name: "Соль", weight: "1", quantity: QuantityType.gram)
+                Ingredient(id: UUID().uuidString, name: "Куриная грудка", weight: "500", quantity: QuantityType.gram),
+                Ingredient(id: UUID().uuidString, name: "Помидоры", weight: "3", quantity: QuantityType.perPiece),
+                Ingredient(id: UUID().uuidString, name: "Морковь", weight: "1", quantity: QuantityType.perPiece),
+                Ingredient(id: UUID().uuidString, name: "Лук репчатый мелкий", weight: "4", quantity: QuantityType.perPiece),
+                Ingredient(id: UUID().uuidString, name: "Соус томатный", weight: "80", quantity: QuantityType.milliliter)
+        ]),
+        Recipe(
+            id: UUID().uuidString,
+            name: "Пожарские котлеты",
+            meal: .mainCourses,
+            instruction: "Готовая 'пожарская' котлета в разрезе должна 'брызгаться' соком, иметь хрустящую корочку и благоухать сливочным ароматом. Подается с гарниром из картофеля или разнообразных овощей и соусом.",
+            ingredients: [
+                Ingredient(id: UUID().uuidString, name: "Курица средней величины", weight: "1", quantity: QuantityType.perPiece),
+                Ingredient(id: UUID().uuidString, name: "Масло сливочное", weight: "100", quantity: QuantityType.gram),
+                Ingredient(id: UUID().uuidString, name: "Хлеб белый ломтик", weight: "1", quantity: QuantityType.perPiece),
+                Ingredient(id: UUID().uuidString, name: "Сливки ординарные (обычных 10%)", weight: "150", quantity: QuantityType.milliliter)
         ]),
     ]
 }

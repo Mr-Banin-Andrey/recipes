@@ -9,6 +9,7 @@ import SwiftUI
 
 final class WeekViewModel: ObservableObject {
     
+    var selectedDate: Date = DateConverter.dateOnly(Date())
     @Published var currentDate: Date = Date()
     @Published var weeks: [DayModel] = []
 
