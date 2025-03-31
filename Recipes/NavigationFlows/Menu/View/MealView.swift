@@ -22,6 +22,9 @@ struct MealView: View {
     private var isPresented: Bool {
         openedViewID == id
     }
+    
+    //TODO: add UX for button "Add ingridient"
+    @State private var isExpanded: Bool = false
 
     var body: some View {
         ZStack {
@@ -49,7 +52,7 @@ struct MealView: View {
                         Text("Добавьте рецепты")
                             .font(.headline)
                             .foregroundStyle(Color.mainText)
-                            .frame(height: 50)
+                            .padding(.vertical, 24)
                     } else {
                         HStack(spacing: 16) {
                             if menuSection.count == 1 {
@@ -83,7 +86,7 @@ struct MealView: View {
                                         }
                                     }
                                     .pickerStyle(.wheel)
-                                    .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: 130)
+                                    .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: 150)
                                 }
                             }
                             
@@ -118,18 +121,36 @@ struct MealView: View {
                                         }
                                     }
                                     .pickerStyle(.wheel)
-                                    .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: 130)
+                                    .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: 150)
                                 }
                             }
                         }
-                        .frame(height: 130)
+                        .frame(height: 150)
+                        
+                        Button {
+                            //TODO: add UX for button "Add ingridient"
+                            withAnimation {
+                                isExpanded.toggle()
+                            }
+                        } label: {
+                            HStack {
+                                Image(systemName: isExpanded ? "checkmark.square" : "square")
+                                
+                                Text(isExpanded ? "Ингредиенты добавлены в покупки" : "Добавить ингредиенты в покупки")
+                            }
+                            .foregroundStyle(isExpanded ? Color.selectedText.opacity(0.25) : Color.selectedText)
+                            .padding(.vertical, 8)
+                            
+                            
+                        }
+                        .disabled(isExpanded)
                     }
                 }
             }
         }
         .padding(.horizontal, 10)
-        .padding(.top, isPresented ? 24 : 40)
-        .padding(.bottom, isPresented ? 14 : 40)
+        .padding(.top, isPresented ? 16 : 40)
+        .padding(.bottom, isPresented ? 8 : 40)
         .background(color)
         .cornerRadius(20)
         .padding(.horizontal, 12)
@@ -145,16 +166,15 @@ struct MealView: View {
         }
     }
 }
-//
-//#Preview {
-//    MealView(
-//        nameMealTime: "Dinner",
-//        recipes: Recipe.fourRecipe,
-//        menuSection: SortingData().menuSectionSorted(recipes: Recipe.fourRecipe),
-//        selectedRecipe: .constant(Recipe.mockRecipe),
-//        isPresented: true,
-//        color: .fourth) {
-//            print("123")
-//        }
-//    
-//}
+
+#Preview {
+    MealView(
+        id: "123",
+        nameMealTime: "Dinner",
+        recipes: Recipe.fourRecipe,
+        menuSection: SortingData().sortingMenuSections(recipes: Recipe.fourRecipe),
+        color: .fifth,
+        selectedRecipe: .constant(Recipe.mockRecipe),
+        openedViewID: .constant("123")
+    )
+}
