@@ -33,6 +33,12 @@ struct RootView: View {
         .tint(.selectedText)
         .onAppear(perform: {
             UITabBar.appearance().backgroundColor = .tabBar
+            
+            let standardAppearance = UITabBarAppearance()
+            standardAppearance.shadowColor = .lineAboveTabbar
+            
+            UITabBar.appearance().standardAppearance = standardAppearance
+            UITabBar.appearance().scrollEdgeAppearance = standardAppearance
         })
     }
 }

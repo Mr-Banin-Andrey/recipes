@@ -35,6 +35,7 @@
 		0F1C996E2D6CD9300057EAE0 /* MenuSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C996D2D6CD9220057EAE0 /* MenuSectionType.swift */; };
 		0F1C99712D6CD97E0057EAE0 /* QuantityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C99702D6CD97E0057EAE0 /* QuantityType.swift */; };
 		0F1C99732D6CD98A0057EAE0 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C99722D6CD98A0057EAE0 /* Ingredient.swift */; };
+		0F2E50672D9C04C30019CD31 /* GreenButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E50662D9C04C30019CD31 /* GreenButtonModifier.swift */; };
 		0FA28D7F2D82DA02009DA36A /* RecipesScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA28D7E2D82D9FF009DA36A /* RecipesScreenViewModel.swift */; };
 		0FD6D3E32D8342E200C5CDF0 /* DishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3E22D8342DD00C5CDF0 /* DishList.swift */; };
 		0FD6D3E52D8356E200C5CDF0 /* MealTimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6D3E42D8356D900C5CDF0 /* MealTimeType.swift */; };
@@ -90,6 +91,7 @@
 		0F1C996D2D6CD9220057EAE0 /* MenuSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSectionType.swift; sourceTree = "<group>"; };
 		0F1C99702D6CD97E0057EAE0 /* QuantityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityType.swift; sourceTree = "<group>"; };
 		0F1C99722D6CD98A0057EAE0 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		0F2E50662D9C04C30019CD31 /* GreenButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButtonModifier.swift; sourceTree = "<group>"; };
 		0F45C6202D6B107D0039CB62 /* Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA28D7E2D82D9FF009DA36A /* RecipesScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesScreenViewModel.swift; sourceTree = "<group>"; };
 		0FD6D3E22D8342DD00C5CDF0 /* DishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishList.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				0F10026E2D7B384600085758 /* NavigationBarBackButtonModifier.swift */,
 				0F1002662D7B034300085758 /* NavigationBarTitleModifier.swift */,
+				0F2E50662D9C04C30019CD31 /* GreenButtonModifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				0F10026F2D7B384700085758 /* NavigationBarBackButtonModifier.swift in Sources */,
 				0F1002842D8043B200085758 /* BuyIngredientView.swift in Sources */,
 				0FD6D3E92D83F8D900C5CDF0 /* MenuScreenViewModel.swift in Sources */,
+				0F2E50672D9C04C30019CD31 /* GreenButtonModifier.swift in Sources */,
 				0FD6D3E32D8342E200C5CDF0 /* DishList.swift in Sources */,
 				0F1C99612D6B841B0057EAE0 /* DayModel.swift in Sources */,
 				0F1C99552D6B77880057EAE0 /* MenuScreenView.swift in Sources */,
@@ -595,6 +599,8 @@
 				DEVELOPMENT_TEAM = HTF5ZZPGPW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Recipes/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -631,6 +637,8 @@
 				DEVELOPMENT_TEAM = HTF5ZZPGPW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Recipes/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

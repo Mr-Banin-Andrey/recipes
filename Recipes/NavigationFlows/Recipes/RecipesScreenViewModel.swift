@@ -13,17 +13,17 @@ final class RecipesScreenViewModel: ObservableObject {
         
     @Published var mealType: MenuSectionType = .breakfasts
     @Published var mealTypes: [MenuSectionType] = []
-    @Published var recipes: [Recipe] = []
+    @Published var recipes: [Recipe] = Recipe.fourRecipe//  []
     
     @Dependency var stateKeeper: StateKeeper
     
     var cancellables: Set<AnyCancellable> = []
     
     init() {
-        stateKeeper.$recipes
-            .sink { value in
-                self.recipes = value
-            }
-            .store(in: &cancellables)
+//        stateKeeper.$recipes
+//            .sink { value in
+//                self.recipes = value
+//            }
+//            .store(in: &cancellables)
     }
 }

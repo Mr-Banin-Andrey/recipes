@@ -23,7 +23,7 @@ struct MealView: View {
         openedViewID == id
     }
     
-    //TODO: add UX for button "Add ingridient"
+    //TODO: add UX for button "Add ingredient"
     @State private var isExpanded: Bool = false
 
     var body: some View {
@@ -31,7 +31,7 @@ struct MealView: View {
             VStack(spacing: 0) {
                 HStack {
                     Text("\(nameMealTime):")
-                        .font(.headline)
+                        .font(.system(size: 18, weight: .regular))
                         .foregroundStyle(Color.mainText)
 
                     Spacer()
@@ -39,10 +39,10 @@ struct MealView: View {
                     if selectedRecipe == nil {
                         Text("Выбрать блюдо")
                             .foregroundStyle(.selectedText)
+                            .font(.system(size: 18, weight: .regular))
                     } else {
                         Text(selectedRecipe?.name ?? "")
-                            .bold()
-                            .font(.headline)
+                            .font(.system(size: 18, weight: .regular))
                             .foregroundStyle(Color.selectedText)
                     }
                 }
@@ -61,7 +61,7 @@ struct MealView: View {
                                 } label: {
                                     ZStack {
                                         Text(menuSection[0].localizedDescription)
-                                            .font(.body)
+                                            .font(.system(size: 18, weight: .regular))
                                             .foregroundStyle(Color.mainText.opacity(0.85))
                                             .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: 32)
                                             .background(Color.cell)
@@ -82,7 +82,7 @@ struct MealView: View {
                                     Picker("", selection: $selectedMeal) {
                                         ForEach(menuSection) { meal in
                                             Text(meal.localizedDescription).tag(meal)
-                                                .font(.body)
+                                                .font(.system(size: 18, weight: .regular))
                                         }
                                     }
                                     .pickerStyle(.wheel)
@@ -96,7 +96,7 @@ struct MealView: View {
                                 } label: {
                                     ZStack {
                                         Text(recipes.filter{ $0.meal == selectedMeal }[0].name)
-                                            .font(.body)
+                                            .font(.system(size: 18, weight: .regular))
                                             .foregroundStyle(Color.mainText.opacity(0.85))
                                             .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: 32)
                                             .background(Color.cell)
@@ -117,7 +117,7 @@ struct MealView: View {
                                     Picker("", selection: $selectedRecipe) {
                                         ForEach(recipes.filter { $0.meal == selectedMeal }) { recipe in
                                             Text(recipe.name).tag(recipe)
-                                                .font(.body)
+                                                .font(.system(size: 18, weight: .regular))
                                         }
                                     }
                                     .pickerStyle(.wheel)
@@ -126,6 +126,9 @@ struct MealView: View {
                             }
                         }
                         .frame(height: 150)
+                        
+                        Divider()
+                            .padding(.horizontal, 20)
                         
                         Button {
                             //TODO: add UX for button "Add ingridient"
@@ -140,8 +143,6 @@ struct MealView: View {
                             }
                             .foregroundStyle(isExpanded ? Color.selectedText.opacity(0.25) : Color.selectedText)
                             .padding(.vertical, 8)
-                            
-                            
                         }
                         .disabled(isExpanded)
                     }

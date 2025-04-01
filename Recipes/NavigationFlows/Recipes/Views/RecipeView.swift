@@ -13,68 +13,78 @@ struct RecipeView: View {
     var ingredients: [Ingredient]
     var methodOfPreparation: String
     
-    @State private var isDescriptionOpened = false
+    let color: Color
+    
+    @State private var isDescriptionOpened: Bool = false
+    
+    var action: () -> Void
     
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Text(title)
-                    .font(.title2)
-                    .foregroundStyle(Color.mainText)
+                    .font(.system(size: 18, weight: .regular))
+                    .foregroundStyle(Color.selectedText)
                 Spacer()
             }
-            .padding(.horizontal, 16)
-            
-            VStack{
-                ForEach(ingredients) { ingredient in
-                    HStack {
-                        Text("-  \(ingredient.name)")
-                            .font(.body)
-                            .foregroundStyle(.mainText)
+            .padding(8)
                         
-                        Spacer()
-                    }
-                }
-            }
-            .padding(.horizontal, 24)
-            
-            Button {
-                withAnimation(.easeInOut) {
-                    isDescriptionOpened.toggle()
-                }
-            } label: {
+            ForEach(ingredients.count > 3 ? ingredients.prefix(2) : ingredients.prefix(ingredients.count)) { ingredient in
                 HStack {
-                    Text("Способ приготовления")
-                        .padding(8)
-                        .foregroundStyle(Color.indigo.opacity(0.9))
-                        .bold()
-                    
-                    Image(systemName: "chevron.right")
-                        .rotationEffect(isDescriptionOpened ? .degrees(90) : .degrees(0))
-                        .foregroundStyle(Color.indigo.opacity(0.9))
-                        .bold()
+                    Text("- \(ingredient.name)")
+                        .font(.system(size: 16, weight: .regular))
+                        .foregroundStyle(.ingredient)
                     
                     Spacer()
                 }
-                .padding(.horizontal, 16)
             }
+            .padding(.horizontal, 12)
             
-            if isDescriptionOpened {
+            if ingredients.count > 3 {
                 HStack {
-                    Text(methodOfPreparation)
-                        .multilineTextAlignment(.leading)
+                    Text("- ...")
+                        .font(.system(size: 16, weight: .regular))
+                        .foregroundStyle(.ingredient)
+                    
+                    Spacer()
                 }
-                .padding(5)
-                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
-                .padding(.horizontal, 16)
-                .padding(.bottom, 16)
+                .padding(.horizontal, 12)
             }
             
-            Divider()
+            Button {
+
+            } label: {
+                HStack {
+                    Text("Показать подробней")
+                        .foregroundStyle(Color.mainText)
+                        .font(.system(size: 16, weight: .regular))
+                    
+                    Image(systemName: "chevron.right")
+                        .foregroundStyle(Color.mainText)
+                        .font(.system(size: 16, weight: .regular))
+                    
+                    Spacer()
+                }
+                .padding(9)
+            }
+            
         }
+        .background(color)
+        .cornerRadius(20)
+        .padding(.horizontal, 12)
+        .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 4)
     }
 }
 
-//#Preview {
-//    RecipeView()
-//}
+#Preview {
+    RecipeView(
+        title: "Dinner",
+        ingredients: [
+            Ingredient(id: UUID().uuidString, name: "Картошка", weight: "3", quantity: QuantityType.perPiece),
+            Ingredient(id: UUID().uuidString, name: "Морковка", weight: "2", quantity: QuantityType.perPiece),
+            Ingredient(id: UUID().uuidString, name: "Яйца", weight: "3", quantity: QuantityType.perPiece),
+            Ingredient(id: UUID().uuidString, name: "Вареной колбасы или ветчины", weight: "200", quantity: QuantityType.gram),
+           ],
+        methodOfPreparation: "efwfq", color: .fifth) {  }
+    
+}

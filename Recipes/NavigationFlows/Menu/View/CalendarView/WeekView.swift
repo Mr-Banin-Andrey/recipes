@@ -20,9 +20,10 @@ struct WeekView: View {
                             Text(viewModel.dateToString(date: day.date, format: "EEE"))
                                 .foregroundStyle(.mainText)
                                 .padding(.top, 5)
+                                .font(.system(size: 13, weight: .semibold))
                             
                             Text(viewModel.dateToString(date: day.date, format: "d"))
-                                .font(.system(size: 20))
+                                .font(.system(size: 20, weight: .regular))
                                 .foregroundStyle(.mainText)
                                 .padding(10)
                         }

@@ -17,8 +17,7 @@ struct NavigationBarTitleModifier: ViewModifier {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text(title)
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(.system(size: 24, weight: .semibold))
                         .foregroundStyle(Color.mainText)
                 }
             }
@@ -26,3 +25,5 @@ struct NavigationBarTitleModifier: ViewModifier {
             .toolbarBackground(.visible, for: .navigationBar)
     }
 }
+
+
