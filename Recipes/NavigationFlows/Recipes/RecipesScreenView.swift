@@ -38,12 +38,14 @@ struct RecipesScreenView: View {
                     ScrollView {
                         ForEach(viewModel.recipes.filter { $0.meal == viewModel.mealType}) { recipe in
                             RecipeView(
+                                viewModel: viewModel,
+                                id: recipe.id,
                                 title: recipe.name,
                                 ingredients: recipe.ingredients,
                                 methodOfPreparation: recipe.instruction,
-                                color: .fifth) {
-
-                                }.padding(.vertical, 4)
+                                color: colorForRecipeBackground(num: viewModel.getIndex(of: recipe))
+                            )
+                            .padding(.vertical, 4)
                         }
                     }
                 }
@@ -55,7 +57,6 @@ struct RecipesScreenView: View {
                 } label: {
                     Text("Добавить рецепт")
                         .modifier(GreenButtonModifier(textColor: .whiteColorText, backgroundColor: .greenButton))
-                        
                 }
             }
             .modifier(NavigationBarTitleModifier(title: "Рецепты", color: .navBar))

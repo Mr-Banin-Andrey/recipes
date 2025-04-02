@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct RecipeView: View {
+    @StateObject var viewModel: RecipesScreenViewModel
     
+    var id: String
     var title: String
     var ingredients: [Ingredient]
     var methodOfPreparation: String
-    
     let color: Color
-    
-    @State private var isDescriptionOpened: Bool = false
-    
-    var action: () -> Void
     
     var body: some View {
         VStack(spacing: 0) {
@@ -51,8 +48,8 @@ struct RecipeView: View {
                 .padding(.horizontal, 12)
             }
             
-            Button {
-
+            NavigationLink {
+                RecipeInfoView(recipe: viewModel.recipes.first(where: { $0.id == id }) ?? Recipe.mockRecipe)
             } label: {
                 HStack {
                     Text("Показать подробней")
@@ -67,7 +64,6 @@ struct RecipeView: View {
                 }
                 .padding(9)
             }
-            
         }
         .background(color)
         .cornerRadius(20)
@@ -78,6 +74,8 @@ struct RecipeView: View {
 
 #Preview {
     RecipeView(
+        viewModel: RecipesScreenViewModel(),
+        id: "",
         title: "Dinner",
         ingredients: [
             Ingredient(id: UUID().uuidString, name: "Картошка", weight: "3", quantity: QuantityType.perPiece),
@@ -85,6 +83,6 @@ struct RecipeView: View {
             Ingredient(id: UUID().uuidString, name: "Яйца", weight: "3", quantity: QuantityType.perPiece),
             Ingredient(id: UUID().uuidString, name: "Вареной колбасы или ветчины", weight: "200", quantity: QuantityType.gram),
            ],
-        methodOfPreparation: "efwfq", color: .fifth) {  }
-    
+        methodOfPreparation: "efwfq",
+        color: .fifth)
 }

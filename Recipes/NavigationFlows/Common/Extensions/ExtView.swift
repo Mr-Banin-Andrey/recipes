@@ -43,4 +43,22 @@ extension View {
             return Color.clear
         }
     }
+    
+    //TODO: зарефачить, чтоб каждые 5 элементов был цвет разный цвет
+    func colorForRecipeBackground(num: Int) -> Color {
+        switch num {
+        case 0:
+            return Color.fifth
+        case 1:
+            return Color.fourth
+        case 2:
+            return Color.first
+        case 3:
+            return Color.third
+        case 4:
+            return Color.second
+        default:
+            return Color.clear
+        }
+    }
 }

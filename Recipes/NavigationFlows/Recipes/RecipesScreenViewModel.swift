@@ -26,4 +26,12 @@ final class RecipesScreenViewModel: ObservableObject {
 //            }
 //            .store(in: &cancellables)
     }
+    
+    func getIndex(of recipe: Recipe) -> Int {
+        let recipesFilter = recipes.filter { $0.meal == mealType }
+        guard let index = recipesFilter.firstIndex(of: recipe) else {
+            return 0
+        }
+        return index
+    }
 }
