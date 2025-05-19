@@ -213,17 +213,17 @@
 			isa = PBXGroup;
 			children = (
 				0F1C99492D6B77880057EAE0 /* App */,
-				0F1C994B2D6B77880057EAE0 /* Preview Content */,
-				0F1C994D2D6B77880057EAE0 /* Resources */,
-				0F1C995A2D6B835B0057EAE0 /* NavigationFlows */,
+				0F1C995A2D6B835B0057EAE0 /* Presentation */,
 				0FA28D7B2D81DD0C009DA36A /* Data */,
 				0F1C99692D6C80360057EAE0 /* Domain */,
 				0FD6D3EA2D84165200C5CDF0 /* Utils */,
+				0F1C994D2D6B77880057EAE0 /* Resources */,
+				0F1C994B2D6B77880057EAE0 /* Preview Content */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
 		};
-		0F1C995A2D6B835B0057EAE0 /* NavigationFlows */ = {
+		0F1C995A2D6B835B0057EAE0 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				0F1C994F2D6B77880057EAE0 /* RootView.swift */,
@@ -232,7 +232,7 @@
 				0F1C995E2D6B83AC0057EAE0 /* ShoppingList */,
 				0F10025E2D79531900085758 /* Common */,
 			);
-			path = NavigationFlows;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		0F1C995C2D6B83960057EAE0 /* Recipes */ = {
@@ -280,8 +280,10 @@
 		0F1C99692D6C80360057EAE0 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				0F1C996F2D6CD9420057EAE0 /* Parameters */,
+				0FB4D7E42DDB15570097DE58 /* UseCase */,
+				0FB4D7E32DDB152E0097DE58 /* Repository */,
 				0F1C996A2D6C80FE0057EAE0 /* Entities */,
+				0F1C996F2D6CD9420057EAE0 /* Parameters */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -338,6 +340,20 @@
 				0FD6D4152D898FDA00C5CDF0 /* SwiftDataService.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		0FB4D7E32DDB152E0097DE58 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		0FB4D7E42DDB15570097DE58 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		0FD6D3EA2D84165200C5CDF0 /* Utils */ = {

@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @MainActor
-class SwiftDataService: ObservableObject {
+class SwiftDataService {
     
     private var container: ModelContainer?
     private var context: ModelContext?

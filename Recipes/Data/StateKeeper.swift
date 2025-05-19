@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class StateKeeper: ObservableObject {
+final class StateKeeper {
     @Published var recipes: [Recipe] = []
     @Published var dishLists: [DishList] = []
 }
