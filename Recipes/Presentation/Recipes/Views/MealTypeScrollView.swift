@@ -16,16 +16,19 @@ struct MealTypeScrollView: View {
         ZStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
-                    ForEach(mealTypes, id: \.self) { index in
+                    ForEach(mealTypes, id: \.self) { type in
                         if !mealTypes.isEmpty {
                             Button {
-                                mealType = index
+                                mealType = type
                             } label: {
-                                Text(index.localizedDescription)
-                                    .foregroundStyle(index == mealType ? Color.selectedText : Color.gray.opacity(0.5))
+                                Text(type.localizedDescription)
+                                    .font(Font.system(size: 16, weight: .regular))
+                                    .foregroundStyle(Color.mainText)
                                     .padding(10)
-                                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(index == mealType ? Color.green.opacity(0.5) : Color.gray.opacity(0.5), lineWidth: 2))
-                                    .padding(.horizontal, 5)
+                                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.navBar, lineWidth: 1))
+                                    .background(type == mealType ? Color.navBar : Color.clear)
+                                    .clipShape(.rect(cornerRadius: 16))
+                                    .padding(.trailing, mealTypes.last != type ? 16 : 0)
                             }
                         }
                     }
@@ -35,4 +38,8 @@ struct MealTypeScrollView: View {
             }
         }
     }
+}
+
+#Preview {
+    MealTypeScrollView(mealTypes: [.breakfasts, .dessert, .drinks, .salads], mealType: .constant(.breakfasts))
 }

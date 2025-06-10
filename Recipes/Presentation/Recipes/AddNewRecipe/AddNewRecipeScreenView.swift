@@ -87,7 +87,7 @@ struct AddNewRecipeScreenView: View {
                                 .padding(12)
                                 .background(Color.greenButton.opacity(0.8))
                                 .cornerRadius(50)
-                                .shadow(radius: 2)
+                                .shadow(radius: 2, x: 2, y: 2)
                         }
                     }
                     .padding(.horizontal, 16)
@@ -129,7 +129,8 @@ struct AddNewRecipeScreenView: View {
             } label: {
                 Text("Сохранить рецепт")
                     .modifier(GreenButtonModifier(textColor: .whiteColorText, backgroundColor: .greenButton))
-                    .shadow(radius: 2)
+                    .padding(.vertical, 16)
+                    .shadow(radius: 2, x: 2, y: 2)
             }
             .background(Color.gray.opacity(0.05))
         }

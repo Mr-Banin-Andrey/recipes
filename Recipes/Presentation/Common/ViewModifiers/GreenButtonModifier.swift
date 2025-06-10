@@ -22,6 +22,5 @@ struct GreenButtonModifier: ViewModifier {
             .background(backgroundColor)
             .clipShape(.rect(cornerRadius: 14))
             .padding(.horizontal, 12)
-            .padding(.vertical, 24)
     }
 }

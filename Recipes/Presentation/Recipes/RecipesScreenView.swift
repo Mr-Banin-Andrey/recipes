@@ -49,14 +49,14 @@ struct RecipesScreenView: View {
                         }
                     }
                 }
-                
-                Spacer()
-                
+                               
                 NavigationLink {
                     AddNewRecipeScreenView(viewModel: AddNewRecipeScreenViewModel())
                 } label: {
                     Text("Добавить рецепт")
                         .modifier(GreenButtonModifier(textColor: .whiteColorText, backgroundColor: .greenButton))
+                        .padding(.vertical, 16)
+                        .shadow(radius: 2, x: 2, y: 2)
                 }
             }
             .modifier(NavigationBarTitleModifier(title: "Рецепты", color: .navBar))

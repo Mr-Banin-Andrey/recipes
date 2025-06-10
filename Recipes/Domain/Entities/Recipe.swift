@@ -101,5 +101,25 @@ extension Recipe {
                 Ingredient(id: UUID().uuidString, name: "Хлеб белый ломтик", weight: "1", quantity: QuantityType.perPiece),
                 Ingredient(id: UUID().uuidString, name: "Сливки ординарные (обычных 10%)", weight: "150", quantity: QuantityType.milliliter)
         ]),
+        Recipe(
+            id: UUID().uuidString,
+            name: "Гречка с молоком",
+            meal: .breakfasts,
+            instruction: "Гречку залить молоком",
+            ingredients: [
+                Ingredient(id: UUID().uuidString, name: "Гречка", weight: "1", quantity: QuantityType.perPiece),
+                Ingredient(id: UUID().uuidString, name: "Немолоко шоколадное", weight: "2", quantity: QuantityType.perPiece),
+                Ingredient(id: UUID().uuidString, name: "Соль", weight: "1", quantity: QuantityType.gram)
+        ]),
+        Recipe(
+            id: UUID().uuidString,
+            name: "Перловка с тыковой на кокосовом молоке",
+            meal: .breakfasts,
+            instruction: "Сварить перловку, посолить",
+            ingredients: [
+                Ingredient(id: UUID().uuidString, name: "Перловка", weight: "1", quantity: QuantityType.perPiece),
+                Ingredient(id: UUID().uuidString, name: "Тыква", weight: "2", quantity: QuantityType.perPiece),
+                Ingredient(id: UUID().uuidString, name: "Кокосовые сливки", weight: "1", quantity: QuantityType.gram)
+        ]),
     ]
 }
