@@ -15,30 +15,36 @@ struct AddIngredientView: View {
         
     var body: some View {
         HStack(spacing: 0) {
-            VStack {
+            VStack(spacing: 17) {
                 TextField("Продукт", text: $name)
+                    .foregroundStyle(Color.titleColorForRecipeCell)
                 
-                Divider()
+                CustomDivider(color: .fifth)
             }
             
-            VStack {
+            VStack(spacing: 17) {
                 TextField("Вес", text: $weight)
                     .frame(width: 50)
                     .multilineTextAlignment(.center)
                     .keyboardType(.decimalPad)
                     .submitLabel(.done)
+                    .foregroundStyle(Color.titleColorForRecipeCell)
                 
-                Divider()
-                    .frame(width: 50)
+                CustomDivider(wigth: 50, color: .second)
                     .padding(.horizontal, 10)
             }
 
-            VStack {
+            VStack(spacing: 0) {
                 QuantityPickerWheelView(quantityType: $quantityType)
+                                
+                Spacer()
+                    .frame(height: 18)
                 
-                Divider()
-                    .frame(width: 15)
+                Rectangle()
+                    .fill(Color.fourth)
+                    .frame(maxWidth: 35, maxHeight: 0.6)
             }
+            .frame(height: 44)
         }
         .padding(.horizontal, 16)
     }

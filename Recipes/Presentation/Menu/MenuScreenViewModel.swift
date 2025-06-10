@@ -15,8 +15,7 @@ final class MenuScreenViewModel: ObservableObject {
     @Dependency var stateKeeper: StateKeeper
     @Dependency var database: SwiftDataService
     
-//    @Published var recipes: [Recipe] = []// Recipe.fourRecipe
-    @Published var recipes: [Recipe] = Recipe.fourRecipe
+    @Published var recipes: [Recipe] = Recipe.fourRecipe // []
     private var dishLists: [DishList] = []
     private var today: Date = DateConverter.dateOnly(Date())
 
@@ -50,33 +49,33 @@ final class MenuScreenViewModel: ObservableObject {
 //                self.recipes = recipes
 //            }
 //            .store(in: &cancellables)
-        
-        dishLists = database.fetchData(model: DishList.self)
-        
-        currentDate()
-
-        if let dishList = dishLists.first(where: { $0.date == today }) {
-            dishListForSelectedDay = dishList
-            id = dishList.id
-            date = dishList.date
-            mealTime = SortingData().sortingMeals(dishList.mealTime)
-        }
-                
-        $mealTime
-            .sink { mealTime in
-                if self.date == self.dishListForSelectedDay.date {
-                    self.dishListForSelectedDay.id = self.id
-                    self.dishListForSelectedDay.mealTime = mealTime
-                    
-                    if let index = self.dishLists.firstIndex(of: self.dishListForSelectedDay) {
-                        self.dishLists[index] = self.dishListForSelectedDay
-                    } else {
-                        self.dishLists.append(self.dishListForSelectedDay)
-                    }
-                    self.database.saveData(self.dishListForSelectedDay)
-                }
-            }
-            .store(in: &cancellables)
+//        
+//        dishLists = database.fetchData(model: DishList.self)
+//        
+//        currentDate()
+//
+//        if let dishList = dishLists.first(where: { $0.date == today }) {
+//            dishListForSelectedDay = dishList
+//            id = dishList.id
+//            date = dishList.date
+//            mealTime = SortingData().sortingMeals(dishList.mealTime)
+//        }
+//                
+//        $mealTime
+//            .sink { mealTime in
+//                if self.date == self.dishListForSelectedDay.date {
+//                    self.dishListForSelectedDay.id = self.id
+//                    self.dishListForSelectedDay.mealTime = mealTime
+//                    
+//                    if let index = self.dishLists.firstIndex(of: self.dishListForSelectedDay) {
+//                        self.dishLists[index] = self.dishListForSelectedDay
+//                    } else {
+//                        self.dishLists.append(self.dishListForSelectedDay)
+//                    }
+//                    self.database.saveData(self.dishListForSelectedDay)
+//                }
+//            }
+//            .store(in: &cancellables)
     }
    
     

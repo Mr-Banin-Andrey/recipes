@@ -35,17 +35,17 @@ final class AddNewRecipeScreenViewModel: ObservableObject {
     
     @MainActor
     func saveRecipe() {
-        let ingredients = ingredients.filter { $0.name != "" }
-
-        let recipe = Recipe(
-            id: UUID().uuidString,
-            name: name,
-            meal: menuSection,
-            instruction: instruction,
-            ingredients: ingredients
-        )
-        
-        database.saveData(recipe)
-        stateKeeper.recipes.append(recipe)
+//        let ingredients = ingredients.filter { $0.name != "" }
+//
+//        let recipe = Recipe(
+//            id: UUID().uuidString,
+//            name: name,
+//            meal: menuSection,
+//            instruction: instruction,
+//            ingredients: ingredients
+//        )
+//        
+//        database.saveData(recipe)
+//        stateKeeper.recipes.append(recipe)
     }
 }

@@ -12,23 +12,20 @@ struct RootView: View {
     @State private var selectedTab = 0
     
     var body: some View {
-        TabView(selection: $selectedTab) {
+        TabView {
             MenuScreenView(viewModel: MenuScreenViewModel())
                 .tabItem {
-                    Label("Меню", image: selectedTab == 0 ? "menuSelectedImage" : "menuImage")
+                    Label("Меню", systemImage: "fork.knife")
                 }
-                .tag(0)
             RecipesScreenView(viewModel: RecipesScreenViewModel())
                 .tabItem {
-                    Label("Рецепты", image: selectedTab == 1 ? "recipeSelectedImage" : "recipeImage")
+                    Label("Рецепты", systemImage: "book")
                 }
-                .tag(1)
-                
             ShoppingListScreenView(viewModel: ShoppingListScreenViewModel())
                 .tabItem {
-                    Label("Покупки", image: selectedTab == 2 ? "shoppinglistSelectedImage" : "shoppinglistImage")
+                    Label("Покупки", systemImage: "basket")
+                    
                 }
-                .tag(2)
         }
         .tint(.selectedText)
         .onAppear(perform: {
