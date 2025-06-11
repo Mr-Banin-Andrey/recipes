@@ -37,15 +37,18 @@ struct BuyIngredientView: View {
             }
 
             Text(ingredientName + ",")
+                .font(.system(size: 17, weight: .regular))
                 .padding(.leading, 16)
                 .strikethrough(isSelected)
                 .opacity(isSelected ? 0.5 : 1)
             
             Text(weight)
+                .font(.system(size: 17, weight: .regular))
                 .strikethrough(isSelected)
                 .opacity(isSelected ? 0.5 : 1)
                         
             Text(quantity.localizedDescription + ".")
+                .font(.system(size: 17, weight: .regular))
                 .strikethrough(isSelected)
                 .opacity(isSelected ? 0.5 : 1)
             

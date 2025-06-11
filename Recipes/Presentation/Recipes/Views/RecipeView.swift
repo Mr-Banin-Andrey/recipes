@@ -21,7 +21,7 @@ struct RecipeView: View {
             HStack {
                 Text(title)
                     .font(.system(size: 18, weight: .regular))
-                    .foregroundStyle(Color.selectedText)
+                    .foregroundStyle(Color.titleColorForRecipeCell)
                 Spacer()
             }
             .padding(8)

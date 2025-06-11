@@ -10,31 +10,98 @@ import SwiftUI
 struct ShoppingListScreenView: View {
     @StateObject var viewModel: ShoppingListScreenViewModel
     
-    @State private var isEnableButton: Bool = false
-    
     var body: some View {
         NavigationStack {
-            VStack {
-                if isEnableButton {
+            VStack(spacing: 0) {
+                if viewModel.isOnQuestion {
+                    ZStack {
+                        HStack {
+                            Text("- Для того чтоб отредактировать список покупок, нажмите кнопку 'Редактирование'\n\n- Чтобы завершить покупки нажмите кнопку 'Завершить покупки'.")
+                                .font(.system(size: 16, weight: .regular))
+                                .foregroundStyle(Color.mainText)
+                                .padding(8)
+                            
+                            Spacer()
+                        }
+                    }
+                    .overlay(RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.thirdDivirer, lineWidth: 1))
+                    .padding([.top, .horizontal], 16)
+                }
+                if !viewModel.isEditingIngredients {
                     HStack {
-                        Text("Чтобы завершить покупки, отметьте купленные продукты или удалите их из списка.")
-                            .padding(16)
+                        Text("Готовлю сегодня:")
+                            .font(.system(size: 18, weight: .regular))
+                            .foregroundStyle(Color.mainText)
+                        
                         Spacer()
                     }
+                    .padding(.top, 24)
+                    .padding(.horizontal, 16)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 10) {
+                            ForEach(viewModel.recipes, id: \.self) { recipe in
+                                if let index = viewModel.recipes.firstIndex(of: recipe) {
+                                    ZStack(alignment: .topTrailing) {
+                                        ZStack {
+                                            Text(recipe.name)
+                                                .font(.system(size: 18, weight: .regular))
+                                                .lineLimit(2)
+                                                .multilineTextAlignment(.center)
+                                                .padding(.horizontal, 8)
+                                                .frame(width: 150, height: 75)
+                                        }
+                                        .padding(5)
+                                        .background(colorForRecipeBackground(num: index))
+                                        .clipShape(.rect(cornerRadius: 16))
+                                        
+                                        Button {
+                                            withAnimation {
+                                                viewModel.deleteRecipe(at: recipe.id)
+                                            }
+                                        } label: {
+                                            Image(systemName: "xmark")
+                                                .font(.system(size: 14, weight: .semibold))
+                                                .foregroundStyle(Color.mainText)
+                                                .padding(8)
+                                                .background(
+                                                    Circle().foregroundStyle(Color.titleColorForRecipeCell.opacity(0.1))
+                                                )
+                                                .frame(maxWidth: 20, maxHeight: 20)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.top, 10)
+                    }
+                    .padding(.top, 6)
+                    
+                    HStack {
+                        Text("Необходимые продукты:")
+                            .font(.system(size: 18, weight: .regular))
+                            .foregroundStyle(Color.mainText)
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 24)
                 }
                 
                 List($viewModel.shoppingList) { ingredient in
                     if let index = viewModel.shoppingList.firstIndex(of: ingredient.wrappedValue) {
-                        
-                        if isEnableButton {
+                        if viewModel.isEditingIngredients {
                             BuyIngredientView(
                                 ingredientName: ingredient.name.wrappedValue,
                                 weight: ingredient.weight.wrappedValue,
                                 quantity: ingredient.quantity.wrappedValue,
-                                color: colorForDivider(num: index)) { 
+                                color: colorForDivider(num: index)) {
                                     viewModel.addingOrRemovingIngredientFromPurchasedProducts(ingredient.wrappedValue)
                                 }
-                            .listRowSeparator(.hidden)
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
                         } else {
                             WillBuyIngredientView(
                                 ingredientName: ingredient.name.wrappedValue,
@@ -46,31 +113,66 @@ struct ShoppingListScreenView: View {
                                 Button(role: .destructive) {
                                     viewModel.shoppingList.remove(at: index)
                                 } label: {
-                                    Label("Delete", systemImage: "trash")
+                                    Label("Удалить", systemImage: "trash.fill")
+                                    
                                 }
                             }
+                            .tint(Color.red)
                         }
                     }
                 }
                 .listStyle(.plain)
-            }
-           
-            Button {
-                isEnableButton.toggle()
-            } label: {
-                Text(isEnableButton ? "Завершить покупки" :"Подтвердить набор продуктов")
-                    .foregroundStyle(Color.white)
-                    .frame(maxWidth: .infinity, maxHeight: 50)
-                    .background(Color.yellow)
-                    .cornerRadius(16)
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 24)
-                    .opacity(isEnableButton ? 0.5 : 1)
+                .padding(.top, viewModel.isEditingIngredients ? 16 : 0)
             }
             
-            .modifier(NavigationBarTitleModifier(title: isEnableButton ? "Список покупок" : "Моя корзина", color: .navBar))
+            if viewModel.isEditingIngredients {
+                Button {
+                    withAnimation {
+                        viewModel.isEditingIngredients.toggle()
+                    }
+                    
+                } label: {
+                    Text("Редактировать")
+                        .modifier(GreenButtonModifier(textColor: .titleColorForRecipeCell, backgroundColor: .fourthDivider.opacity(1)))
+                        .padding(.top, 16)
+                        .shadow(radius: 2, x: 2, y: 2)
+                }
+            }
+            
+            Button {
+                if viewModel.isEditingIngredients {
+                    
+                } else {
+                    withAnimation {
+                        viewModel.isEditingIngredients.toggle()
+                    }
+                }
+            } label: {
+                Text(viewModel.isEditingIngredients ? "Завершить покупки" : "Подтвердить набор продуктов")
+                    .modifier(GreenButtonModifier(textColor: .white, backgroundColor: .greenButton.opacity(1)))
+                    .padding(.top, 8)
+                    .padding(.bottom, 16)
+                    .shadow(radius: 2, x: 2, y: 2)
+            }
+            .modifier(NavigationBarTitleModifier(title: viewModel.isEditingIngredients ? "Список покупок" : "Моя корзина", color: .navBar))
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if viewModel.isEditingIngredients {
+                        Button {
+                            withAnimation {
+                                viewModel.isOnQuestion.toggle()
+                            }
+                        } label: {
+                            Image(systemName: "questionmark.bubble")
+                                .font(.body)
+                                .foregroundStyle(Color.mainText)
+                        }
+                    }
+                }
+            }
         }
-    }    
+    }
 }
 
 #Preview {

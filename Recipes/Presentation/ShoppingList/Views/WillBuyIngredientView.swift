@@ -15,20 +15,17 @@ struct WillBuyIngredientView: View {
     var color: Color
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack(spacing: 0) {
-//                Circle()
-//                    .foregroundStyle(Color.yellow)
-//                    .frame(width: 50, height: 50)
-                
                 Text(ingredientName)
-                    .font(.title3)
-                    .padding(.leading, 16)
+                    .font(.system(size: 17, weight: .regular))
+                    .foregroundStyle(Color.mainText)
                 
                 Spacer()
                 
                 HStack(spacing: 0) {
                     TextField("", text: $weight)
+                        .font(.system(size: 17, weight: .regular))
                         .multilineTextAlignment(.center)
                         .keyboardType(.decimalPad)
                         .frame(width: 50)
@@ -36,13 +33,15 @@ struct WillBuyIngredientView: View {
                     QuantityPickerWheelView(quantityType: $quantity)
                 }
             }
-            
-            Divider()
-                .background(color)
+                        
+            CustomDivider(color: color)
+                .padding(.top, 12)
         }
+        .padding(.top, 12)
+        
     }
 }
 
 #Preview {
-    WillBuyIngredientView(ingredientName: "Cucumber", weight: .constant("400"), quantity: .constant(.gram), color: .blue)
+    WillBuyIngredientView(ingredientName: "Cucumber", weight: .constant("400"), quantity: .constant(.gram), color: .fifth)
 }

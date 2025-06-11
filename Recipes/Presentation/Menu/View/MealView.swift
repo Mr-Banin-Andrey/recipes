@@ -38,12 +38,12 @@ struct MealView: View {
                     
                     if selectedRecipe == nil {
                         Text("Выбрать блюдо")
-                            .foregroundStyle(.selectedText)
+                            .foregroundStyle(.titleColorForRecipeCell)
                             .font(.system(size: 18, weight: .regular))
                     } else {
                         Text(selectedRecipe?.name ?? "")
                             .font(.system(size: 18, weight: .regular))
-                            .foregroundStyle(Color.selectedText)
+                            .foregroundStyle(Color.titleColorForRecipeCell)
                     }
                 }
                 
@@ -141,7 +141,7 @@ struct MealView: View {
                                 
                                 Text(isExpanded ? "Ингредиенты добавлены в покупки" : "Добавить ингредиенты в покупки")
                             }
-                            .foregroundStyle(isExpanded ? Color.selectedText.opacity(0.25) : Color.selectedText)
+                            .foregroundStyle(isExpanded ? Color.titleColorForRecipeCell.opacity(0.25) : Color.titleColorForRecipeCell)
                             .padding(.vertical, 8)
                         }
                         .disabled(isExpanded)

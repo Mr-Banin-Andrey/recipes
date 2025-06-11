@@ -23,9 +23,11 @@ struct QuantityPickerWheelView: View {
             } label: {
                 HStack(alignment: .bottom) {
                     Text(quantityType.localizedDescription)
+                        .font(.system(size: 16, weight: .regular))
                         .foregroundStyle(Color.mainText)
                     
                     Image(systemName: "chevron.up.chevron.down")
+                        .font(.system(size: 16, weight: .regular))
                         .foregroundStyle(Color.mainText)
                 }
             }.id(quantityType)

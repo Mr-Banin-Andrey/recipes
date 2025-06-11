@@ -27,7 +27,7 @@ struct RootView: View {
                     
                 }
         }
-        .tint(.selectedText)
+        .tint(.titleColorForRecipeCell)
         .onAppear(perform: {
             UITabBar.appearance().backgroundColor = .tabBar
             

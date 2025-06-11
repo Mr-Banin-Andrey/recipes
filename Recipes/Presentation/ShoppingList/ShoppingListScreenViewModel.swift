@@ -19,12 +19,21 @@ final class ShoppingListScreenViewModel: ObservableObject {
     ]
     
     @Published var purchasedGoods: [Ingredient] = []
+    @Published var isEditingIngredients: Bool = false
+    @Published var recipes = Recipe.fourRecipe
+    @Published var isOnQuestion: Bool = false
     
     func addingOrRemovingIngredientFromPurchasedProducts(_ ingredient: Ingredient) {
         if let index = purchasedGoods.firstIndex(of: ingredient) {
             purchasedGoods.remove(at: index)
         } else {
             purchasedGoods.append(ingredient)
+        }
+    }
+    
+    func deleteRecipe(at id: String) {
+        if let index = recipes.firstIndex(where: {$0.id == id}) {
+            recipes.remove(at: index)
         }
     }
 }

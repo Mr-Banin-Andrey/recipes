@@ -181,8 +181,8 @@
 		0F1002852D8047EE00085758 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0F1002832D8043AF00085758 /* BuyIngredientView.swift */,
 				0F10027E2D7F43A500085758 /* WillBuyIngredientView.swift */,
+				0F1002832D8043AF00085758 /* BuyIngredientView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

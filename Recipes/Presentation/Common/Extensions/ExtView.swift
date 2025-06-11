@@ -9,17 +9,17 @@ import SwiftUI
 
 extension View {
     func colorForDivider(num: Int) -> Color {
-        let index = num % 3
+        let index = num % 4
         
         switch index {
         case 0:
-            return Color.first
+            return Color.firstDivirer
         case 1:
-            return Color.second
+            return Color.secondDivirer
         case 2:
-            return Color.third
+            return Color.thirdDivirer
         case 3:
-            return Color.fourth
+            return Color.fourthDivider
         case 4:
             return Color.fifth
         default:
@@ -46,7 +46,8 @@ extension View {
     
     //TODO: зарефачить, чтоб каждые 5 элементов был цвет разный цвет
     func colorForRecipeBackground(num: Int) -> Color {
-        switch num {
+        let index = num % 5
+        switch index {
         case 0:
             return Color.fifth
         case 1:
