@@ -20,9 +20,6 @@ final class AddNewRecipeScreenViewModel: ObservableObject {
         weight: "",
         quantity: .gram
     )]
-    
-    @Dependency private var stateKeeper: StateKeeper
-    @Dependency private var database: SwiftDataService
 
     func addIngredient() {
         ingredients.append(Ingredient(

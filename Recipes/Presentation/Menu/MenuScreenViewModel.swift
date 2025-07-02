@@ -10,11 +10,7 @@ import Combine
 import SwiftData
 
 final class MenuScreenViewModel: ObservableObject {
-    
-    //MARK: Global Dependency
-    @Dependency var stateKeeper: StateKeeper
-    @Dependency var database: SwiftDataService
-    
+        
     @Published var recipes: [Recipe] = Recipe.fourRecipe // []
     private var dishLists: [DishList] = []
     private var today: Date = DateConverter.dateOnly(Date())

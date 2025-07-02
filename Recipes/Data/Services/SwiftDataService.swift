@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @MainActor
-class SwiftDataService {
+final class SwiftDataService {
     
     private var container: ModelContainer?
     private var context: ModelContext?
@@ -34,6 +34,7 @@ class SwiftDataService {
                 return data
             }
         } catch {
+            //TODO: переписать для релиза, если удачно не выгрузит, приложение вылетит
             fatalError(error.localizedDescription)
         }
         
@@ -47,6 +48,7 @@ class SwiftDataService {
                 try context.save()
             }
         } catch {
+            //TODO: переписать для релиза, если удачно не сохранит, приложение вылетит
             fatalError(error.localizedDescription)
         }
     }
@@ -58,6 +60,7 @@ class SwiftDataService {
                 try context.save()
             }
         } catch {
+            //TODO: переписать для релиза, если удачно не удалит, приложение вылетит
             fatalError(error.localizedDescription)
         }
     }
