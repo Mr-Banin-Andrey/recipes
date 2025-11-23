@@ -39,6 +39,7 @@
 				Flows/Main/Router/MainNavigation.swift,
 				Flows/Main/Router/MainRoute.swift,
 				Flows/Main/Screens/MainScreen.swift,
+				Flows/Main/Screens/RecipeListSheet.swift,
 				Flows/Main/Stores/Items/DayModel.swift,
 				Flows/Main/Stores/MainStore.swift,
 				Flows/Main/Views/CalendarView/WeekView.swift,

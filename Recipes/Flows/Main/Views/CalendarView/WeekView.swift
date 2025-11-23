@@ -20,17 +20,19 @@ struct WeekView: View {
                             Text(viewModel.dateToString(date: day.date, format: "EEE"))
                                 .foregroundStyle(.mainText)
                                 .padding(.top, 5)
-                                .font(.system(size: 13, weight: .semibold))
+                                .font(.system(size: 15, weight: .regular))
                             
                             Text(viewModel.dateToString(date: day.date, format: "d"))
-                                .font(.system(size: 20, weight: .regular))
+                                .font(.system(size: 18, weight: .regular))
                                 .foregroundStyle(.mainText)
                                 .padding(10)
+                                .background(viewModel.selectedDate == DateConverter.dateOnly(day.date) ? .frostFairy : .clear)
+                                .clipShape(.rect(cornerRadius: 100))
+                                
                         }
-                        
-                        .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(viewModel.selectedDate == DateConverter.dateOnly(day.date) ? Color.navBar : Color.clear, lineWidth: 1))
                         .frame(width: abs(geometry.size.width / 7), height: 85)
+                        
+                        
                         .onTapGesture {
                             viewModel.selectedDate = DateConverter.dateOnly(day.date)
                             onDayTap(day.date)

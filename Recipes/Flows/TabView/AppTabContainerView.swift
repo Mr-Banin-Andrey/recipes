@@ -33,3 +33,7 @@ struct AppTabView: View {
         }
     }
 }
+
+#Preview {
+    AppTabContainerView()
+}
