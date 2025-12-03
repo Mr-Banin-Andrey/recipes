@@ -32,10 +32,13 @@ struct MainScreen: View {
             ScrollView(.vertical) {
                 ForEach($mainStore.mealTime) { mealTime in
                     MealView(
+                        selectedRecipe: mealTime.recipe,
                         id: mealTime.id,
-                        nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription,
-                        selectedRecipe: mealTime.recipe
-                    )
+                        nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription
+                    ) {
+                        mainStore.currentDiningTime = mealTime.wrappedValue
+                        router.showSheet(.showRecipeList)
+                    }
                     .padding(.top, 12)
                 }
                 

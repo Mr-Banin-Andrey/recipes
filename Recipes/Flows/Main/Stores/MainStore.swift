@@ -34,6 +34,9 @@ final class MainStore: ObservableObject {
         ]
     )
     
+    @Published var currentDiningTime: DiningTime?
+    @Published var currentMeal: MenuSectionType = .breakfasts
+    
     private var cancellables: Set<AnyCancellable> = []
     
     init() {

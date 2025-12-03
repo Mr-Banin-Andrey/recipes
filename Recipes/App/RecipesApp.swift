@@ -19,5 +19,9 @@ struct RecipesApp: App {
         WindowGroup {
             AppTabContainerView()
         }
+        .modelContainer(for: Recipe.self)
+        .modelContainer(for: Ingredient.self)
+        .modelContainer(for: DishList.self)
+        .modelContainer(for: DiningTime.self)
     }
 }
