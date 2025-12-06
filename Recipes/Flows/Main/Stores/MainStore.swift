@@ -10,12 +10,10 @@ import Combine
 
 final class MainStore: ObservableObject {
     
-    @Published var recipes: [Recipe] = Recipe.fourRecipe // []
+    @Published var recipes: [Recipe] = Recipe.fourRecipe
     private var dishLists: [DishList] = []
     private var today: Date = DateConverter.dateOnly(Date())
 
-    @Published var id: String = UUID().uuidString
-    @Published var date: Date = DateConverter.dateOnly(Date())
     @Published var mealTime: [DiningTime] = [
         DiningTime(id: UUID().uuidString, mealTimeType: .breakfast),
         DiningTime(id: UUID().uuidString, mealTimeType: .lunch),
@@ -74,7 +72,7 @@ final class MainStore: ObservableObject {
         //            .store(in: &cancellables)
     }
     
-    func currentDate() {
+    private func currentDate() {
         let date = Date()
         var calendar = Calendar.current
         calendar.timeZone = .current
@@ -83,8 +81,18 @@ final class MainStore: ObservableObject {
             today = dateOnly
         }
     }
+        
+    /// Ищем по массиву текущий день
+    /// и кладём для отображения на экране в mealTime
+    func displayMenuForSelectedDate(_ selectedDate: Date) {
+        if let dishList = self.dishLists.first(where: { $0.date == DateConverter.dateOnly(selectedDate) }) {
+            mealTime = dishList.mealTime
+        } else {
+            generateNewDay(selectedDate)
+        }
+    }
     
-    func generateNewDay(_ selectedDate: Date) {
+    private func generateNewDay(_ selectedDate: Date) {
         let dishListDay = DishList(
             id: UUID().uuidString,
             date: DateConverter.dateOnly(selectedDate),
@@ -98,18 +106,5 @@ final class MainStore: ObservableObject {
 
         dishLists.append(dishListDay)
         dishListForSelectedDay = dishListDay
-    }
-    
-    func displayMenuForSelectedDate(_ selectedDate: Date) {
-        date = DateConverter.dateOnly(selectedDate)
-        
-        if let dishList = self.dishLists.first(where: { $0.date == DateConverter.dateOnly(selectedDate) }) {
-            id = dishList.id
-            mealTime = SortingData().sortingMeals(dishList.mealTime)
-        } else {
-            generateNewDay(selectedDate)
-            id = dishListForSelectedDay.id
-            mealTime = dishListForSelectedDay.mealTime
-        }
     }
 }

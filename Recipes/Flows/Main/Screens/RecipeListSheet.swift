@@ -68,6 +68,7 @@ struct RecipeListSheet: View {
                 store.currentDiningTime?.recipe = recipe
                 dismiss()
             } label: {
+                // TODO: Добавить логику выбраного блюда, если оно есть
                 Text(recipe.name)
                     .foregroundStyle(.mainText)
             }

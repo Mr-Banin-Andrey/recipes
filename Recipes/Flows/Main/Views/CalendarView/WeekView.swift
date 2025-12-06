@@ -17,22 +17,27 @@ struct WeekView: View {
                 HStack(alignment: .center, spacing: 0) {
                     ForEach(viewModel.weeks) { day in
                         VStack {
-                            Text(viewModel.dateToString(date: day.date, format: "EEE"))
-                                .foregroundStyle(.mainText)
-                                .padding(.top, 5)
-                                .font(.system(size: 15, weight: .regular))
+                            Text(viewModel.convertDateToString(
+                                date: day.date,
+                                format: "EEE"
+                            ))
+                            .foregroundStyle(.mainText)
+                            .padding(.top, 5)
+                            .font(.system(size: 15, weight: .regular))
                             
-                            Text(viewModel.dateToString(date: day.date, format: "d"))
-                                .font(.system(size: 18, weight: .regular))
-                                .foregroundStyle(.mainText)
-                                .padding(10)
-                                .background(viewModel.selectedDate == DateConverter.dateOnly(day.date) ? .frostFairy : .clear)
-                                .clipShape(.rect(cornerRadius: 100))
-                                
+                            Text(viewModel.convertDateToString(
+                                date: day.date,
+                                format: "d"
+                            ))
+                            .font(.system(size: 18, weight: .regular))
+                            .foregroundStyle(.mainText)
+                            .padding(10)
+                            .background(viewModel.selectedDate == DateConverter.dateOnly(day.date)
+                                        ? .frostFairy
+                                        : .clear)
+                            .clipShape(.rect(cornerRadius: 100))
                         }
                         .frame(width: abs(geometry.size.width / 7), height: 85)
-                        
-                        
                         .onTapGesture {
                             viewModel.selectedDate = DateConverter.dateOnly(day.date)
                             onDayTap(day.date)

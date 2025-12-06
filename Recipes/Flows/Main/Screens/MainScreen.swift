@@ -20,9 +20,7 @@ struct MainScreen: View {
         VStack(spacing: 0) {
             ZStack {
                 WeekView(viewModel: WeekViewModel()) { date in
-                    withAnimation {
-                        mainStore.displayMenuForSelectedDate(date)
-                    }
+                    mainStore.displayMenuForSelectedDate(date)
                 }
             }
             .cornerRadius(16)
