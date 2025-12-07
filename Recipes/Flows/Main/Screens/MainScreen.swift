@@ -19,7 +19,7 @@ struct MainScreen: View {
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
-                WeekView(viewModel: WeekViewModel()) { date in
+                WeekView() { date in
                     mainStore.displayMenuForSelectedDate(date)
                 }
             }
