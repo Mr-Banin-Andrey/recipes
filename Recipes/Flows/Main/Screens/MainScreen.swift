@@ -27,22 +27,21 @@ struct MainScreen: View {
             .frame(height: 90)
             .padding(.vertical, 5)
             
-            ScrollView(.vertical) {
-                ForEach($mainStore.mealTime) { mealTime in
-                    MealView(
-                        selectedRecipe: mealTime.recipe,
-                        id: mealTime.id,
-                        nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription
-                    ) {
-                        mainStore.currentDiningTime = mealTime.wrappedValue
-                        router.showSheet(.showRecipeList)
-                    }
-                    .padding(.top, 12)
+            ForEach($mainStore.mealTime) { mealTime in
+                MealView(
+                    selectedRecipe: mealTime.recipe,
+                    id: mealTime.id,
+                    nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription
+                ) {
+                    mainStore.currentDiningTime = mealTime.wrappedValue
+                    router.showSheet(.showRecipeList)
                 }
-                
-                Spacer()
+                .padding(.top, 12)
             }
+            
+            Spacer()
         }
+        .navigationTitle("Меню на неделю")
     }
 }
 
