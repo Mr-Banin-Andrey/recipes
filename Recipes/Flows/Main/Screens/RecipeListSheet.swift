@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct RecipeListSheet: View {
-    
+        
     @Environment(\.dismiss) var dismiss
+    @State private var currentMeal: MenuSectionType = .breakfasts
+    var menuSectionType: MealTimeType
     
     // доставать рецепты из swiftdata
     @EnvironmentObject private var store: MainStore
@@ -41,16 +43,21 @@ struct RecipeListSheet: View {
     private func createMenuSectionsView() -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
-                ForEach(SortingData()
-                    .sortingMenuSections(recipes: store.recipes)
+                ForEach(
+                    SortingData()
+                        .sortingMenuSections(recipes: store.recipes)
                 ) { meal in
                     Button {
                         withAnimation {
-                            store.currentMeal = meal
+                            currentMeal = meal
                         }
                     } label: {
                         Text(meal.localizedDescription)
-                            .foregroundStyle(store.currentMeal == meal ? .mainText : .placeholderTextThird)
+                            .foregroundStyle(
+                                currentMeal == meal
+                                ? .mainText
+                                : .placeholderTextThird
+                            )
                             .padding(.horizontal, 8)
                     }
                 }
@@ -63,9 +70,9 @@ struct RecipeListSheet: View {
     
     @ViewBuilder
     private func createRecipeListView() -> some View {
-        List(store.recipes.filter { $0.meal == store.currentMeal }) { recipe in
+        List(store.recipes.filter { $0.meal == currentMeal }) { recipe in
             Button {
-                store.currentDiningTime?.recipe = recipe
+                
                 dismiss()
             } label: {
                 // TODO: Добавить логику выбраного блюда, если оно есть
@@ -79,7 +86,7 @@ struct RecipeListSheet: View {
     }
 }
 
-#Preview {
-    RecipeListSheet()
-        .environmentObject(MainStore())
-}
+//#Preview {
+//    RecipeListSheet()
+//        .environmentObject(MainStore())
+//}

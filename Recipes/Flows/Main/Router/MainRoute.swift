@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum MainRoute: Hashable, Identifiable {
-    case showRecipeList
+    case showRecipeList(MealTimeType)
     
     var id: Self { self }
 }
@@ -18,8 +18,8 @@ extension MainRoute {
     @ViewBuilder
     var destination: some View {
         switch self {
-        case .showRecipeList:
-            RecipeListSheet()
+        case .showRecipeList(let mealTimeType):
+            RecipeListSheet(menuSectionType: mealTimeType)
         }
     }
 }

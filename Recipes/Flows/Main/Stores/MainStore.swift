@@ -14,70 +14,27 @@ final class MainStore: ObservableObject {
     @Published var weeks: [DayModel] = []
     @Published var selectedDate: Date = DateConverter.dateOnly(Date())
     private var currentDate: Date = Date()
-    
-    @Published var recipes: [Recipe] = Recipe.fourRecipe
-    private var dishLists: [DishList] = []
-    private var today: Date = DateConverter.dateOnly(Date())
-
-    @Published var mealTime: [DiningTime] = [
-        DiningTime(id: UUID().uuidString, mealTimeType: .breakfast),
-        DiningTime(id: UUID().uuidString, mealTimeType: .lunch),
-        DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack),
-        DiningTime(id: UUID().uuidString, mealTimeType: .dinner),
-    ]
         
-    private var dishListForSelectedDay: DishList = DishList(
-        id: "",
-        date: DateConverter.dateOnly(Date()),
-        mealTime: [
-            DiningTime(id: UUID().uuidString, mealTimeType: .breakfast),
-            DiningTime(id: UUID().uuidString, mealTimeType: .lunch),
-            DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack),
-            DiningTime(id: UUID().uuidString, mealTimeType: .dinner),
-        ]
-    )
+    /// Текущий день
+    @Published var dishListForCurrentDay: DishList = .mock
+//    /// Текущие время приема пищи
+//    @Published var currentDiningTime: DiningTime?
     
-    @Published var currentDiningTime: DiningTime?
-    @Published var currentMeal: MenuSectionType = .breakfasts
     
-//    private var cancellables: Set<AnyCancellable> = []
+    /// TODO: рецепты будут грузится напрямую из swiftdata
+    /// после добавления логики, выпилить рецепты из стора
+    @Published var recipes: [Recipe] = Recipe.fourRecipe
     
+    /// TODO: изменить логику,
+    /// массив дней должен выгружаться из swiftdata
+    /// следовательно, грузить будем в файле MainScreen
+    private var dishLists: [DishList] = []
+
     init() {
         /// Данные даты не хранятся, каждый раз заново инициализируются
         fetchCurrentWeek()
         fetchPreviousNextWeek()
-        //        stateKeeper.$recipes
-        //            .sink { recipes in
-        //                self.recipes = recipes
-        //            }
-        //            .store(in: &cancellables)
-        //
-        //        dishLists = database.fetchData(model: DishList.self)
-        //
-        //        currentDate()
-        //
-        //        if let dishList = dishLists.first(where: { $0.date == today }) {
-        //            dishListForSelectedDay = dishList
-        //            id = dishList.id
-        //            date = dishList.date
-        //            mealTime = SortingData().sortingMeals(dishList.mealTime)
-        //        }
-        //
-        //        $mealTime
-        //            .sink { mealTime in
-        //                if self.date == self.dishListForSelectedDay.date {
-        //                    self.dishListForSelectedDay.id = self.id
-        //                    self.dishListForSelectedDay.mealTime = mealTime
-        //
-        //                    if let index = self.dishLists.firstIndex(of: self.dishListForSelectedDay) {
-        //                        self.dishLists[index] = self.dishListForSelectedDay
-        //                    } else {
-        //                        self.dishLists.append(self.dishListForSelectedDay)
-        //                    }
-        //                    self.database.saveData(self.dishListForSelectedDay)
-        //                }
-        //            }
-        //            .store(in: &cancellables)
+        displayMenuForSelectedDate(currentDate)
     }
     
 //    private func currentDate() {
@@ -94,10 +51,15 @@ final class MainStore: ObservableObject {
     /// и кладём для отображения на экране в mealTime
     func displayMenuForSelectedDate(_ selectedDate: Date) {
         if let dishList = self.dishLists.first(where: { $0.date == DateConverter.dateOnly(selectedDate) }) {
-            mealTime = dishList.mealTime
+            dishListForCurrentDay = dishList
         } else {
             generateNewDay(selectedDate)
         }
+    }
+    
+    /// Передать выбранный приём пищи
+    func selectMealTime() {
+        
     }
     
     private func generateNewDay(_ selectedDate: Date) {
@@ -113,7 +75,7 @@ final class MainStore: ObservableObject {
         )
 
         dishLists.append(dishListDay)
-        dishListForSelectedDay = dishListDay
+        dishListForCurrentDay = dishListDay
     }
     
     // Calendar

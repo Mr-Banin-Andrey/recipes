@@ -27,14 +27,13 @@ struct MainScreen: View {
             .frame(height: 90)
             .padding(.vertical, 5)
             
-            ForEach($mainStore.mealTime) { mealTime in
+            ForEach($mainStore.dishListForCurrentDay.mealTime) { mealTime in
                 MealView(
                     selectedRecipe: mealTime.recipe,
                     id: mealTime.id,
                     nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription
                 ) {
-                    mainStore.currentDiningTime = mealTime.wrappedValue
-                    router.showSheet(.showRecipeList)
+                    router.showSheet(.showRecipeList(mealTime.mealTimeType.wrappedValue))
                 }
                 .padding(.top, 12)
             }
