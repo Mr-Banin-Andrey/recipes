@@ -56,10 +56,11 @@ final class MainStore: ObservableObject {
             generateNewDay(selectedDate)
         }
     }
-    
-    /// Передать выбранный приём пищи
-    func selectMealTime() {
-        
+
+    func updateDishList() {
+        if let index = dishLists.firstIndex(of: dishListForCurrentDay) {
+            dishLists[index].mealTime = dishListForCurrentDay.mealTime
+        }
     }
     
     private func generateNewDay(_ selectedDate: Date) {

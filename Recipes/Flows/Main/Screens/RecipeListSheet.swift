@@ -10,7 +10,9 @@ import SwiftUI
 struct RecipeListSheet: View {
         
     @Environment(\.dismiss) var dismiss
+    /// Дефолтная секция приема пищи
     @State private var currentMeal: MenuSectionType = .breakfasts
+    /// Какой прием пищи будет
     var menuSectionType: MealTimeType
     
     // доставать рецепты из swiftdata
@@ -72,17 +74,30 @@ struct RecipeListSheet: View {
     private func createRecipeListView() -> some View {
         List(store.recipes.filter { $0.meal == currentMeal }) { recipe in
             Button {
+                store.dishListForCurrentDay.mealTime.filter({ $0.mealTimeType == self.menuSectionType }).first?.recipe = recipe
+                store.updateDishList()
                 
                 dismiss()
             } label: {
-                // TODO: Добавить логику выбраного блюда, если оно есть
-                Text(recipe.name)
-                    .foregroundStyle(.mainText)
+                HStack {
+                    Text(recipe.name)
+                        .foregroundStyle(.mainText)
+                    
+                    Spacer()
+                    
+                    if settingUpDishSelection(recipe) {
+                        Image(systemName: "checkmark")
+                            .foregroundStyle(.mainText)
+                    }
+                }
             }
-            
         }
         .listStyle(.insetGrouped)
         
+    }
+    
+    private func settingUpDishSelection(_ recipe: Recipe) -> Bool {
+        store.dishListForCurrentDay.mealTime.filter({ $0.mealTimeType == self.menuSectionType }).first?.recipe == recipe
     }
 }
 
