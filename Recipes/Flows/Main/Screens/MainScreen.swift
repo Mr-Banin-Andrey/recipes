@@ -26,17 +26,39 @@ struct MainScreen: View {
             .cornerRadius(16)
             .frame(height: 90)
             .padding(.vertical, 5)
-            
-            ForEach($mainStore.dishListForCurrentDay.mealTime) { mealTime in
-                MealView(
-                    selectedRecipe: mealTime.recipe,
-                    id: mealTime.id,
-                    nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription
-                ) {
-                    router.showSheet(.showRecipeList(mealTime.mealTimeType.wrappedValue))
+            // TODO: поменял на массив
+            // может быть переписать, на подумать
+            // оставлю предыдущий вариант
+            if let day = $mainStore.dishLists.first(
+                where: { $0.date.wrappedValue == mainStore.selectedDate }
+            ) {
+                ForEach(day.mealTime) { mealTime in
+                    MealView(
+                        selectedRecipe: mealTime.recipe,
+                        id: mealTime.id,
+                        nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription
+                    ) {
+                        router.showSheet(
+                            .showRecipeList(mealTime.mealTimeType.wrappedValue)
+                        )
+                    }
+                    .padding(.top, 12)
                 }
-                .padding(.top, 12)
             }
+            
+//            ForEach(
+////                $mainStore.dishListForCurrentDay.mealTime
+//                $mainStore.dishLists.first(where: { $0.date == $mainStore.currentDate })
+//            ) { mealTime in
+//                MealView(
+//                    selectedRecipe: mealTime.recipe,
+//                    id: mealTime.id,
+//                    nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription
+//                ) {
+//                    router.showSheet(.showRecipeList(mealTime.mealTimeType.wrappedValue))
+//                }
+//                .padding(.top, 12)
+//            }
             
             Spacer()
         }

@@ -28,7 +28,7 @@ final class MainStore: ObservableObject {
     /// TODO: изменить логику,
     /// массив дней должен выгружаться из swiftdata
     /// следовательно, грузить будем в файле MainScreen
-    private var dishLists: [DishList] = []
+    @Published var dishLists: [DishList] = []
 
     init() {
         /// Данные даты не хранятся, каждый раз заново инициализируются
