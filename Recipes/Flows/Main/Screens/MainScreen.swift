@@ -16,6 +16,8 @@ struct MainScreen: View {
     
     @State private var openedViewID: String? = nil
     
+    @Query var diningTimes: [DiningTime]
+    
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
@@ -29,22 +31,30 @@ struct MainScreen: View {
             // TODO: поменял на массив
             // может быть переписать, на подумать
             // оставлю предыдущий вариант
-            if let day = $mainStore.dishLists.first(
-                where: { $0.date.wrappedValue == mainStore.selectedDate }
-            ) {
-                ForEach(day.mealTime) { mealTime in
-                    MealView(
-                        selectedRecipe: mealTime.recipe,
-                        id: mealTime.id,
-                        nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription
-                    ) {
-                        router.showSheet(
-                            .showRecipeList(mealTime.mealTimeType.wrappedValue)
-                        )
-                    }
-                    .padding(.top, 12)
-                }
-            }
+            
+            // TODO: - второй вариант старт
+            // сделать отдельно логику полей завтрак/обед/ужин
+            // по дате и типу приема из массива добавлять рецепты
+            // а структуру полей положить например в юзер дефолт
+            // и там менять, если нужно больше полей, и это можно будет сделать уже в след обновлении
+            // TODO: - второй вариант конец
+            
+//            if let day = $mainStore.dishLists.first(
+//                where: { $0.date.wrappedValue == mainStore.selectedDate }
+//            ) {
+//                ForEach(day.mealTime) { mealTime in
+//                    MealView(
+//                        selectedRecipe: mealTime.recipe,
+//                        id: mealTime.id,
+//                        nameMealTime: mealTime.mealTimeType.wrappedValue.localizedDescription
+//                    ) {
+//                        router.showSheet(
+//                            .showRecipeList(mealTime.mealTimeType.wrappedValue)
+//                        )
+//                    }
+//                    .padding(.top, 12)
+//                }
+//            }
             
 //            ForEach(
 ////                $mainStore.dishListForCurrentDay.mealTime
