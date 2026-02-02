@@ -12,23 +12,19 @@ import SwiftData
 final class DiningTime: Hashable, Identifiable {
     @Attribute(.unique)
     var id: String
+    var date: Date
     var mealTimeType: MealTimeType
-    var recipe: Recipe?
+    var recipe: Recipe
     
-    var dishList: DishList?
-    
-    init(id: String, mealTimeType: MealTimeType, recipe: Recipe? = nil) {
+    init(
+        id: String,
+        date: Date,
+        mealTimeType: MealTimeType,
+        recipe: Recipe
+    ) {
         self.id = id
+        self.date = date
         self.mealTimeType = mealTimeType
         self.recipe = recipe
     }
-}
-
-extension DiningTime {
-    static let mockArray: [DiningTime] = [
-        DiningTime(id: UUID().uuidString, mealTimeType: .breakfast),
-        DiningTime(id: UUID().uuidString, mealTimeType: .lunch),
-        DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack),
-        DiningTime(id: UUID().uuidString, mealTimeType: .dinner),
-    ]
 }

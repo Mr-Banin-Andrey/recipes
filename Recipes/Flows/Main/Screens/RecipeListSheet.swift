@@ -13,9 +13,11 @@ struct RecipeListSheet: View {
     /// Дефолтная секция приема пищи
     @State private var currentMeal: MenuSectionType = .breakfasts
     /// Какой прием пищи будет
-    var menuSectionType: MealTimeType
+    var diningTime: DiningTime
     
     // доставать рецепты из swiftdata
+    @Environment(\.modelContext) private var context
+    
     @EnvironmentObject private var store: MainStore
     
     var body: some View {
@@ -74,8 +76,8 @@ struct RecipeListSheet: View {
     private func createRecipeListView() -> some View {
         List(store.recipes.filter { $0.meal == currentMeal }) { recipe in
             Button {
-                store.dishListForCurrentDay.mealTime.filter({ $0.mealTimeType == self.menuSectionType }).first?.recipe = recipe
-                store.updateDishList()
+//                store.dishListForCurrentDay.mealTime.filter({ $0.mealTimeType == self.menuSectionType }).first?.recipe = recipe
+//                store.updateDishList()
                 
                 dismiss()
             } label: {
@@ -85,7 +87,7 @@ struct RecipeListSheet: View {
                     
                     Spacer()
                     
-                    if settingUpDishSelection(recipe) {
+                    if diningTime.recipe == recipe {
                         Image(systemName: "checkmark")
                             .foregroundStyle(.mainText)
                     }
@@ -96,8 +98,15 @@ struct RecipeListSheet: View {
         
     }
     
-    private func settingUpDishSelection(_ recipe: Recipe) -> Bool {
-        store.dishListForCurrentDay.mealTime.filter({ $0.mealTimeType == self.menuSectionType }).first?.recipe == recipe
+//    private func settingUpDishSelection(_ recipe: Recipe) -> Bool {
+//        diningTime.recipe == recipe
+//        store.dishListForCurrentDay.mealTime.filter({ $0.mealTimeType == self.menuSectionType }).first?.recipe == recipe
+//    }
+    
+    private func updateDishList() {
+        
+//        context.insert(
+//        diningTime
     }
 }
 

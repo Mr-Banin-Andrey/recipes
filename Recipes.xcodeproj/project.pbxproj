@@ -65,7 +65,6 @@
 				Flows/ViewModifiers/NavigationBarBackButtonModifier.swift,
 				Flows/ViewModifiers/NavigationBarTitleModifier.swift,
 				Frameworks/Models/DiningTime.swift,
-				Frameworks/Models/DishList.swift,
 				Frameworks/Models/Ingredient.swift,
 				Frameworks/Models/Recipe.swift,
 				Managers/SwiftDataService.swift,

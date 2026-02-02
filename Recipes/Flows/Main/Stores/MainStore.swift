@@ -15,11 +15,23 @@ final class MainStore: ObservableObject {
     @Published var selectedDate: Date = DateConverter.dateOnly(Date())
     private var currentDate: Date = Date()
         
+//    /// Кол-во приемов пищи
+//    @AppStorage("numbersData") private var mealTimeData: Data = Data()
+//
+//    var mealTime: [MealTimeType] {
+//        get {
+//            (try? JSONDecoder().decode([MealTimeType].self, from: mealTimeData)) ?? []
+//        }
+//        set {
+//            mealTimeData = (try? JSONEncoder().encode(newValue)) ?? Data()
+//        }
+//    }
+
+    
     /// Текущий день
-    @Published var dishListForCurrentDay: DishList = .mock
+//    @Published var dishListForCurrentDay: DishList = .mock
 //    /// Текущие время приема пищи
 //    @Published var currentDiningTime: DiningTime?
-    
     
     /// TODO: рецепты будут грузится напрямую из swiftdata
     /// после добавления логики, выпилить рецепты из стора
@@ -28,13 +40,13 @@ final class MainStore: ObservableObject {
     /// TODO: изменить логику,
     /// массив дней должен выгружаться из swiftdata
     /// следовательно, грузить будем в файле MainScreen
-    @Published var dishLists: [DishList] = []
+//    @Published var dishLists: [DishList] = []
 
     init() {
         /// Данные даты не хранятся, каждый раз заново инициализируются
         fetchCurrentWeek()
         fetchPreviousNextWeek()
-        displayMenuForSelectedDate(currentDate)
+//        displayMenuForSelectedDate(currentDate)
     }
     
 //    private func currentDate() {
@@ -50,34 +62,36 @@ final class MainStore: ObservableObject {
     /// Ищем по массиву текущий день
     /// и кладём для отображения на экране в mealTime
     func displayMenuForSelectedDate(_ selectedDate: Date) {
-        if let dishList = self.dishLists.first(where: { $0.date == DateConverter.dateOnly(selectedDate) }) {
-            dishListForCurrentDay = dishList
-        } else {
-            generateNewDay(selectedDate)
-        }
+//        if let dishList = self.dishLists.first(where: { $0.date == DateConverter.dateOnly(selectedDate) }) {
+//            dishListForCurrentDay = dishList
+//        } else {
+//            generateNewDay(selectedDate)
+//        }
     }
 
-    func updateDishList() {
-        if let index = dishLists.firstIndex(of: dishListForCurrentDay) {
-            dishLists[index].mealTime = dishListForCurrentDay.mealTime
-        }
-    }
+//    func updateDishList() {
+//        if let index = dishLists.firstIndex(of: dishListForCurrentDay) {
+//            dishLists[index].mealTime = dishListForCurrentDay.mealTime
+//        }
+        
+//        if let index =
+//    }
     
-    private func generateNewDay(_ selectedDate: Date) {
-        let dishListDay = DishList(
-            id: UUID().uuidString,
-            date: DateConverter.dateOnly(selectedDate),
-            mealTime: [
-                DiningTime(id: UUID().uuidString, mealTimeType: .breakfast),
-                DiningTime(id: UUID().uuidString, mealTimeType: .lunch),
-                DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack),
-                DiningTime(id: UUID().uuidString, mealTimeType: .dinner),
-            ]
-        )
-
-        dishLists.append(dishListDay)
-        dishListForCurrentDay = dishListDay
-    }
+//    private func generateNewDay(_ selectedDate: Date) {
+//        let dishListDay = DishList(
+//            id: UUID().uuidString,
+//            date: DateConverter.dateOnly(selectedDate),
+//            mealTime: [
+//                DiningTime(id: UUID().uuidString, mealTimeType: .breakfast),
+//                DiningTime(id: UUID().uuidString, mealTimeType: .lunch),
+//                DiningTime(id: UUID().uuidString, mealTimeType: .afternoonSnack),
+//                DiningTime(id: UUID().uuidString, mealTimeType: .dinner),
+//            ]
+//        )
+//
+//        dishLists.append(dishListDay)
+//        dishListForCurrentDay = dishListDay
+//    }
     
     // Calendar
     private func isToday(date: Date) -> Bool {
