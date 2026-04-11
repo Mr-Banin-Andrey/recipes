@@ -30,7 +30,7 @@ final class Recipe: Hashable, Identifiable {
 //TODO: снести после обновления всех данных
 extension Recipe {
 
-    static let mockRecipe: Recipe = Recipe(id: "", name: "", meal: .breakfasts, instruction: "", ingredients: [])
+    static let emptyRecipe: Recipe = Recipe(id: "", name: "", meal: .breakfasts, instruction: "", ingredients: [])
         
     static let fourRecipe: [Recipe] = [
         Recipe(

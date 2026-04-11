@@ -40,7 +40,6 @@ struct RecipeListSheet: View {
                 .frame(width: 30, height: 3)
                 .clipShape(.rect(cornerRadius: 8))
         }
-        
     }
     
     @ViewBuilder
@@ -98,19 +97,4 @@ struct RecipeListSheet: View {
         
     }
     
-//    private func settingUpDishSelection(_ recipe: Recipe) -> Bool {
-//        diningTime.recipe == recipe
-//        store.dishListForCurrentDay.mealTime.filter({ $0.mealTimeType == self.menuSectionType }).first?.recipe == recipe
-//    }
-    
-    private func updateDishList() {
-        
-//        context.insert(
-//        diningTime
-    }
 }
-
-//#Preview {
-//    RecipeListSheet()
-//        .environmentObject(MainStore())
-//}

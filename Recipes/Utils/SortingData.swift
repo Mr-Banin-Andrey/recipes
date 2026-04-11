@@ -35,15 +35,15 @@ final class SortingData {
         return sortedMeals
     }
     
-    func sortingMeals(_ dishList: DishList) -> DishList {
-        let sortedMeals = dishList.mealTime.sorted {
-            guard
-                let firstIndex = MealTimeType.allCases.firstIndex(of: $0.mealTimeType),
-                let secondIndex = MealTimeType.allCases.firstIndex(of: $1.mealTimeType)
-            else { return false }
-            return firstIndex < secondIndex
-        }
-        
-        return DishList.init(id: dishList.id, date: dishList.date, mealTime: sortedMeals)
-    }
+//    func sortingMeals(_ dishList: DishList) -> DishList {
+//        let sortedMeals = dishList.mealTime.sorted {
+//            guard
+//                let firstIndex = MealTimeType.allCases.firstIndex(of: $0.mealTimeType),
+//                let secondIndex = MealTimeType.allCases.firstIndex(of: $1.mealTimeType)
+//            else { return false }
+//            return firstIndex < secondIndex
+//        }
+//        
+//        return DishList.init(id: dishList.id, date: dishList.date, mealTime: sortedMeals)
+//    }
 }

@@ -10,13 +10,11 @@ import SwiftUI
 struct MealView: View {
     
     @EnvironmentObject private var router: Router<MainRoute>
-    
     @State private var widthTitle: CGFloat = .leastNonzeroMagnitude
     
-    @Binding var selectedRecipe: Recipe?
-    let id: String
-    let nameMealTime: String
-    let onSelect: () -> Void
+    let mealTime: MealTimeType
+    var selectedRecipe: Recipe?
+    let onSelect: CompletionBlock?
     
     var body: some View {
         ZStack {
@@ -30,13 +28,14 @@ struct MealView: View {
         .cornerRadius(20)
         .padding(.horizontal, 12)
         .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 4)
+        .padding(.vertical, 8)
     }
     
     @ViewBuilder
     private func createNameMealTimeView() -> some View {
         HStack {
             VStack(alignment: .center, spacing: 0) {
-                Text("\(nameMealTime):")
+                Text("\(mealTime.localizedDescription):")
                     .font(.system(size: 18, weight: .regular))
                     .foregroundStyle(Color.mainText)
                     .fixedSize()
@@ -63,10 +62,10 @@ struct MealView: View {
     @ViewBuilder
     private func createSelectedRecipe() -> some View {
         Button {
-            onSelect()
+            onSelect?()
         } label: {
             ZStack {
-                if selectedRecipe == nil {
+                if selectedRecipe?.name == nil {
                     Text("Выбрать блюдо")
                         .foregroundStyle(.placeholderTextThird)
                         .font(.system(size: 18, weight: .regular))
@@ -79,12 +78,4 @@ struct MealView: View {
             .padding()
         }
     }
-}
-
-#Preview {
-    MealView(
-        selectedRecipe: .constant(nil),
-        id: "123",
-        nameMealTime: "Dinner"
-    ) {}
 }
