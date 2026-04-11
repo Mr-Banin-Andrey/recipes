@@ -35,7 +35,7 @@ struct RecipesScreen: View {
                 
                 } else {
                     MealTypeScrollView(
-                        mealTypes: SortingData().sortingMenuSections(recipes: recipesStore.recipes),
+                        mealTypes: SortingData.sortingMenuSections(recipes: recipesStore.recipes),
                         mealType: $recipesStore.mealType
                     )
                     

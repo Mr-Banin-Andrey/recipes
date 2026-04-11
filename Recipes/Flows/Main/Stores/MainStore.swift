@@ -16,8 +16,7 @@ final class MainStore: ObservableObject {
     private var currentDate: Date = Date()
         
     @Published var recipes: [Recipe] = Recipe.fourRecipe
-
-
+    
     init() {
         /// Данные даты не хранятся, каждый раз заново инициализируются
         fetchCurrentWeek()
@@ -38,13 +37,7 @@ final class MainStore: ObservableObject {
     /// Ищем по массиву текущий день
     /// и кладём для отображения на экране в mealTime
     func displayMenuForSelectedDate(_ selectedDate: Date) {
-        self.selectedDate = DateConverter.dateOnly(selectedDate)
-        
-//        if let dishList = self.dishLists.first(where: { $0.date == DateConverter.dateOnly(selectedDate) }) {
-//            dishListForCurrentDay = dishList
-//        } else {
-//            generateNewDay(selectedDate)
-//        }
+
     }
 
     // Calendar

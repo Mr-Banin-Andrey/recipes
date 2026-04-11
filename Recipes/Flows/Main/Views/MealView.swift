@@ -65,7 +65,7 @@ struct MealView: View {
             onSelect?()
         } label: {
             ZStack {
-                if selectedRecipe?.name == nil {
+                if (selectedRecipe?.name.isEmpty) != nil  {
                     Text("Выбрать блюдо")
                         .foregroundStyle(.placeholderTextThird)
                         .font(.system(size: 18, weight: .regular))

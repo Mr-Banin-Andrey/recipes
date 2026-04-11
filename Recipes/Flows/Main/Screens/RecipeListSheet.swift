@@ -47,7 +47,7 @@ struct RecipeListSheet: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
                 ForEach(
-                    SortingData()
+                    SortingData
                         .sortingMenuSections(recipes: store.recipes)
                 ) { meal in
                     Button {
