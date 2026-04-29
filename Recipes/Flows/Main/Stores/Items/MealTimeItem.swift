@@ -27,6 +27,17 @@ final class MealTimeItem: Hashable, Identifiable {
 }
 
 extension MealTimeItem {
+    static let item: MealTimeItem = MealTimeItem(
+        id: UUID().uuidString,
+        mealTypes: [
+            .breakfast,
+            .lunch,
+            .afternoonSnack,
+            .dinner
+        ]
+//            dateOfChange: nil
+    )
+    
     static let mockMealTimeItems: [MealTimeItem] = [
         MealTimeItem(
             id: UUID().uuidString,

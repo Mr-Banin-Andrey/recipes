@@ -18,9 +18,14 @@ struct RecipesApp: App {
     var body: some Scene {
         WindowGroup {
             AppTabContainerView()
+                .modelContainer(
+                    for: [
+                        Recipe.self,
+                        Ingredient.self,
+                        DiningTime.self,
+                        MealTimeItem.self
+                    ]
+                )
         }
-        .modelContainer(for: Recipe.self)
-        .modelContainer(for: Ingredient.self)
-        .modelContainer(for: DiningTime.self)
     }
 }

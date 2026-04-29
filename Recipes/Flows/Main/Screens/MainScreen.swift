@@ -13,13 +13,15 @@ struct MainScreen: View {
     
     @EnvironmentObject private var router: Router<MainRoute>
     @EnvironmentObject private var mainStore: MainStore
+    @Environment(\.modelContext) private var modelContext
     
     @State private var openedViewID: String? = nil
     
     private var mealTimeItems: [MealTimeItem] = MealTimeItem.mockMealTimeItems
     
     @Query var diningTimes: [DiningTime]
-//    @Query vacr mealTimes: [MealTimeItem]
+    @Query var mealTimes: [MealTimeItem]
+    @Query var recipes: [Recipe]
 //    @Query(
 //        sort: \MealTimeItem.dateOfChange,
 //        order: .reverse
@@ -36,23 +38,27 @@ struct MainScreen: View {
             .frame(height: 90)
             .padding(.vertical, 5)
 
-            ForEach(filterDiningTime()) { mealTime in
-                MealView(
-                    mealTime: mealTime.mealTimeType,
-                    selectedRecipe: mealTime.recipe
-                ) {
-//                        router.showSheet(
-//                            .showRecipeList(<#T##DiningTime#>)
-//                        )
-                }
-            }
-                     
+            // Пробую делать дробно
+            // в зависимости от кол-ва приемов в switch засуну в будущем
+            
+//            ForEach(filterDiningTimes()) { diningTime in
+//                MealView(
+//                    mealTime: diningTime.mealTimeType,
+//                    selectedRecipe: diningTime.recipe
+//                ) {
+//                    router.showSheet(
+//                        .showRecipeList(diningTime)
+//                    )
+//                }
+//            }
+            
             Spacer()
         }
         .navigationTitle("Меню на неделю")
     }
     
-    func filterDiningTime() -> [DiningTime] {
+    /// Приемы пищи на выбранный день
+    private func filterDiningTimes() -> [DiningTime] {
         
         // Получили день со всеми приёмами пищи
         var dayDiningTimes = diningTimes.filter({ $0.date == mainStore.selectedDate })
@@ -63,21 +69,26 @@ struct MainScreen: View {
         
         // Сортируем по порядку приема пищи
         dayDiningTimes = SortingData.sortingMeals(dayDiningTimes)
-        print(dayDiningTimes)
+//        print(dayDiningTimes)
         return dayDiningTimes
     }
     
-    // Проверка на наличии всех приемов пищи
-    func checkindDiningTimes(_ dayDiningTimes: [DiningTime]) -> [DiningTime] {
-        var dayDiningTimes = dayDiningTimes
+    /// Проверка на наличии всех приемов пищи
+    private func checkindDiningTimes(_ dayDiningTimes: [DiningTime]) -> [DiningTime] {
+        let dayDiningTimes = dayDiningTimes
+        var mealTimeItem: MealTimeItem = .item
         
-        guard let item = mealTimeItems.last else { return [] }
+        if let item = mealTimes.last {
+            mealTimeItem = item
+        } else if let item = mealTimeItems.last {
+            mealTimeItem = item
+        }
         
         // Собираем типы, которые уже есть
         let existingTypes = Set(dayDiningTimes.map { $0.mealTimeType })
         
         // Проходим по нужным типам из настроек
-        item.mealTypes.forEach { type in
+        mealTimeItem.mealTypes.forEach { type in
             if !existingTypes.contains(type) {
                 // Создаем НОВЫЙ объект для каждого отсутствующего приема пищи
                 let newMeal = DiningTime(
@@ -86,12 +97,15 @@ struct MainScreen: View {
                     mealTimeType: type,
                     recipe: .emptyRecipe
                 )
-                dayDiningTimes.append(newMeal)
+//                dayDiningTimes.append(newMeal)
+                modelContext.insert(newMeal)
             }
         }
         
         return dayDiningTimes
     }
+    
+    
 //    func checkindDiningTimes(_ dayDiningTimes: [DiningTime]) -> [DiningTime] {
 //        
 //        var dayDiningTimes = dayDiningTimes
