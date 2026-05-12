@@ -10,7 +10,6 @@ import SwiftUI
 struct MainNavigation: View {
     
     @StateObject private var router = Router<MainRoute>()
-    private let mainStore: MainStore = .init()
     
     var body: some View {
         NavigationStack(path: $router.routes) {

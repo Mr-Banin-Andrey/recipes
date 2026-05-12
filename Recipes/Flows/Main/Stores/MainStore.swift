@@ -7,17 +7,21 @@
 
 import SwiftUI
 import Combine
+import SwiftData
 
 final class MainStore: ObservableObject {
+    
+    private let context: ModelContext
     
     // Calendar
     @Published var weeks: [DayModel] = []
     @Published var selectedDate: Date = DateConverter.dateOnly(Date())
     private var currentDate: Date = Date()
-        
+
     @Published var recipes: [Recipe] = Recipe.fourRecipe
-    
-    init() {
+
+    init(context: ModelContext) {
+        self.context = context
         /// Данные даты не хранятся, каждый раз заново инициализируются
         fetchCurrentWeek()
         fetchPreviousNextWeek()
@@ -33,6 +37,7 @@ final class MainStore: ObservableObject {
 //            today = dateOnly
 //        }
 //    }
+
         
     /// Ищем по массиву текущий день
     /// и кладём для отображения на экране в mealTime
@@ -40,6 +45,21 @@ final class MainStore: ObservableObject {
 
     }
 
+    func addTask(
+        
+    ) {
+//        let task = TaskItem(title: title)
+
+//        context.insert(task)
+//
+//        do {
+//            try context.save()
+//            fetchTasks()
+//        } catch {
+//            print(error)
+//        }
+    }
+    
     // Calendar
     private func isToday(date: Date) -> Bool {
         let calendar = Calendar.current

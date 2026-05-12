@@ -41,16 +41,16 @@ struct MainScreen: View {
             // Пробую делать дробно
             // в зависимости от кол-ва приемов в switch засуну в будущем
             
-//            ForEach(filterDiningTimes()) { diningTime in
-//                MealView(
-//                    mealTime: diningTime.mealTimeType,
-//                    selectedRecipe: diningTime.recipe
-//                ) {
-//                    router.showSheet(
-//                        .showRecipeList(diningTime)
-//                    )
-//                }
-//            }
+            ForEach(diningTimes.filter({ $0.date == mainStore.selectedDate })) { diningTime in
+                MealView(
+                    mealTime: diningTime.mealTimeType,
+                    selectedRecipe: diningTime.recipe
+                ) {
+                    router.showSheet(
+                        .showRecipeList(diningTime)
+                    )
+                }
+            }
             
             Spacer()
         }
@@ -58,52 +58,52 @@ struct MainScreen: View {
     }
     
     /// Приемы пищи на выбранный день
-    private func filterDiningTimes() -> [DiningTime] {
-        
-        // Получили день со всеми приёмами пищи
-        var dayDiningTimes = diningTimes.filter({ $0.date == mainStore.selectedDate })
-        
-        // Проверяем наличие всех приемов пищи
-        // при отсутсвии, добавляем
-        dayDiningTimes = checkindDiningTimes(dayDiningTimes)
-        
-        // Сортируем по порядку приема пищи
-        dayDiningTimes = SortingData.sortingMeals(dayDiningTimes)
-//        print(dayDiningTimes)
-        return dayDiningTimes
-    }
+//    private func filterDiningTimes() -> [DiningTime] {
+//        
+//        // Получили день со всеми приёмами пищи
+//        var dayDiningTimes = diningTimes.filter({ $0.date == mainStore.selectedDate })
+//        
+//        // Проверяем наличие всех приемов пищи
+//        // при отсутсвии, добавляем
+//        dayDiningTimes = checkindDiningTimes(dayDiningTimes)
+//        
+//        // Сортируем по порядку приема пищи
+//        dayDiningTimes = SortingData.sortingMeals(dayDiningTimes)
+////        print(dayDiningTimes)
+//        return dayDiningTimes
+//    }
     
     /// Проверка на наличии всех приемов пищи
-    private func checkindDiningTimes(_ dayDiningTimes: [DiningTime]) -> [DiningTime] {
-        let dayDiningTimes = dayDiningTimes
-        var mealTimeItem: MealTimeItem = .item
-        
-        if let item = mealTimes.last {
-            mealTimeItem = item
-        } else if let item = mealTimeItems.last {
-            mealTimeItem = item
-        }
-        
-        // Собираем типы, которые уже есть
-        let existingTypes = Set(dayDiningTimes.map { $0.mealTimeType })
-        
-        // Проходим по нужным типам из настроек
-        mealTimeItem.mealTypes.forEach { type in
-            if !existingTypes.contains(type) {
-                // Создаем НОВЫЙ объект для каждого отсутствующего приема пищи
-                let newMeal = DiningTime(
-                    id: UUID().uuidString,
-                    date: mainStore.selectedDate, // используем дату из стора
-                    mealTimeType: type,
-                    recipe: .emptyRecipe
-                )
-//                dayDiningTimes.append(newMeal)
-                modelContext.insert(newMeal)
-            }
-        }
-        
-        return dayDiningTimes
-    }
+//    private func checkindDiningTimes(_ dayDiningTimes: [DiningTime]) -> [DiningTime] {
+//        let dayDiningTimes = dayDiningTimes
+//        var mealTimeItem: MealTimeItem = .item
+//        
+//        if let item = mealTimes.last {
+//            mealTimeItem = item
+//        } else if let item = mealTimeItems.last {
+//            mealTimeItem = item
+//        }
+//        
+//        // Собираем типы, которые уже есть
+//        let existingTypes = Set(dayDiningTimes.map { $0.mealTimeType })
+//        
+//        // Проходим по нужным типам из настроек
+//        mealTimeItem.mealTypes.forEach { type in
+//            if !existingTypes.contains(type) {
+//                // Создаем НОВЫЙ объект для каждого отсутствующего приема пищи
+//                let newMeal = DiningTime(
+//                    id: UUID().uuidString,
+//                    date: mainStore.selectedDate, // используем дату из стора
+//                    mealTimeType: type,
+//                    recipe: .emptyRecipe
+//                )
+////                dayDiningTimes.append(newMeal)
+//                modelContext.insert(newMeal)
+//            }
+//        }
+//        
+//        return dayDiningTimes
+//    }
     
     
 //    func checkindDiningTimes(_ dayDiningTimes: [DiningTime]) -> [DiningTime] {

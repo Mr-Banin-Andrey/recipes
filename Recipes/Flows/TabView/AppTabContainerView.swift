@@ -19,6 +19,7 @@ struct AppTabContainerView: View {
 
 struct AppTabView: View {
     
+    @Environment(\.modelContext) private var modelContext
     @Binding var selection: AppScreen
     
     var body: some View {

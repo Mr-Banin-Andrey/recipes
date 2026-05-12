@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 enum AppScreen: Hashable, Identifiable, CaseIterable {
     
@@ -41,4 +42,17 @@ extension AppScreen {
             MainNavigation()
         }
     }
+    
+    @ViewBuilder
+    func destination(context: ModelContext) -> some View {
+        switch self {
+        case .main:
+            MainNavigation()
+        case .recipes:
+            RecipesNavigation()
+        case .shoppingList:
+            MainNavigation()
+        }
+    }
+    
 }
