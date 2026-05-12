@@ -31,17 +31,23 @@ struct MainScreen: View {
         VStack(spacing: 0) {
             ZStack {
                 WeekView() { date in
-                    mainStore.displayMenuForSelectedDate(date)
+                    mainStore.diningTimeAdd(date)
                 }
             }
             .cornerRadius(16)
             .frame(height: 90)
             .padding(.vertical, 5)
 
-            // Пробую делать дробно
-            // в зависимости от кол-ва приемов в switch засуну в будущем
+            /// для большого кол-ва приемов
+            /// попробовать через switch
             
-            ForEach(diningTimes.filter({ $0.date == mainStore.selectedDate })) { diningTime in
+            ForEach(
+                diningTimes.filter(
+                    {
+                        $0.date == mainStore.selectedDate
+                    }
+                )
+            ) { diningTime in
                 MealView(
                     mealTime: diningTime.mealTimeType,
                     selectedRecipe: diningTime.recipe
@@ -56,131 +62,6 @@ struct MainScreen: View {
         }
         .navigationTitle("Меню на неделю")
     }
-    
-    /// Приемы пищи на выбранный день
-//    private func filterDiningTimes() -> [DiningTime] {
-//        
-//        // Получили день со всеми приёмами пищи
-//        var dayDiningTimes = diningTimes.filter({ $0.date == mainStore.selectedDate })
-//        
-//        // Проверяем наличие всех приемов пищи
-//        // при отсутсвии, добавляем
-//        dayDiningTimes = checkindDiningTimes(dayDiningTimes)
-//        
-//        // Сортируем по порядку приема пищи
-//        dayDiningTimes = SortingData.sortingMeals(dayDiningTimes)
-////        print(dayDiningTimes)
-//        return dayDiningTimes
-//    }
-    
-    /// Проверка на наличии всех приемов пищи
-//    private func checkindDiningTimes(_ dayDiningTimes: [DiningTime]) -> [DiningTime] {
-//        let dayDiningTimes = dayDiningTimes
-//        var mealTimeItem: MealTimeItem = .item
-//        
-//        if let item = mealTimes.last {
-//            mealTimeItem = item
-//        } else if let item = mealTimeItems.last {
-//            mealTimeItem = item
-//        }
-//        
-//        // Собираем типы, которые уже есть
-//        let existingTypes = Set(dayDiningTimes.map { $0.mealTimeType })
-//        
-//        // Проходим по нужным типам из настроек
-//        mealTimeItem.mealTypes.forEach { type in
-//            if !existingTypes.contains(type) {
-//                // Создаем НОВЫЙ объект для каждого отсутствующего приема пищи
-//                let newMeal = DiningTime(
-//                    id: UUID().uuidString,
-//                    date: mainStore.selectedDate, // используем дату из стора
-//                    mealTimeType: type,
-//                    recipe: .emptyRecipe
-//                )
-////                dayDiningTimes.append(newMeal)
-//                modelContext.insert(newMeal)
-//            }
-//        }
-//        
-//        return dayDiningTimes
-//    }
-    
-    
-//    func checkindDiningTimes(_ dayDiningTimes: [DiningTime]) -> [DiningTime] {
-//        
-//        var dayDiningTimes = dayDiningTimes
-//        
-//        guard let item = mealTimeItems.last else {
-//            // "Нет приёмов пищи"
-//            return []
-//        }
-//        
-//        var dictionary: [MealTimeType: Bool] = [:]
-//        
-//        item.mealTypes.forEach { type in
-//            dictionary[type] = false
-//            
-//        }
-//        
-//        print(dictionary)
-//        
-//        dayDiningTimes.forEach { diningTime in
-//            dictionary[diningTime.mealTimeType] = true
-//        }
-//        print("--------")
-//        print(dictionary)
-//        print(dayDiningTimes)
-//        
-//        let newDiningTime: DiningTime = .init(
-//            id: UUID().uuidString,
-//            date: dayDiningTimes.last?.date ?? Date(),
-//            mealTimeType: .breakfast,
-//            recipe: .emptyRecipe
-//        )
-//        
-//        dictionary.forEach { value in
-//            switch value.key {
-//            case .breakfast:
-//                if value.value == false {
-//                    newDiningTime.id = UUID().uuidString
-//                    newDiningTime.mealTimeType = .breakfast
-//                    dayDiningTimes.append(newDiningTime)
-//                }
-//            case .secondBreakfast:
-//                if value.value == false {
-//                    newDiningTime.id = UUID().uuidString
-//                    newDiningTime.mealTimeType = .secondBreakfast
-//                    dayDiningTimes.append(newDiningTime)
-//                }
-//            case .lunch:
-//                if value.value == false {
-//                    newDiningTime.id = UUID().uuidString
-//                    newDiningTime.mealTimeType = .lunch
-//                    dayDiningTimes.append(newDiningTime)
-//                }
-//            case .afternoonSnack:
-//                if value.value == false {
-//                    newDiningTime.id = UUID().uuidString
-//                    newDiningTime.mealTimeType = .afternoonSnack
-//                    dayDiningTimes.append(newDiningTime)
-//                }
-//            case .dinner:
-//                if value.value == false {
-//                    newDiningTime.id = UUID().uuidString
-//                    newDiningTime.mealTimeType = .breakfast
-//                    dayDiningTimes.append(newDiningTime)
-//                }
-//            case .snack:
-//                if value.value == false {
-//                    newDiningTime.id = UUID().uuidString
-//                    newDiningTime.mealTimeType = .breakfast
-//                    dayDiningTimes.append(newDiningTime)
-//                }
-//            }
-//        }
-//        
-//        return dayDiningTimes
-//    }
 }
 //
 //#Preview {

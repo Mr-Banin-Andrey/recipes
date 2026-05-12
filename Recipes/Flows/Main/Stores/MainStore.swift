@@ -22,44 +22,81 @@ final class MainStore: ObservableObject {
 
     init(context: ModelContext) {
         self.context = context
+        
         /// Данные даты не хранятся, каждый раз заново инициализируются
         fetchCurrentWeek()
         fetchPreviousNextWeek()
-//        displayMenuForSelectedDate(currentDate)
+        
+        diningTimeAdd(selectedDate)
     }
     
-//    private func currentDate() {
-//        let date = Date()
-//        var calendar = Calendar.current
-//        calendar.timeZone = .current
-//        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
-//        if let dateOnly = calendar.date(from: dateComponents) {
-//            today = dateOnly
-//        }
-//    }
-
+    // MARK: Public
+    
+    /// Добавляем в хранилище приёмы пищи на конкретный день
+    func diningTimeAdd(_ selectedDate: Date) {
+        guard hasDiningTimes(selectedDate) else {
+            self.selectedDate = selectedDate
+            return
+        }
         
-    /// Ищем по массиву текущий день
-    /// и кладём для отображения на экране в mealTime
-    func displayMenuForSelectedDate(_ selectedDate: Date) {
-
+        [
+            .breakfast,
+            .lunch,
+            .dinner
+        ].forEach { mealTimeType in
+            addDiningTime(selectedDate, mealTimeType: mealTimeType)
+        }
     }
+    
+    // MARK: Private
+    
+    /// Проверяем в хранилище приёмы пищи на выбранный день
+    private func hasDiningTimes(_ selectedDate: Date) -> Bool {
+        do {
+            let descriptor = FetchDescriptor<DiningTime>(
+                predicate: #Predicate { $0.date == selectedDate },
+                sortBy: []
+            )
+            
+            let diningTimes = try context.fetch(descriptor)
 
-    func addTask(
-        
+            return diningTimes.isEmpty
+        } catch {
+            print("Error hasDiningTimes")
+            return false
+        }
+    }
+    
+    /// Создание приема пищи и добавление в хранилище
+    private func addDiningTime(
+        _ selectedDate: Date,
+        mealTimeType: MealTimeType
     ) {
-//        let task = TaskItem(title: title)
+        let diningTime = DiningTime(
+            id: UUID().uuidString,
+            date: selectedDate,
+            mealTimeType: mealTimeType,
+            recipe: .emptyRecipe
+        )
+        context.insert(diningTime)
 
-//        context.insert(task)
-//
-//        do {
-//            try context.save()
-//            fetchTasks()
-//        } catch {
-//            print(error)
-//        }
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context:", error)
+        }
     }
     
+    //    private func currentDate() {
+    //        let date = Date()
+    //        var calendar = Calendar.current
+    //        calendar.timeZone = .current
+    //        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+    //        if let dateOnly = calendar.date(from: dateComponents) {
+    //            today = dateOnly
+    //        }
+    //    }
+           
     // Calendar
     private func isToday(date: Date) -> Bool {
         let calendar = Calendar.current

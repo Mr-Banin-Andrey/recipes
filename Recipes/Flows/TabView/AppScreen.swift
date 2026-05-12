@@ -32,26 +32,14 @@ extension AppScreen {
     }
     
     @ViewBuilder
-    var destination: some View {
-        switch self {
-        case .main:
-            MainNavigation()
-        case .recipes:
-            RecipesNavigation()
-        case .shoppingList:
-            MainNavigation()
-        }
-    }
-    
-    @ViewBuilder
     func destination(context: ModelContext) -> some View {
         switch self {
         case .main:
-            MainNavigation()
+            MainNavigation(modelContext: context)
         case .recipes:
             RecipesNavigation()
         case .shoppingList:
-            MainNavigation()
+            RecipesNavigation()
         }
     }
     
