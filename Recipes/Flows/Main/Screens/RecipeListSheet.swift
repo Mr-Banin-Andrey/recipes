@@ -51,7 +51,7 @@ struct RecipeListSheet: View {
             HStack(spacing: 0) {
                 ForEach(
                     SortingData
-                        .sortingMenuSections(recipes: store.recipes)
+                        .sortingMenuSections(recipes: recipes)
                 ) { meal in
                     Button {
                         withAnimation {
@@ -76,7 +76,7 @@ struct RecipeListSheet: View {
     
     @ViewBuilder
     private func createRecipeListView() -> some View {
-        List(store.recipes.filter { $0.meal == currentMeal }) { recipe in
+        List(recipes.filter { $0.meal == currentMeal }) { recipe in
             Button {
                 selectedRecipe(recipe)
                 dismiss()

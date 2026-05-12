@@ -14,13 +14,13 @@ final class DiningTime: Hashable, Identifiable {
     var id: String
     var date: Date
     var mealTimeType: MealTimeType
-    var recipe: Recipe
+    var recipe: Recipe?
     
     init(
         id: String,
         date: Date,
         mealTimeType: MealTimeType,
-        recipe: Recipe
+        recipe: Recipe?
     ) {
         self.id = id
         self.date = date
