@@ -6,19 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RecipeListSheet: View {
         
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) private var modelContext
+    
+    @Query var recipes: [Recipe]
+    @EnvironmentObject private var store: MainStore
+    
     /// Дефолтная секция приема пищи
     @State private var currentMeal: MenuSectionType = .breakfasts
     /// Какой прием пищи будет
     var diningTime: DiningTime
-    
-    // доставать рецепты из swiftdata
-    @Environment(\.modelContext) private var context
-    
-    @EnvironmentObject private var store: MainStore
     
     var body: some View {
         VStack(spacing: 0) {
@@ -29,6 +30,8 @@ struct RecipeListSheet: View {
         .background(Color.antiFlashWhite)
     }
     
+    // MARK: - Views
+
     @ViewBuilder
     private func createTopView() -> some View {
         ZStack {
@@ -75,9 +78,7 @@ struct RecipeListSheet: View {
     private func createRecipeListView() -> some View {
         List(store.recipes.filter { $0.meal == currentMeal }) { recipe in
             Button {
-//                store.dishListForCurrentDay.mealTime.filter({ $0.mealTimeType == self.menuSectionType }).first?.recipe = recipe
-//                store.updateDishList()
-                
+                selectedRecipe(recipe)
                 dismiss()
             } label: {
                 HStack {
@@ -94,7 +95,12 @@ struct RecipeListSheet: View {
             }
         }
         .listStyle(.insetGrouped)
-        
     }
     
+    // MARK: - Methods
+    
+    private func selectedRecipe(_ recipe: Recipe) {
+        diningTime.recipe = recipe
+        modelContext.insert(diningTime)
+    }
 }
