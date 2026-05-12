@@ -31,7 +31,7 @@ struct MainScreen: View {
         VStack(spacing: 0) {
             ZStack {
                 WeekView() { date in
-                    mainStore.diningTimeAdd(date)
+                    mainStore.createDiningTimesIfNeeded(for: date)
                 }
             }
             .cornerRadius(16)

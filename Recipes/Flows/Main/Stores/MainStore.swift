@@ -18,7 +18,7 @@ final class MainStore: ObservableObject {
     @Published var selectedDate: Date = DateConverter.dateOnly(Date())
     private var currentDate: Date = Date()
 
-    @Published var recipes: [Recipe] = Recipe.fourRecipe
+    @AppStorage("isFirstLaunch") var isFirstLaunch: Bool = true
 
     init(context: ModelContext) {
         self.context = context
@@ -27,14 +27,22 @@ final class MainStore: ObservableObject {
         fetchCurrentWeek()
         fetchPreviousNextWeek()
         
-        diningTimeAdd(selectedDate)
+        createDiningTimesIfNeeded(for: selectedDate)
+        if isFirstLaunch {
+            createRecipesIfNeeded()
+            isFirstLaunch.toggle()
+        }
     }
     
     // MARK: Public
     
-    /// Добавляем в хранилище приёмы пищи на конкретный день
-    func diningTimeAdd(_ selectedDate: Date) {
-        guard hasDiningTimes(selectedDate) else {
+    /// Добавляем в хранилище приёмы пищи
+    /// на конкретный день если их нет
+    func createDiningTimesIfNeeded(for selectedDate: Date) {
+        guard isStorageEmpty(
+            of: DiningTime.self,
+            predicate: #Predicate<DiningTime> { $0.date == selectedDate }
+        ) else {
             self.selectedDate = selectedDate
             return
         }
@@ -50,19 +58,22 @@ final class MainStore: ObservableObject {
     
     // MARK: Private
     
-    /// Проверяем в хранилище приёмы пищи на выбранный день
-    private func hasDiningTimes(_ selectedDate: Date) -> Bool {
+    /// Проверяем объекты в хранилище
+    private func isStorageEmpty<T: PersistentModel>(
+        of type: T.Type,
+        predicate: Predicate<T>?
+    ) -> Bool {
         do {
-            let descriptor = FetchDescriptor<DiningTime>(
-                predicate: #Predicate { $0.date == selectedDate },
+            let descriptor = FetchDescriptor<T>(
+                predicate: predicate,
                 sortBy: []
             )
             
-            let diningTimes = try context.fetch(descriptor)
+            let entities = try context.fetch(descriptor)
 
-            return diningTimes.isEmpty
+            return entities.isEmpty
         } catch {
-            print("Error hasDiningTimes")
+            print("Error fetching \(T.self): \(error)")
             return false
         }
     }
@@ -76,14 +87,37 @@ final class MainStore: ObservableObject {
             id: UUID().uuidString,
             date: selectedDate,
             mealTimeType: mealTimeType,
-            recipe: .emptyRecipe
+            recipe: nil
         )
         context.insert(diningTime)
 
         do {
             try context.save()
         } catch {
-            print("Error saving context:", error)
+            print("Error saving diningtime context:", error)
+        }
+    }
+    
+    private func createRecipesIfNeeded() {
+        guard isStorageEmpty(
+            of: Recipe.self,
+            predicate: nil
+        ) else {
+            return
+        }
+        
+        Recipe.fourRecipe.forEach {
+            addRecipeToBase($0)
+        }
+    }
+    
+    private func addRecipeToBase(_ recipe: Recipe) {
+        context.insert(recipe)
+
+        do {
+            try context.save()
+        } catch {
+            print("Error saving recipe context:", error)
         }
     }
     
