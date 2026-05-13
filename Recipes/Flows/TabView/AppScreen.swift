@@ -37,9 +37,9 @@ extension AppScreen {
         case .main:
             MainNavigation(modelContext: context)
         case .recipes:
-            RecipesNavigation()
+            RecipesNavigation(modelContext: context)
         case .shoppingList:
-            RecipesNavigation()
+            RecipesNavigation(modelContext: context)
         }
     }
     

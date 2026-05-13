@@ -6,11 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RecipesNavigation: View {
     
     @StateObject private var router = Router<RecipesRoute>()
-    private let recipesStore: RecipesStore = .init()
+    private let modelContext: ModelContext
+    private let recipesStore: RecipesStore
+    
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+        recipesStore = .init(context: modelContext)
+    }
     
     var body: some View {
         NavigationStack(path: $router.routes) {

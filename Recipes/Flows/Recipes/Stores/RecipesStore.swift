@@ -10,14 +10,17 @@ import SwiftData
 import Combine
 
 final class RecipesStore: ObservableObject {
-        
+    
+    private let context: ModelContext
+    
     @Published var mealType: MenuSectionType = .breakfasts
     @Published var mealTypes: [MenuSectionType] = []
     @Published var recipes: [Recipe] = Recipe.fourRecipe
         
     var cancellables: Set<AnyCancellable> = []
     
-    init() {
+    init(context: ModelContext) {
+        self.context = context
 //        stateKeeper.$recipes
 //            .sink { value in
 //                self.recipes = value

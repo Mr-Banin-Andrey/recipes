@@ -24,9 +24,13 @@ struct MealTypeScrollView: View {
                                 Text(type.localizedDescription)
                                     .font(Font.system(size: 16, weight: .regular))
                                     .foregroundStyle(Color.mainText)
-                                    .padding(10)
-                                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.navBar, lineWidth: 1))
-                                    .background(type == mealType ? Color.navBar : Color.clear)
+                                    .padding(15)
+                                    .padding(.vertical, 2)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .stroke(Color.gray, lineWidth: 1)
+                                    )
+                                    .background(type == mealType ? Color.gray.opacity(0.7) : Color.clear)
                                     .clipShape(.rect(cornerRadius: 16))
                                     .padding(.trailing, mealTypes.last != type ? 16 : 0)
                             }

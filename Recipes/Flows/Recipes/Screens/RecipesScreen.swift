@@ -9,14 +9,13 @@ import SwiftUI
 //import SwiftData
 
 struct RecipesScreen: View {
-//    @StateObject var viewModel: RecipesScreenViewModel
+
     @EnvironmentObject private var router: Router<RecipesRoute>
     @EnvironmentObject private var recipesStore: RecipesStore
+    @Environment(\.modelContext) private var modelContext
     
     var body: some View {
-//        NavigationStack {
             VStack(spacing: 0) {
-                Text("RecipesScreen")
                 if recipesStore.recipes.isEmpty {
                     Spacer()
                     
@@ -58,16 +57,17 @@ struct RecipesScreen: View {
 //                    AddNewRecipeScreenView(viewModel: AddNewRecipeScreenViewModel())
 //                } label: {
                     Text("Добавить рецепт")
-                        .modifier(GreenButtonModifier(textColor: .whiteColorText, backgroundColor: .greenButton))
+//                        .modifier(GreenButtonModifier(textColor: .whiteColorText, backgroundColor: .greenButton))
+                        .background(Color.gray.opacity(0.8))
                         .padding(.vertical, 16)
                         .shadow(radius: 2, x: 2, y: 2)
 //                }
             }
-            .modifier(NavigationBarTitleModifier(title: "Рецепты", color: .navBar))
+//            .modifier(NavigationBarTitleModifier(title: "Рецепты", color: .navBar))
 //        }
     }
 }
 
-//#Preview {
-//    RecipesScreen(viewModel: RecipesScreenViewModel())
-//}
+#Preview {
+    RecipesScreen()
+}
