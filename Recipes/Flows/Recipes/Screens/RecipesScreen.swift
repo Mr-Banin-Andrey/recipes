@@ -15,56 +15,53 @@ struct RecipesScreen: View {
     @Environment(\.modelContext) private var modelContext
     
     var body: some View {
-            VStack(spacing: 0) {
-                if recipesStore.recipes.isEmpty {
-                    Spacer()
-                    
-                    ZStack {
-                        Image("backgroundRecipesImage")
-                            .resizable()
-                            .scaledToFit()
-                            .opacity(0.1)
-                        
-                        Text("Здесь будут ваши любимые рецепты!")
-                            .font(.system(size: 22, weight: .regular))
-                            .foregroundStyle(.mainText)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal)
-                    }
+        VStack(spacing: 0) {
+            if recipesStore.recipes.isEmpty {
+                Spacer()
                 
-                } else {
-                    MealTypeScrollView(
-                        mealTypes: SortingData.sortingMenuSections(recipes: recipesStore.recipes),
-                        mealType: $recipesStore.mealType
-                    )
+                ZStack {
+                    Image("backgroundRecipesImage")
+                        .resizable()
+                        .scaledToFit()
+                        .opacity(0.1)
                     
-                    ScrollView {
-                        ForEach(recipesStore.recipes.filter { $0.meal == recipesStore.mealType}) { recipe in
-                            RecipeView(
-//                                viewModel: recipesStore,
-                                id: recipe.id,
-                                title: recipe.name,
-                                ingredients: recipe.ingredients,
-                                methodOfPreparation: recipe.instruction,
-                                color: colorForRecipeBackground(num: recipesStore.getIndex(of: recipe))
-                            )
-                            .padding(.vertical, 4)
-                        }
+                    Text("Здесь будут ваши любимые рецепты!")
+                        .font(.system(size: 22, weight: .regular))
+                        .foregroundStyle(.mainText)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
+                
+            } else {
+                MealTypeScrollView(
+                    mealTypes: SortingData.sortingMenuSections(recipes: recipesStore.recipes),
+                    mealType: $recipesStore.mealType
+                )
+                
+                ScrollView {
+                    ForEach(recipesStore.recipes.filter { $0.meal == recipesStore.mealType}) { recipe in
+                        RecipeView(
+                            //                                viewModel: recipesStore,
+                            id: recipe.id,
+                            title: recipe.name,
+                            ingredients: recipe.ingredients,
+                            methodOfPreparation: recipe.instruction,
+                            color: colorForRecipeBackground(num: recipesStore.getIndex(of: recipe))
+                        )
+                        .padding(.vertical, 4)
                     }
                 }
-                               
-//                NavigationLink {
-//                    AddNewRecipeScreenView(viewModel: AddNewRecipeScreenViewModel())
-//                } label: {
-                    Text("Добавить рецепт")
-//                        .modifier(GreenButtonModifier(textColor: .whiteColorText, backgroundColor: .greenButton))
-                        .background(Color.gray.opacity(0.8))
-                        .padding(.vertical, 16)
-                        .shadow(radius: 2, x: 2, y: 2)
-//                }
             }
-//            .modifier(NavigationBarTitleModifier(title: "Рецепты", color: .navBar))
-//        }
+            
+            Text("Добавить рецепт")
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 16)
+                .background(Color.gray.opacity(0.8))
+                .cornerRadius(20)
+                .padding(.horizontal, 16)
+                .shadow(radius: 2, x: 2, y: 2)
+                .padding(.vertical, 12)
+        }
     }
 }
 

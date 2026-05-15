@@ -32,7 +32,7 @@ struct MealTypeScrollView: View {
                                     )
                                     .background(type == mealType ? Color.gray.opacity(0.7) : Color.clear)
                                     .clipShape(.rect(cornerRadius: 16))
-                                    .padding(.trailing, mealTypes.last != type ? 16 : 0)
+                                    .padding(.trailing, mealTypes.last != type ? 8 : 0)
                             }
                         }
                     }
